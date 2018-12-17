@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#83AE05</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
+    <color name="color333">#333</color>
+    <color name="color666">#666</color>
+    <color name="color999">#999</color>
+    <color name="colorEEE">#EEE</color>
+    <color name="red">#ff0000</color>
+    <color name="yellow">#FFFF00</color> <!--黄色 -->
+    <color name="colorF4F4">#F4F4F4</color>
+    <color name="divider">#5fb9afb1</color>
+    <color name="color83AE05">#83AE05</color>
+    <color name="colorFBB7B5">#FBB7B5</color>
+
 </resources>

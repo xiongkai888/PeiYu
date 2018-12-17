@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">PeiYu</string>
+    <string name="app_name">沛誉能源</string>
+
+    <string name="home">首页</string>
+    <string name="classify">分类</string>
+    <string name="news">资讯</string>
+    <string name="shopping_cart">购物车</string>
+    <string name="mine">我的</string>
+
+    <string name="developing">开发中</string>
+    <string name="input_keyword">请输入关键字</string>
+    <string name="time">2018-12-17 08:21</string>
+
 </resources>

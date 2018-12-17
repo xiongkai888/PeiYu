@@ -1,11 +1,155 @@
 <resources>
 
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/txt_14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="actionMenuTextColor">@color/black</item>
+        <item name="actionMenuTextAppearance">@style/menuTextStyle</item>
     </style>
+
+    <!--菜单-->
+    <style name="menuTextStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/txt_16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <!--水平直线-->
+    <style name="line_H1dp_divider" parent="line_H1dp">
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <style name="line_H1dp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.3dp</item>
+    </style>
+
+
+    <!--背景白色，有底部边框-->
+    <style name="ll_bottom_h" parent="ll_bottom_h_no">
+        <item name="android:background">@drawable/border_bottom_divider</item>
+    </style>
+
+    <!--背景白色，没有底部边框-->
+    <style name="ll_bottom_h_no" parent="h_match_parent">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="h_match_parent" parent="h_match_parent_no">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="text12color666" parent="Text.Size12">
+        <item name="android:textColor">@color/color999</item>
+    </style>
+
+    <style name="text10color999" parent="Text.Size10">
+        <item name="android:textColor">@color/color999</item>
+    </style>
+
+    <style name="text14color666" parent="Text.Size14">
+        <item name="android:textColor">@color/color999</item>
+    </style>
+
+    <style name="text16colorWhite" parent="Text.Size16">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text18colorWhite" parent="Text.Size18">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="h_match_parent_no" parent="match_parent">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!--垂直有背景颜色-->
+    <style name="v_match_parent" parent="v_match_parent_no">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="match_parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--垂直无背景颜色-->
+    <style name="v_match_parent_no" parent="match_parent">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="text12colorBlack" parent="Text.Size12">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Text.Size12" parent="text">
+        <item name="android:textSize">@dimen/txt_12sp</item>
+    </style>
+
+    <style name="Text.Size10" parent="text">
+        <item name="android:textSize">@dimen/txt_10sp</item>
+    </style>
+
+    <style name="Text.Size14" parent="text">
+        <item name="android:textSize">@dimen/txt_14sp</item>
+    </style>
+
+    <style name="Text.Size16" parent="text">
+        <item name="android:textSize">@dimen/txt_16sp</item>
+    </style>
+
+    <style name="Text.Size18" parent="text">
+        <item name="android:textSize">@dimen/txt_18sp</item>
+    </style>
+
+
+    <style name="text14colorRed" parent="Text.Size14">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="text12colorRed" parent="Text.Size12">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="text10colorRed" parent="Text.Size10">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="text10colorWhite" parent="Text.Size10">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="v_all_match_parent_no" parent="v_match_parent_no">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="text14color333" parent="Text.Size14">
+        <item name="android:textColor">@color/color333</item>
+    </style>
+
+    <style name="text_weight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+
+    <style name="style_my_bg" parent="text_weight">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:lineSpacingExtra">@dimen/d_8dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/txt_12sp</item>
+    </style>
+
 
 </resources>

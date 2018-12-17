@@ -38,4 +38,6 @@ dependencies {
 
     implementation project(path: ':common')
     implementation project(':wheel-date-picker')
+    //轮播图
+    implementation 'com.bigkoo:convenientbanner:2.0.5'
 }
