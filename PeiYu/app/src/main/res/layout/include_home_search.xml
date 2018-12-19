@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d_50dp"
+    android:background="@drawable/border_bottom_divider"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/d_5dp">
+
+
+    <TextView
+        style="@style/text"
+        android:drawablePadding="@dimen/d_5dp"
+        android:drawableRight="@mipmap/icon_classify"
+        android:paddingLeft="@dimen/d_5dp"
+        android:paddingRight="@dimen/d_10dp" />
+
+
+    <TextView
+        android:id="@+id/search_tv"
+        android:layout_width="@dimen/d_0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/search_bg"
+        android:drawableLeft="@mipmap/icon_search"
+        android:drawablePadding="@dimen/d_3dp"
+        android:hint="@string/input_keyword"
+        android:padding="@dimen/d_5dp"
+        android:textSize="@dimen/txt_12sp" />
+
+
+    <TextView
+        style="@style/text"
+        android:drawableRight="@mipmap/icon_message"
+        android:paddingLeft="@dimen/d_10dp"
+        android:paddingRight="@dimen/d_5dp" />
+
+</LinearLayout>

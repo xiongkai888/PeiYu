@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout style="@style/v_all_match_parent_no">
+
+            <LinearLayout
+                style="@style/v_match_parent_no"
+                android:background="@mipmap/my_bg">
+
+                <RelativeLayout style="@style/match_parent">
+
+                    <TextView
+                        style="@style/text18colorWhite"
+                        android:layout_centerInParent="true"
+                        android:text="@string/mine" />
+
+                    <ImageView
+                        android:id="@+id/m_message_iv"
+                        style="@style/text"
+                        android:layout_alignParentRight="true"
+                        android:padding="@dimen/d_10dp"
+                        android:src="@mipmap/my_message" />
+
+                </RelativeLayout>
+
+                <com.xson.common.widget.CircleImageView
+                    android:id="@+id/pic_iv"
+                    android:layout_width="@dimen/d_100dp"
+                    android:layout_height="@dimen/d_100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/d_20dp"
+                    android:src="@mipmap/temp_pic" />
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    style="@style/text16colorWhite"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/d_10dp"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:text="小甜甜" />
+
+                <TextView style="@style/line_H1dp_divider" />
+
+
+                <LinearLayout
+                    style="@style/h_match_parent_no"
+                    android:paddingBottom="@dimen/d_10dp"
+                    android:paddingTop="@dimen/d_10dp">
+
+                    <TextView
+                        android:id="@+id/m01_tv"
+                        style="@style/style_my_bg"
+                        android:text="1096\n我的余额" />
+
+                    <TextView
+                        android:id="@+id/m02_tv"
+                        style="@style/style_my_bg"
+                        android:text="2\n我的团队" />
+
+                    <TextView
+                        android:id="@+id/m03_tv"
+                        style="@style/style_my_bg"
+                        android:text="3\n我的业绩" />
+
+                    <TextView
+                        android:id="@+id/m04_tv"
+                        style="@style/style_my_bg"
+                        android:text="4\n团队业绩" />
+
+                    <TextView
+                        android:id="@+id/m05_tv"
+                        style="@style/style_my_bg"
+                        android:text="2\n我的电站" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/v_match_parent"
+                android:layout_marginTop="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:padding="@dimen/d_10dp"
+                    android:text="我的订单" />
+
+                <TextView style="@style/line_H1dp_divider" />
+
+
+                <LinearLayout
+                    style="@style/h_match_parent"
+                    android:paddingBottom="@dimen/d_5dp"
+                    android:paddingTop="@dimen/d_5dp">
+
+                    <RelativeLayout
+                        android:id="@+id/m1_rl"
+                        style="@style/text_weight"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            style="@style/match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                style="@style/text"
+                                android:src="@mipmap/mine1" />
+
+                            <TextView
+                                style="@style/text14color666"
+                                android:layout_marginTop="@dimen/d_3dp"
+                                android:text="待付款" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/m1_num_tv"
+                            style="@style/text10colorWhite"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/d_20dp"
+                            android:background="@drawable/order_num"
+                            android:gravity="center"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/m2_rl"
+                        style="@style/text_weight"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            style="@style/match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                style="@style/text"
+                                android:src="@mipmap/mine2" />
+
+                            <TextView
+                                style="@style/text14color666"
+                                android:layout_marginTop="@dimen/d_3dp"
+                                android:text="待发货" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/m2_num_tv"
+                            style="@style/text10colorWhite"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/d_20dp"
+                            android:background="@drawable/order_num"
+                            android:gravity="center"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/m3_rl"
+                        style="@style/text_weight"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            style="@style/match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                style="@style/text"
+                                android:src="@mipmap/mine3" />
+
+                            <TextView
+                                style="@style/text14color666"
+                                android:layout_marginTop="@dimen/d_3dp"
+                                android:text="待收货" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/m3_num_tv"
+                            style="@style/text10colorWhite"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/d_10dp"
+                            android:background="@drawable/order_num"
+                            android:gravity="center"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/m4_rl"
+                        style="@style/text_weight"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            style="@style/match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                style="@style/text"
+                                android:src="@mipmap/mine5" />
+
+                            <TextView
+                                style="@style/text14color666"
+                                android:layout_marginTop="@dimen/d_3dp"
+                                android:text="待评价" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/m4_num_tv"
+                            style="@style/text10colorWhite"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/d_20dp"
+                            android:background="@drawable/order_num"
+                            android:gravity="center"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/m5_rl"
+                        style="@style/text_weight"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            style="@style/match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                style="@style/text"
+                                android:src="@mipmap/mine5" />
+
+                            <TextView
+                                style="@style/text14color666"
+                                android:layout_marginTop="@dimen/d_3dp"
+                                android:text="退款/售后" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/m5_num_tv"
+                            style="@style/text10colorWhite"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/d_20dp"
+                            android:background="@drawable/order_num"
+                            android:gravity="center"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/v_match_parent"
+                android:layout_marginTop="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:padding="@dimen/d_10dp"
+                    android:text="我的服务" />
+
+                <TextView style="@style/line_H1dp_divider" />
+
+
+                <LinearLayout
+                    style="@style/h_match_parent_no"
+                    android:paddingBottom="@dimen/d_10dp"
+                    android:paddingTop="@dimen/d_10dp">
+
+                    <TextView
+                        android:id="@+id/m6_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine6"
+                        android:text="安装信息" />
+
+                    <TextView
+                        android:id="@+id/m7_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine7"
+                        android:text="@string/after_sale_order" />
+
+                    <TextView
+                        android:id="@+id/m8_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine8"
+                        android:text="在线客服" />
+
+                    <TextView
+                        android:id="@+id/m9_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine9"
+                        android:text="成为经销商" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/v_match_parent"
+                android:layout_marginBottom="@dimen/d_10dp"
+                android:layout_marginTop="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:padding="@dimen/d_10dp"
+                    android:text="其他" />
+
+                <TextView style="@style/line_H1dp_divider" />
+
+
+                <LinearLayout
+                    style="@style/h_match_parent_no"
+                    android:paddingBottom="@dimen/d_10dp"
+                    android:paddingTop="@dimen/d_10dp">
+
+                    <TextView
+                        android:id="@+id/m10_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine6"
+                        android:text="我的收藏" />
+
+                    <TextView
+                        android:id="@+id/m11_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine7"
+                        android:text="我的地址" />
+
+                    <TextView
+                        android:id="@+id/m12_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine8"
+                        android:text="修改密码" />
+
+                    <TextView
+                        android:id="@+id/m13_tv"
+                        style="@style/mine_text_style"
+                        android:drawableTop="@mipmap/mine9"
+                        android:text="设置" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

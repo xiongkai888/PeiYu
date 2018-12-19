@@ -110,6 +110,10 @@ public class SmartSwipeRefreshLayout extends FrameLayout {
         showLoadingLayout();
     }
 
+    public void setEmptyLayout(View emptyLayout){
+        this.emptyLayout = emptyLayout;
+    }
+
     private void initRecyclerView() {
 //        if(recyclerView != null)return;
         //mCollectionView can be a ListView, GridView, RecyclerView or any instance of AbsListView!
@@ -185,7 +189,7 @@ public class SmartSwipeRefreshLayout extends FrameLayout {
     public void initWithLinearLayout() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         setLayoutManager(layoutManager);
-        recyclerView.setNestedScrollingEnabled(false);
+//        recyclerView.setNestedScrollingEnabled(false);
     }
 
     public void setNestedScrollingEnabled(boolean enabled) {

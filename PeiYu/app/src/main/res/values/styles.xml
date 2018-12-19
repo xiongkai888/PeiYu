@@ -19,9 +19,23 @@
     </style>
 
 
+
+    <!--Toolbar TitleText-->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/txt_18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <!--水平直线-->
     <style name="line_H1dp_divider" parent="line_H1dp">
         <item name="android:background">@color/divider</item>
+    </style>
+
+    <!--垂直直线-->
+    <style name="line_v1dp_divider">
+        <item name="android:background">@color/divider</item>
+        <item name="android:layout_width">0.3dp</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 
     <style name="line_H1dp">
@@ -60,12 +74,29 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="text14colorWhite" parent="Text.Size14">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text12colorWhite" parent="Text.Size12">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text16colorBlack" parent="Text.Size16">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="text18colorWhite" parent="Text.Size18">
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="h_match_parent_no" parent="match_parent">
         <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="TabLayoutAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <!--垂直有背景颜色-->
@@ -151,5 +182,22 @@
         <item name="android:textSize">@dimen/txt_12sp</item>
     </style>
 
+    <style name="mine_text_style" parent="text_weight">
+        <item name="android:drawablePadding">@dimen/d_3dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/color666</item>
+    </style>
+
+    <style name="button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/d_35dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/order_pay_again</item>
+        <item name="android:layout_marginTop">@dimen/d_10dp</item>
+        <item name="android:layout_marginRight">@dimen/d_10dp</item>
+        <item name="android:layout_marginLeft">@dimen/d_10dp</item>
+        <item name="android:layout_marginBottom">@dimen/d_10dp</item>
+    </style>
 
 </resources>

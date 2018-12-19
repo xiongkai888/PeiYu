@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_ad" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_classify"
+        style="@style/match_parent"
+        android:background="@color/white"
+        android:paddingTop="@dimen/d_5dp" />
+
+    <LinearLayout style="@style/v_match_parent">
+
+        <ImageView
+            style="@style/match_parent"
+            android:layout_marginLeft="@dimen/d_5dp"
+            android:layout_marginRight="@dimen/d_5dp"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/temp1" />
+
+        <LinearLayout
+            style="@style/h_match_parent"
+            android:layout_marginBottom="@dimen/d_5dp"
+            android:layout_marginTop="@dimen/d_5dp">
+
+            <ImageView
+                style="@style/text_weight"
+                android:layout_marginLeft="@dimen/d_5dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/temp2" />
+
+            <ImageView
+                style="@style/text_weight"
+                android:layout_marginLeft="@dimen/d_5dp"
+                android:layout_marginRight="@dimen/d_5dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/temp3" />
+
+            <ImageView
+                style="@style/text_weight"
+                android:layout_marginRight="@dimen/d_5dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/temp4" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:text="推荐商品"
+        android:paddingBottom="@dimen/d_10dp"
+        android:paddingTop="@dimen/d_10dp"
+        android:paddingLeft="@dimen/d_5dp"
+        style="@style/text" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        style="@style/h_match_parent_no">
+
+        <TextView
+            android:text="最新资讯"
+            android:paddingBottom="@dimen/d_10dp"
+            android:paddingTop="@dimen/d_10dp"
+            android:paddingLeft="@dimen/d_5dp"
+            style="@style/text_weight" />
+
+        <TextView
+            android:text="更多"
+            android:padding="@dimen/d_10dp"
+            android:paddingBottom="@dimen/d_10dp"
+            android:paddingTop="@dimen/d_10dp"
+            android:paddingLeft="@dimen/d_5dp"
+            style="@style/text12colorBlack" />
+
+    </LinearLayout>
+
+</LinearLayout>

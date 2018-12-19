@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">沛誉能源</string>
+    <string name="app_name">沛誉光伏</string>
 
     <string name="home">首页</string>
     <string name="classify">分类</string>
@@ -10,5 +10,22 @@
     <string name="developing">开发中</string>
     <string name="input_keyword">请输入关键字</string>
     <string name="time">2018-12-17 08:21</string>
-
+    <string name="all">全部</string>
+    <string name="wait_pay">待付款</string>
+    <string name="wait_receiving">待收货</string>
+    <string name="doned">已完成</string>
+    <string name="untreated">未处理</string>
+    <string name="being_processed">处理中</string>
+    <string name="order_total_price"><![CDATA[总价 :<font color="#ff0000">￥%s</font>]]></string>
+    <string name="total_cash"><![CDATA[总计 :<font color="#F5484A">￥%s</font>]]></string>
+    <string name="add">添加</string>
+    <string name="edit">编辑</string>
+    <string name="done">完成</string>
+    <string name="delete">删除</string>
+    <string name="submit">提交</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="price_sub">单价：￥%1$s</string>
+    <string name="price">￥%1$s</string>
+    <string name="after_sale_order">售后工单</string>
 </resources>

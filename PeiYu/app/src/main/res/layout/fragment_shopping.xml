@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_centertitletoolbar"/>
+
+    <include
+        layout="@layout/fragment_single_listview_no"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_top_divider"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <CheckBox
+            android:id="@+id/all_select_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/d_5dp"
+            android:background="@drawable/check_bg"
+            android:button="@null" />
+
+        <TextView
+            style="@style/text"
+            android:layout_gravity="center_vertical"
+            android:text="全选" />
+
+
+        <com.xson.common.widget.FormatTextView
+            android:id="@+id/total_money_tv"
+            style="@style/text_weight"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_gravity="center_vertical"
+            app:defaultValue="0.00"
+            app:formatText="@string/total_cash" />
+
+
+        <Button
+            android:id="@+id/balance_bt"
+            android:layout_width="@dimen/d_80dp"
+            android:layout_height="@dimen/d_30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/order_pay_again"
+            android:text="结算"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
