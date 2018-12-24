@@ -1,6 +1,5 @@
 package com.lanmei.peiyu.adapter;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,7 +14,7 @@ import com.lanmei.peiyu.ui.mine.fragment.AfterSaleOrderListFragment;
 public class AfterSaleOrderAdapter extends FragmentPagerAdapter {
 
 
-    public AfterSaleOrderAdapter(FragmentManager fm, Context context) {
+    public AfterSaleOrderAdapter(FragmentManager fm) {
         super(fm);
     }
 

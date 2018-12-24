@@ -11,7 +11,9 @@
         android:layout_height="wrap_content">
 
 
-        <LinearLayout style="@style/v_all_match_parent_no">
+        <LinearLayout
+            android:background="@color/colorF4F4"
+            style="@style/v_all_match_parent_no">
 
             <LinearLayout
                 style="@style/v_match_parent_no"
@@ -60,7 +62,7 @@
                     <TextView
                         android:id="@+id/m01_tv"
                         style="@style/style_my_bg"
-                        android:text="1096\n我的余额" />
+                        android:text="8686.02\n我的余额" />
 
                     <TextView
                         android:id="@+id/m02_tv"
@@ -80,7 +82,7 @@
                     <TextView
                         android:id="@+id/m05_tv"
                         style="@style/style_my_bg"
-                        android:text="2\n我的电站" />
+                        android:text="13\n我的电站" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -359,7 +361,6 @@
 
 
             </LinearLayout>
-
 
         </LinearLayout>
 

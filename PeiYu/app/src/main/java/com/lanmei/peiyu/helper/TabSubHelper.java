@@ -47,7 +47,12 @@ public class TabSubHelper {
         return view;
     }
 
+    /**
+     *
+     * @param num
+     */
     public void setOrderNum(int... num) {
+        //num的个数应大于等于size
         int size = tabLayout.getTabCount();
         for (int i = 0; i < size; i++) {
             setOrderNum(i,num[i]);

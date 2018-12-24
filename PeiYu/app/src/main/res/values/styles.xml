@@ -31,6 +31,13 @@
         <item name="android:background">@color/divider</item>
     </style>
 
+    <!--10dF4线，没边框-->
+    <style name="line_H10dp_on">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/d_10dp</item>
+        <item name="android:background">@color/colorF4F4</item>
+    </style>
+
     <!--垂直直线-->
     <style name="line_v1dp_divider">
         <item name="android:background">@color/divider</item>
@@ -59,6 +66,10 @@
     </style>
 
     <style name="text12color666" parent="Text.Size12">
+        <item name="android:textColor">@color/color999</item>
+    </style>
+
+    <style name="text10color666" parent="Text.Size10">
         <item name="android:textColor">@color/color999</item>
     </style>
 
@@ -109,6 +120,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+
+    <style name="match_parent_all" parent="match_parent">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <!--垂直无背景颜色-->
     <style name="v_match_parent_no" parent="match_parent">
         <item name="android:orientation">vertical</item>
@@ -148,6 +164,11 @@
         <item name="android:textColor">@color/red</item>
     </style>
 
+
+    <style name="text14color1ca637" parent="Text.Size14">
+        <item name="android:textColor">@color/color1ca637</item>
+    </style>
+
     <style name="text12colorRed" parent="Text.Size12">
         <item name="android:textColor">@color/red</item>
     </style>
@@ -162,6 +183,10 @@
 
     <style name="v_all_match_parent_no" parent="v_match_parent_no">
         <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="v_all_match_parent" parent="v_all_match_parent_no">
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="text14color333" parent="Text.Size14">
@@ -193,7 +218,7 @@
         <item name="android:layout_height">@dimen/d_35dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/order_pay_again</item>
+        <item name="android:background">@drawable/shape_login</item>
         <item name="android:layout_marginTop">@dimen/d_10dp</item>
         <item name="android:layout_marginRight">@dimen/d_10dp</item>
         <item name="android:layout_marginLeft">@dimen/d_10dp</item>

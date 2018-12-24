@@ -6,7 +6,9 @@ import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
+import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
 import com.lanmei.peiyu.ui.mine.activity.MineOrderActivity;
+import com.lanmei.peiyu.ui.mine.activity.MinePowerStationActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
 import com.xson.common.utils.IntentUtil;
@@ -94,7 +96,7 @@ public class MineFragment extends BaseFragment {
                 CommonUtils.developing(context);
                 break;
             case R.id.m05_tv://我的电站
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, MinePowerStationActivity.class);
                 break;
             case R.id.m1_rl://待付款
             case R.id.m2_rl://待发货
@@ -104,7 +106,7 @@ public class MineFragment extends BaseFragment {
                 IntentUtil.startActivity(context, MineOrderActivity.class);
                 break;
             case R.id.m6_tv://安装信息
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, InstallApplyActivity.class);
                 break;
             case R.id.m7_tv://售后工单
                 IntentUtil.startActivity(context, AfterSaleOrderActivity.class);

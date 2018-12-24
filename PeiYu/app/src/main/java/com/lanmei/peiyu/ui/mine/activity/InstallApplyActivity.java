@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.lanmei.peiyu.R;
-import com.lanmei.peiyu.adapter.MineOrderAdapter;
+import com.lanmei.peiyu.adapter.InstallApplyAdapter;
 import com.lanmei.peiyu.helper.TabSubHelper;
 import com.xson.common.app.BaseActivity;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.widget.CenterTitleToolbar;
 
 import java.util.ArrayList;
@@ -18,9 +21,9 @@ import java.util.List;
 import butterknife.InjectView;
 
 /**
- * 我的订单
+ * 安装申请
  */
-public class MineOrderActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
+public class InstallApplyActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
 
     @InjectView(R.id.toolbar)
     CenterTitleToolbar toolbar;
@@ -42,27 +45,45 @@ public class MineOrderActivity extends BaseActivity implements TabLayout.OnTabSe
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayShowTitleEnabled(true);
         actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setTitle(R.string.mine_order);
+        actionbar.setTitle(R.string.install_apply);
         actionbar.setHomeAsUpIndicator(R.mipmap.back);
 
         helper = new TabSubHelper(this,mTabLayout,getTitleList());
-        helper.setOrderNum(0,6,0,0);
+        helper.setOrderNum(0,6,0,0,0,0);
 
-        mViewPager.setAdapter(new MineOrderAdapter(getSupportFragmentManager(),this));
-        mViewPager.setOffscreenPageLimit(3);
-//        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mViewPager.setAdapter(new InstallApplyAdapter(getSupportFragmentManager()));
+//        mViewPager.setOffscreenPageLimit(3);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.addOnTabSelectedListener(this);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));;
 //        mViewPager.setCurrentItem(getIntent().getIntExtra("type",0));
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add:
+                IntentUtil.startActivity(this,ApplyInstallActivity.class);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private List<String> getTitleList() {
         List<String> titles = new ArrayList<>();
         Collections.addAll(titles,getString(R.string.all),
-                getString(R.string.wait_receiving),
-                getString(R.string.wait_pay),
-                getString(R.string.doned));
+                "施工申报",
+                "设备发货",
+                "施工安装",
+                "竣工验收",
+                getString(R.string.done));
         return titles;
     }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_bottom_h"
+    android:padding="@dimen/d_10dp">
+
+  <TextView
+      android:text="安装信息"
+      android:layout_marginLeft="@dimen/d_8dp"
+     style="@style/text_weight"/>
+
+  <TextView
+      android:text="功率1000kw"
+      android:gravity="center_vertical"
+      android:drawableRight="@mipmap/in_right"
+     style="@style/text12color666"/>
+
+</LinearLayout>

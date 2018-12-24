@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity">
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:canLoop="true">
+
+    </com.bigkoo.convenientbanner.ConvenientBanner>
+
+
+    <ImageView
+        android:id="@+id/skip_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="@dimen/d_50dp"
+        android:src="@mipmap/experience_now"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/launch_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/launch"
+        android:visibility="gone" />
+
+</FrameLayout>

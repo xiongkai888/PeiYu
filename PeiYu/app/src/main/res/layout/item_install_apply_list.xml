@@ -11,13 +11,13 @@
         <TextView
             style="@style/text_weight"
             android:background="@color/white"
-            android:text="订单号：10021525222310866"
+            android:text="光伏电站200kw"
             android:textColor="@color/color666" />
 
         <TextView
             style="@style/text12colorRed"
             android:background="@color/white"
-            android:text="@string/doned" />
+            android:text="施工申报-处理中" />
 
     </LinearLayout>
 

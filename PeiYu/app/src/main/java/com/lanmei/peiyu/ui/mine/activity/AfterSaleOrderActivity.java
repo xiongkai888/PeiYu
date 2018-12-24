@@ -51,7 +51,7 @@ public class AfterSaleOrderActivity extends BaseActivity implements TabLayout.On
         helper = new TabSubHelper(this,mTabLayout,getTitleList());
         helper.setOrderNum(0,6,0,0);
 
-        mViewPager.setAdapter(new AfterSaleOrderAdapter(getSupportFragmentManager(),this));
+        mViewPager.setAdapter(new AfterSaleOrderAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(3);
 //        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.addOnTabSelectedListener(this);
