@@ -21,7 +21,7 @@
             android:layout_marginTop="@dimen/d_2dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="柔洁"
+            android:text="@string/solar_energy"
             android:paddingLeft="@dimen/d_5dp"
             android:paddingRight="@dimen/d_5dp"
             android:paddingTop="@dimen/d_5dp" />
