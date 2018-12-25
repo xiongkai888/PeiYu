@@ -1,4 +1,4 @@
-package com.lanmei.peiyu.ui.classify;
+package com.lanmei.peiyu.ui.classify.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,7 +9,7 @@ import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.ClassifyListAdapter;
 import com.lanmei.peiyu.adapter.ClassifyTabAdapter;
 import com.lanmei.peiyu.bean.ClassifyTabBean;
-import com.xson.common.app.BaseFragment;
+import com.xson.common.app.BaseActivity;
 import com.xson.common.widget.SmartSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -18,12 +18,9 @@ import java.util.List;
 import butterknife.InjectView;
 
 /**
- * Created by xkai on 2018/7/13.
- * 分类
+ * 分类列表
  */
-
-public class ClassifyFragment extends BaseFragment {
-
+public class ClassifyListActivity extends BaseActivity {
 
     @InjectView(R.id.pull_refresh_rv)
     SmartSwipeRefreshLayout smartSwipeRefreshLayout;
@@ -39,14 +36,13 @@ public class ClassifyFragment extends BaseFragment {
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-        ClassifyTabAdapter voterTabAdapter = new ClassifyTabAdapter(context);
+        ClassifyTabAdapter voterTabAdapter = new ClassifyTabAdapter(this);
         voterTabAdapter.setData(getVoterTabList());
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(voterTabAdapter);
 
-        adapter = new ClassifyListAdapter(context);
-        adapter.setClassifyList(true);
-        smartSwipeRefreshLayout.setLayoutManager(new GridLayoutManager(context,3));
+        adapter = new ClassifyListAdapter(this);
+        smartSwipeRefreshLayout.setLayoutManager(new GridLayoutManager(this,3));
         smartSwipeRefreshLayout.setAdapter(adapter);
         smartSwipeRefreshLayout.setMode(SmartSwipeRefreshLayout.Mode.NO_PAGE);
         adapter.notifyDataSetChanged();

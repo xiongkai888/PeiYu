@@ -54,8 +54,10 @@ public class MinePowerStationActivity extends BaseActivity implements SwipeRefre
         toolbar.postDelayed(new Runnable() {
             @Override
             public void run() {
-                swipeRefreshLayout.setRefreshing(false);
+                if (!isFinishing()){
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
-        },1000);
+        },1200);
     }
 }

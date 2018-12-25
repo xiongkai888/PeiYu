@@ -10,8 +10,8 @@ import android.view.MenuItem;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.AfterSaleOrderAdapter;
 import com.lanmei.peiyu.helper.TabSubHelper;
-import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseActivity;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.widget.CenterTitleToolbar;
 
 import java.util.ArrayList;
@@ -70,7 +70,7 @@ public class AfterSaleOrderActivity extends BaseActivity implements TabLayout.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_add:
-                CommonUtils.developing(this);
+                IntentUtil.startActivity(this,ApplyAfterSaleOrderActivity.class);
                 break;
         }
         return super.onOptionsItemSelected(item);

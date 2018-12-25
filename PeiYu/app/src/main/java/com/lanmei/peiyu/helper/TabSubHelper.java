@@ -57,8 +57,12 @@ public class TabSubHelper {
         for (int i = 0; i < size; i++) {
             setOrderNum(i,num[i]);
         }
-
     }
+
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
+
 
     private void setOrderNum(int position,int num){
         TabLayout.Tab tab = tabLayout.getTabAt(position);

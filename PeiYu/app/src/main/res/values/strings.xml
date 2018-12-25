@@ -36,4 +36,7 @@
     <string name="mine_power_station">我的电站</string>
     <string name="install_apply">安装申请</string>
     <string name="apply_install">申请安装</string>
+    <string name="apply_after_sale_order">售后申请工单</string>
+    <string name="data_entry">资料录入</string>
+    <string name="solar_energy">太阳能</string>
 </resources>

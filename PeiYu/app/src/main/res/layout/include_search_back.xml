@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_bottom_h"
+    android:layout_height="@dimen/toolbar_h">
+
+    <ImageView
+        android:id="@+id/back_iv"
+        style="@style/text"
+        android:src="@mipmap/back" />
+
+    <include
+        android:layout_weight="1"
+        android:layout_width="@dimen/d_0dp"
+        android:layout_height="wrap_content"
+        layout="@layout/include_search" />
+
+    <TextView
+        android:id="@+id/menu_tv"
+        android:visibility="gone"
+        android:layout_marginRight="@dimen/d_10dp"
+        style="@style/text" />
+
+</LinearLayout>

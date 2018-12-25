@@ -10,6 +10,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.HomeAdapter;
 import com.lanmei.peiyu.adapter.HomeRecommendAdapter;
+import com.lanmei.peiyu.ui.home.activity.DataEntryActivity;
 import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
@@ -84,7 +85,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 CommonUtils.developing(context);
                 break;
             case R.id.home_classify2_tv://资料录入
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, DataEntryActivity.class);
                 break;
             case R.id.home_classify3_tv://安装申报
                 CommonUtils.developing(context);

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/v_all_match_parent_no"
-    tools:context="com.lanmei.peiyu.ui.mine.activity.ApplyInstallActivity">
+    tools:context="com.lanmei.peiyu.ui.mine.activity.ApplyAfterSaleOrderActivity">
 
     <include layout="@layout/include_centertitletoolbar" />
 
@@ -22,49 +22,64 @@
                 android:paddingBottom="@dimen/d_2dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingTop="@dimen/d_10dp"
-                android:text="安装信息" />
-
-            <TextView
-                style="@style/text14color666"
-                android:layout_width="match_parent"
-                android:background="@drawable/border_bottom_divider"
-                android:drawableRight="@mipmap/o_down"
-                android:hint="请选择用户基本信息"
-                android:paddingBottom="@dimen/d_5dp"
-                android:paddingLeft="@dimen/d_10dp"
-                android:paddingRight="@dimen/d_10dp" />
-
-            <TextView
-                style="@style/text14color1ca637"
-                android:paddingBottom="@dimen/d_2dp"
-                android:paddingLeft="@dimen/d_10dp"
-                android:paddingTop="@dimen/d_10dp"
-                android:text="安装电话" />
+                android:text="联系人" />
 
             <EditText
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
-                android:hint="输入联系电话"
-                android:inputType="phone"
+                android:hint="请输入联系电话"
                 android:paddingBottom="@dimen/d_5dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingRight="@dimen/d_10dp" />
-
 
             <TextView
                 style="@style/text14color1ca637"
                 android:paddingBottom="@dimen/d_2dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingTop="@dimen/d_10dp"
-                android:text="安装时间" />
+                android:text="联系电话" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入联系电话"
+                android:inputType="phone"
+                android:paddingBottom="@dimen/d_5dp"
+                android:paddingLeft="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="电站信息" />
 
             <TextView
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
                 android:drawableRight="@mipmap/o_down"
-                android:hint="请选择安装时间"
+                android:hint="请选择用户电站信息"
+                android:paddingBottom="@dimen/d_5dp"
+                android:paddingLeft="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="问题类型" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择问题类型"
                 android:paddingBottom="@dimen/d_5dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingRight="@dimen/d_10dp" />
@@ -72,9 +87,33 @@
 
             <TextView
                 style="@style/text14color1ca637"
-                android:paddingBottom="@dimen/d_2dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingTop="@dimen/d_10dp"
+                android:text="照片上传" />
+
+            <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                android:id="@+id/snpl_moment_add_photos"
+                style="@style/WrapWrap"
+                android:layout_margin="10dp"
+                app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
+                app:bga_snpl_deleteDrawableOverlapQuarter="false"
+                app:bga_snpl_editable="true"
+                app:bga_snpl_itemCornerRadius="0dp"
+                app:bga_snpl_itemSpanCount="3"
+                app:bga_snpl_itemWhiteSpacing="4dp"
+                app:bga_snpl_itemWidth="0dp"
+                app:bga_snpl_maxItemCount="9"
+                app:bga_snpl_otherWhiteSpacing="100dp"
+                app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_dark"
+                app:bga_snpl_plusDrawable="@mipmap/bga_pp_ic_plus"
+                app:bga_snpl_plusEnable="true"
+                app:bga_snpl_sortable="true" />
+
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_10dp"
                 android:text="其他说明" />
 
             <EditText
@@ -100,7 +139,7 @@
                 <TextView
                     style="@style/text_weight"
                     android:layout_marginLeft="@dimen/d_5dp"
-                    android:text="安装流程" />
+                    android:text="售后申请流程" />
 
             </LinearLayout>
 
@@ -191,26 +230,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    style="@style/text_weight"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        style="@style/text10color666"
-                        android:background="@mipmap/icon_jindu"
-                        android:gravity="center"
-                        android:text="5" />
-
-                    <TextView
-                        style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
-
             </LinearLayout>
 
 
@@ -223,32 +242,27 @@
                 <TextView
                     style="@style/text_weight"
                     android:gravity="center_horizontal"
-                    android:text="用户信息录入"
+                    android:text="售后申请"
                     android:textSize="@dimen/txt_10sp" />
 
                 <TextView
                     style="@style/text_weight"
                     android:gravity="center_horizontal"
-                    android:text="施工申报"
+                    android:text="信息填写"
                     android:textSize="@dimen/txt_10sp" />
 
                 <TextView
                     style="@style/text_weight"
                     android:gravity="center_horizontal"
-                    android:text="设备发货"
+                    android:text="总部确认"
                     android:textSize="@dimen/txt_10sp" />
 
                 <TextView
                     style="@style/text_weight"
                     android:gravity="center_horizontal"
-                    android:text="施工安装"
+                    android:text="售后维修"
                     android:textSize="@dimen/txt_10sp" />
 
-                <TextView
-                    style="@style/text_weight"
-                    android:gravity="center_horizontal"
-                    android:text="竣工验收"
-                    android:textSize="@dimen/txt_10sp" />
 
             </LinearLayout>
 

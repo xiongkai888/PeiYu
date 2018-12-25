@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent_no"
+    tools:context=".ui.classify.activity.ClassifyGoodsListActivity">
+
+    <include layout="@layout/include_search_back" />
+
+    <LinearLayout
+        style="@style/ll_bottom_h_no"
+        android:layout_height="@dimen/d_40dp">
+
+        <RelativeLayout
+            style="@style/text_weight"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                style="@style/text"
+                android:drawablePadding="@dimen/d_3dp"
+                android:drawableRight="@mipmap/o_down"
+                android:gravity="center_vertical"
+                android:text="综合" />
+
+        </RelativeLayout>
+
+        <TextView style="@style/line_v1dp_divider" />
+
+        <TextView
+            style="@style/text_weight"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="销量" />
+
+        <TextView style="@style/line_v1dp_divider" />
+
+        <RelativeLayout
+            style="@style/text_weight"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                style="@style/text"
+                android:drawablePadding="@dimen/d_3dp"
+                android:drawableRight="@mipmap/o_bothway"
+                android:gravity="center_vertical"
+                android:text="价格" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/fragment_single_listview_no" />
+
+</LinearLayout>

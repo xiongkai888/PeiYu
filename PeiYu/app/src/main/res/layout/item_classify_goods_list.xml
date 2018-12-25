@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/v_match_parent"
+    android:layout_margin="@dimen/d_3dp">
+
+    <LinearLayout
+        style="@style/v_match_parent_no">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/temp4" />
+
+
+        <TextView
+            android:id="@+id/content_tv"
+            style="@style/text"
+            android:textSize="@dimen/txt_12sp"
+            android:layout_marginTop="@dimen/d_2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="柔洁"
+            android:paddingLeft="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_5dp"
+            android:paddingTop="@dimen/d_5dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:paddingLeft="@dimen/d_5dp"
+            android:paddingRight="@dimen/d_5dp">
+
+            <TextView
+                android:id="@+id/money_tv"
+                style="@style/text"
+                android:text="￥121"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                style="@style/text12colorWhite"
+                android:text="卷"
+                android:visibility="gone"
+                android:paddingTop="@dimen/d_0dp"
+                android:paddingBottom="@dimen/d_0dp"
+                android:paddingLeft="@dimen/d_2dp"
+                android:paddingRight="@dimen/d_2dp"
+                android:layout_marginLeft="@dimen/d_5dp"
+                android:background="@drawable/order_sure"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                style="@style/text_weight" />
+
+            <ImageView
+                android:layout_width="@dimen/d_20dp"
+                android:layout_height="@dimen/d_20dp"
+                android:src="@mipmap/icon_add_shopping_cart" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

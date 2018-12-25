@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent_no"
+    tools:context=".ui.home.activity.DataEntryActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <android.support.v4.widget.NestedScrollView style="@style/match_parent_all">
+
+
+        <LinearLayout
+            style="@style/v_all_match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout
+                style="@style/ll_bottom_h"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp">
+
+                <include layout="@layout/include_type_icon" />
+
+                <TextView
+                    style="@style/text"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:text="基本资料" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="户主姓名" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入电表户主姓名"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="电压等级" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:paddingRight="@dimen/d_10dp"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择电压等级"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="联系电话" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入联系电话"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="身份证号码" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入身份证号码"
+                android:paddingBottom="@dimen/d_5dp" />
+
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="上传身份证正反面" />
+
+
+            <LinearLayout
+                style="@style/ll_bottom_h"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp">
+
+
+                <ImageView
+                    style="@style/text_weight"
+                    android:layout_height="@dimen/d_100dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/bga_pp_ic_plus" />
+
+                <ImageView
+                    style="@style/text_weight"
+                    android:layout_height="@dimen/d_100dp"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/bga_pp_ic_plus" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="地址" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/icon_coordinate"
+                android:hint="请输入安装地址"
+                android:paddingBottom="@dimen/d_5dp"
+                android:paddingRight="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="推荐人" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入推荐人ID/电话 (选填)"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout
+                style="@style/ll_bottom_h"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp">
+
+                <include layout="@layout/include_type_icon" />
+
+                <TextView
+                    style="@style/text_weight"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:text="售后申请流程" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="屋顶结构" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:paddingRight="@dimen/d_10dp"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择屋顶结构形式"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="瓦的材质" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:paddingRight="@dimen/d_10dp"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择瓦的材质"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="房屋朝向" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:paddingRight="@dimen/d_10dp"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择房屋朝向"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="屋顶面积" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入屋顶面积"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="女儿墙" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/choose_on"
+                android:hint="平屋顶有无女儿墙"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="天沟面积" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入天沟面积"
+                android:paddingBottom="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="照片上传" />
+
+            <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                android:id="@+id/snpl_moment_add_photos"
+                style="@style/WrapWrap"
+                android:layout_margin="10dp"
+                android:paddingLeft="@dimen/d_10dp"
+                app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
+                app:bga_snpl_deleteDrawableOverlapQuarter="false"
+                app:bga_snpl_editable="true"
+                app:bga_snpl_itemCornerRadius="0dp"
+                app:bga_snpl_itemSpanCount="3"
+                app:bga_snpl_itemWhiteSpacing="4dp"
+                app:bga_snpl_itemWidth="0dp"
+                app:bga_snpl_maxItemCount="9"
+                app:bga_snpl_otherWhiteSpacing="100dp"
+                app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_dark"
+                app:bga_snpl_plusDrawable="@mipmap/bga_pp_ic_plus"
+                app:bga_snpl_plusEnable="true"
+                app:bga_snpl_sortable="true" />
+
+
+            <TextView
+                style="@style/line_H1dp_divider"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:text="其他说明" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_120dp"
+                android:layout_marginBottom="@dimen/d_10dp"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/shape_explain"
+                android:gravity="top"
+                android:hint="请输入说明文字"
+                android:padding="@dimen/d_5dp" />
+
+            <TextView
+                style="@style/line_H1dp_divider"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp" />
+
+            <Button
+                android:id="@+id/bt_login"
+                style="@style/button_style"
+                android:layout_marginTop="@dimen/d_30dp"
+                android:text="@string/submit" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

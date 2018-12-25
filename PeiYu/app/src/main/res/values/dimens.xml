@@ -44,7 +44,7 @@
     <dimen name="d_220dp">220dp</dimen>
 
     <dimen name="tabLayout_h">40dp</dimen>
-    <dimen name="toolbar_h">50dp</dimen>
+    <dimen name="toolbar_h">45dp</dimen>
     <dimen name="button_h">35dp</dimen>
 
 </resources>
