@@ -1,4 +1,4 @@
-include ':app', ':common', ':wheel-date-picker'
+include ':app', ':common', ':wheel-date-picker', ':oss-android-sdk'
 
 project(':common').projectDir = file('../common-lib/common')
 project(':wheel-date-picker').projectDir = file('../wheel-date-picker')//

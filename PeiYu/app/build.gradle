@@ -8,6 +8,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "API_URL", "\"http://47.107.116.247/api/\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
@@ -38,6 +39,7 @@ dependencies {
 
     implementation project(path: ':common')
     implementation project(':wheel-date-picker')
+    implementation project(':oss-android-sdk')
     //轮播图
     implementation 'com.bigkoo:convenientbanner:2.0.5'
     //EventBus
