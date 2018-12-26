@@ -47,7 +47,8 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入电表户主姓名"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp" />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -65,7 +66,8 @@
                 android:paddingRight="@dimen/d_10dp"
                 android:drawableRight="@mipmap/o_down"
                 android:hint="请选择电压等级"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -81,7 +83,8 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入联系电话"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -97,7 +100,8 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入身份证号码"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
 
             <TextView
@@ -146,7 +150,8 @@
                 android:background="@drawable/border_bottom_divider"
                 android:drawableRight="@mipmap/icon_coordinate"
                 android:hint="请输入安装地址"
-                android:paddingBottom="@dimen/d_5dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
                 android:paddingRight="@dimen/d_10dp" />
 
             <TextView
@@ -163,7 +168,8 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入推荐人ID/电话 (选填)"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView style="@style/line_H10dp_on" />
 
@@ -200,7 +206,8 @@
                 android:paddingRight="@dimen/d_10dp"
                 android:drawableRight="@mipmap/o_down"
                 android:hint="请选择屋顶结构形式"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp" />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -218,7 +225,8 @@
                 android:paddingRight="@dimen/d_10dp"
                 android:drawableRight="@mipmap/o_down"
                 android:hint="请选择瓦的材质"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -236,7 +244,8 @@
                 android:paddingRight="@dimen/d_10dp"
                 android:drawableRight="@mipmap/o_down"
                 android:hint="请选择房屋朝向"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -252,7 +261,8 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入屋顶面积"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -269,7 +279,8 @@
                 android:background="@drawable/border_bottom_divider"
                 android:drawableRight="@mipmap/choose_on"
                 android:hint="平屋顶有无女儿墙"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -285,7 +296,8 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入天沟面积"
-                android:paddingBottom="@dimen/d_5dp" />
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"  />
 
             <TextView
                 style="@style/text14color1ca637"

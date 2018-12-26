@@ -11,6 +11,7 @@ import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.HomeAdapter;
 import com.lanmei.peiyu.adapter.HomeRecommendAdapter;
 import com.lanmei.peiyu.ui.home.activity.DataEntryActivity;
+import com.lanmei.peiyu.ui.home.activity.SimulationIncomeActivity;
 import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
@@ -82,7 +83,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_classify1_tv://模拟收入
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, SimulationIncomeActivity.class);
                 break;
             case R.id.home_classify2_tv://资料录入
                 IntentUtil.startActivity(context, DataEntryActivity.class);

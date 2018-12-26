@@ -13,8 +13,8 @@ import com.xson.common.R;
 
 public class CodeCountDownTimer extends CountDownTimer {
 
-    TextView anewSendTv;
-    Context context;
+    private TextView anewSendTv;
+    private Context context;
 
     public CodeCountDownTimer(Context context, long millisInFuture, long countDownInterval, TextView anewSendTv) {
         super(millisInFuture, countDownInterval);
@@ -29,6 +29,8 @@ public class CodeCountDownTimer extends CountDownTimer {
             anewSendTv.setText(l / 1000 + context.getString(R.string.s_regain));
             anewSendTv.setClickable(false);
             anewSendTv.setTextSize(11);
+        }else {
+            L.d(L.TAG,"anewSendTv == null");
         }
     }
 

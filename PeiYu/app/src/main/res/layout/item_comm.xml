@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_parent"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="@dimen/d_10dp">
+
+    <com.xson.common.widget.CircleImageView
+        android:id="@+id/user_head_iv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/default_pic" />
+
+    <LinearLayout
+        style="@style/match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_tv"
+                style="@style/text14colorPrimaryDark"
+                android:text="小不点" />
+
+
+            <TextView
+                android:id="@+id/content_tv"
+                style="@style/text"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="8dp"
+                android:text="你好朋友" />
+
+
+            <TextView
+                android:id="@+id/time_tv"
+                style="@style/text12color666"
+                android:layout_marginTop="3dp"
+                android:text="@string/time" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

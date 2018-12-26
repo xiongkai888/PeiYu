@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorF4F4"
+    android:orientation="vertical"
+    tools:context=".ui.mine.activity.SettingActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/help_tv"
+                style="@style/match_parent"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/in_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp"
+                android:text="帮助信息"
+                android:textColor="@color/color333" />
+
+            <TextView
+                android:id="@+id/about_tv"
+                style="@style/match_parent"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/in_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp"
+                android:text="关于我们"
+                android:textColor="@color/color333" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_clean_cache"
+                style="@style/ll_bottom_h"
+                android:padding="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text14color333"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="清除缓存" />
+
+                <TextView
+                    android:id="@+id/cache_count"
+                    style="@style/text"
+                    android:gravity="center_vertical"
+                    android:drawableRight="@mipmap/in_right"
+                    android:text="0KB"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/alter_pw_tv"
+                style="@style/match_parent"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/in_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp"
+                android:text="修改密码"
+                android:textColor="@color/color333" />
+
+            <TextView
+                android:id="@+id/versions_tv"
+                style="@style/match_parent"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/in_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp"
+                android:text="版本信息"
+                android:textColor="@color/color333" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/back_login"
+        style="@style/button_style"
+        android:text="退出登录" />
+
+</LinearLayout>

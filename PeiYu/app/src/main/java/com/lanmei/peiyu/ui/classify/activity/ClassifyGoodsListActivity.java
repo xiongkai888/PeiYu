@@ -2,6 +2,7 @@ package com.lanmei.peiyu.ui.classify.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.View;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.ClassifyGoodsListAdapter;
@@ -13,6 +14,7 @@ import com.xson.common.helper.SwipeRefreshController;
 import com.xson.common.widget.SmartSwipeRefreshLayout;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * 分类商品列表
@@ -30,7 +32,7 @@ public class ClassifyGoodsListActivity extends BaseActivity {
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-        smartSwipeRefreshLayout.setLayoutManager(new GridLayoutManager(this,2));
+        smartSwipeRefreshLayout.setLayoutManager(new GridLayoutManager(this, 2));
         PeiYuApi api = new PeiYuApi("Reservation/index");
         ClassifyGoodsListAdapter adapter = new ClassifyGoodsListAdapter(this);
         smartSwipeRefreshLayout.setAdapter(adapter);
@@ -40,5 +42,14 @@ public class ClassifyGoodsListActivity extends BaseActivity {
         adapter.notifyDataSetChanged();
     }
 
-
+    @OnClick({R.id.back_iv, R.id.keywordEditText})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back_iv:
+                onBackPressed();
+                break;
+            case R.id.keywordEditText:
+                break;
+        }
+    }
 }

@@ -2,7 +2,6 @@ package oss;
 
 import com.alibaba.sdk.android.oss.model.CompleteMultipartUploadResult;
 import com.alibaba.sdk.android.oss.model.ResumableUploadRequest;
-import com.medui.yixiu.ui.teacher.uploadvideo.UploadVideoBean;
 
 import oss.callback.UploadCallback;
 

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent_no"
+    tools:context=".ui.home.activity.DataEntryActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <android.support.v4.widget.NestedScrollView style="@style/match_parent_all">
+
+
+        <LinearLayout
+            style="@style/v_all_match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout
+                style="@style/ll_bottom_h"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp">
+
+                <include layout="@layout/include_type_icon" />
+
+                <TextView
+                    style="@style/text"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:text="基本资料" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="建筑面积" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入建筑面积 (㎡)"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="电费价格" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择电费价格"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="国家补贴电费价格" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择国家补贴电费价格"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="省市级补贴电费价格" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择省市级补贴电费价格"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp" />
+
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="其他补贴" />
+
+            <EditText
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:hint="请输入其他补贴 (选填)"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_20dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="推荐人" />
+
+            <TextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/o_down"
+                android:hint="请选择发电时间"
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp" />
+
+
+            <Button
+                android:id="@+id/bt_login"
+                style="@style/button_style"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="@dimen/d_30dp"
+                android:text="@string/submit" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

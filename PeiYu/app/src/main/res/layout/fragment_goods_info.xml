@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
+
+        <LinearLayout style="@style/v_match_parent">
+
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:canLoop="true" />
+
+            <TextView
+                android:id="@+id/name_tv"
+                style="@style/text"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:text="爽舒适" />
+
+
+            <TextView
+                android:id="@+id/price_tv"
+                style="@style/text"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_5dp"
+                android:text="￥0"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <TextView style="@style/line_H10dp_on" />
+
+
+            <TextView
+                style="@style/match_parent"
+                android:drawableRight="@mipmap/in_right"
+                android:padding="@dimen/d_10dp"
+                android:gravity="center_vertical"
+                android:text="选择" />
+
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout
+                style="@style/ll_bottom_h"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+
+                <com.xson.common.widget.FormatTextView
+                    android:id="@+id/comment_num_tv"
+                    style="@style/text_weight"
+                    app:defaultValue="1"
+                    app:formatText="@string/comments" />
+
+                <TextView
+                    style="@style/text14color999"
+                    android:drawableRight="@mipmap/in_right"
+                    android:gravity="center_vertical"
+                    android:text="查看全部" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                style="@style/h_match_parent_no"
+                android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp">
+
+                <com.xson.common.widget.CircleImageView
+                    android:id="@+id/pic_iv"
+                    android:layout_width="@dimen/d_60dp"
+                    android:layout_height="@dimen/d_60dp"
+                    android:src="@mipmap/temp_pic" />
+
+                <TextView
+                    style="@style/text14color666"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:text="159*****523" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:layout_marginBottom="@dimen/d_10dp"
+                android:text="真心不错" />
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <include layout="@layout/include_item_tab" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

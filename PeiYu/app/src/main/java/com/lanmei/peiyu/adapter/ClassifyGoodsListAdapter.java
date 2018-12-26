@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.HomeClassifyBean;
+import com.lanmei.peiyu.ui.classify.activity.GoodsDetailsActivity;
 import com.xson.common.adapter.SwipeRefreshAdapter;
+import com.xson.common.utils.IntentUtil;
 
 import butterknife.ButterKnife;
 
@@ -38,12 +40,12 @@ public class ClassifyGoodsListAdapter extends SwipeRefreshAdapter<HomeClassifyBe
 //        }
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.setParameter(null);
-//        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                IntentUtil.startActivity(context, OrderDetailsActivity.class);
-//            }
-//        });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtil.startActivity(context, GoodsDetailsActivity.class);
+            }
+        });
     }
 
     @Override

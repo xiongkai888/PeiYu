@@ -1,6 +1,7 @@
 package com.lanmei.peiyu.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -19,15 +20,20 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.BannerHolderView;
+import com.lanmei.peiyu.ui.login.LoginActivity;
+import com.lanmei.peiyu.webviewpage.PhotoBrowserActivity;
 import com.xson.common.bean.UserBean;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
 import com.xson.common.utils.UserHelper;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 
 public class CommonUtils {
@@ -49,6 +55,36 @@ public class CommonUtils {
      */
     public static String getStringByTextView(TextView textView) {
         return textView.getText().toString().trim();
+    }
+
+
+    public static boolean isLogin(Context context) {
+        if (!UserHelper.getInstance(context).hasLogin()) {
+            IntentUtil.startActivity(context, LoginActivity.class);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 设置字体的背景和颜色，文字。
+     *
+     * @param context
+     * @param type     0或1
+     * @param textView
+     * @param strId
+     * @param strIdEd
+     */
+    public static void setTextViewType(Context context, String type, TextView textView, int strId, int strIdEd) {
+        if (StringUtils.isSame(CommonUtils.isZero,type)) {
+            textView.setText(strId);
+            textView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+            textView.setBackgroundResource(R.drawable.send);
+        } else {
+            textView.setText(strIdEd);
+            textView.setTextColor(context.getResources().getColor(R.color.color999));
+            textView.setBackgroundResource(R.drawable.send_on);
+        }
     }
 
     /**
@@ -150,20 +186,20 @@ public class CommonUtils {
         return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
     }
 
-//    /**
-//     * 浏览图片
-//     *
-//     * @param context
-//     * @param arry     图片地址数组
-//     * @param imageUrl 点击的图片地址
-//     */
-//    public static void showPhotoBrowserActivity(Context context, List<String> arry, String imageUrl) {
-//        Intent intent = new Intent();
-//        intent.putExtra("imageUrls", (Serializable) arry);
-//        intent.putExtra("curImageUrl", imageUrl);
-//        intent.setClass(context, PhotoBrowserActivity.class);
-//        context.startActivity(intent);
-//    }
+    /**
+     * 浏览图片
+     *
+     * @param context
+     * @param arry     图片地址数组
+     * @param imageUrl 点击的图片地址
+     */
+    public static void showPhotoBrowserActivity(Context context, List<String> arry, String imageUrl) {
+        Intent intent = new Intent();
+        intent.putExtra("imageUrls", (Serializable) arry);
+        intent.putExtra("curImageUrl", imageUrl);
+        intent.setClass(context, PhotoBrowserActivity.class);
+        context.startActivity(intent);
+    }
 
     public static String getFileName(String url) {
         if (StringUtils.isEmpty(url)) {
@@ -312,5 +348,23 @@ public class CommonUtils {
         spannableString.setSpan(colorSpan, 0, s1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);//字体颜色
         textView.setText(spannableString);
     }
+
+    /**
+     * 返回一个定长的随机字符串(只包、数字)
+     *
+     * @param length
+     *            随机字符串长度
+     * @return 随机字符串
+     */
+    public static String generateNumberString(int length) {
+        StringBuilder sb = new StringBuilder();
+        String numberChar = "0123456789";
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            sb.append(numberChar.charAt(random.nextInt(numberChar.length())));
+        }
+        return sb.toString();
+    }
+
 
 }

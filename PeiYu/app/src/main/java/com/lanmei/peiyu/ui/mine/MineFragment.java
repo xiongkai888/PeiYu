@@ -9,8 +9,11 @@ import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
 import com.lanmei.peiyu.ui.mine.activity.MineOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.MinePowerStationActivity;
+import com.lanmei.peiyu.ui.mine.activity.SettingActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
+import com.xson.common.bean.UserBean;
+import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.widget.CircleImageView;
 
@@ -57,6 +60,17 @@ public class MineFragment extends BaseFragment {
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
         setNum(m3NumTv,6);
+        setUserBean(CommonUtils.getUserBean(context));
+    }
+
+    private void setUserBean(UserBean userBean) {
+        if (userBean == null) {
+            nameTv.setText("游客");
+            picIv.setImageResource(R.mipmap.default_pic);
+            return;
+        }
+        nameTv.setText(userBean.getNickname());
+        ImageHelper.load(context, userBean.getPic(), picIv, null, true, R.mipmap.default_pic, R.mipmap.default_pic);
     }
 
     /**
@@ -127,7 +141,7 @@ public class MineFragment extends BaseFragment {
                 CommonUtils.developing(context);
                 break;
             case R.id.m13_tv://设置
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, SettingActivity.class);
                 break;
         }
     }

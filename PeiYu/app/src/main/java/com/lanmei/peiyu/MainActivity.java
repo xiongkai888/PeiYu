@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 
 import com.lanmei.peiyu.adapter.MainPagerAdapter;
+import com.lanmei.peiyu.event.LoginQuitEvent;
 import com.lanmei.peiyu.helper.TabHelper;
 import com.lanmei.peiyu.ui.shopping.shop.DBShopCartHelper;
 import com.lanmei.peiyu.ui.shopping.shop.ShowShopCountEvent;
@@ -48,6 +49,11 @@ public class MainActivity extends BaseActivity {
     public void showShopCarCountEvent(ShowShopCountEvent event) {
         int count = DBShopCartHelper.getInstance(getApplicationContext()).getShopCarListCount();
         tabHelper.setOrderNum(count);
+    }
+    //退出登录
+    @Subscribe
+    public void loginQuitEvent(LoginQuitEvent event) {
+        finish();
     }
 
     @Override

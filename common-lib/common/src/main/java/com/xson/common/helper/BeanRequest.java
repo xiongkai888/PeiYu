@@ -132,14 +132,8 @@ public class BeanRequest<T extends BaseBean> extends MultiPartRequest<T> {
             if (!mSuccessListener.isCacheResult)
                 L.d("BeanRequest", "Response=" + jsonString);
             BaseBean baseBean = JSON.parseObject(jsonString, BaseBean.class); // 有时候返回成功格式和失败格式不一样，导致解析失败，所以现在这里解析一下先
-
-            if (baseBean == null) {//
-                baseBean = new BaseBean();
-                baseBean.setMsg("无法获取想要的数据");
-                return Response.error(new UserLevelError(baseBean.getMsg(), baseBean));
-            }
-            if (1 != baseBean.getCode()) {//
-                return Response.error(new UserLevelError(baseBean.getMsg(), baseBean));
+            if (baseBean != null && 1 != baseBean.getStatus()) {
+                return Response.error(new UserLevelError(baseBean.getInfo(), baseBean));
             }
             Type type = mSuccessListener.getType();
             T bean = JSON.parseObject(jsonString, type);
@@ -163,11 +157,11 @@ public class BeanRequest<T extends BaseBean> extends MultiPartRequest<T> {
 
     @Override
     protected void deliverResponse(T response) {
-        if (mFinishListener != null){
+        if (mFinishListener != null) {
             mFinishListener.onFinish();
             mFinishListener = null;
         }
-        if (mSuccessListener != null){
+        if (mSuccessListener != null) {
             mSuccessListener.onResponse(response);
             mSuccessListener = null;
         }
@@ -181,7 +175,7 @@ public class BeanRequest<T extends BaseBean> extends MultiPartRequest<T> {
 
     @Override
     public void deliverError(VolleyError error) {
-        if (mFinishListener != null){
+        if (mFinishListener != null) {
             mFinishListener.onFinish();
             mFinishListener = null;
         }

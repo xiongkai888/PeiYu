@@ -1,8 +1,6 @@
 package com.lanmei.peiyu.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +8,11 @@ import android.view.ViewGroup;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.HomeClassifyBean;
+import com.lanmei.peiyu.ui.news.activity.NewsDetailsActivity;
 import com.xson.common.adapter.SwipeRefreshAdapter;
+import com.xson.common.utils.IntentUtil;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 /**
@@ -36,7 +35,12 @@ public class HomeAdapter extends SwipeRefreshAdapter<HomeClassifyBean> {
 
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.setParameter(null);
-
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtil.startActivity(context, NewsDetailsActivity.class);
+            }
+        });
     }
 
     @Override

@@ -20,10 +20,6 @@ public class SharedAccount {
     }
 
 
-    public void saveMobile(String mobile) {
-        sp.edit().putString("mobile", mobile).commit();
-    }
-
     public void savePhone(String phone) {
         sp.edit().putString("phone", phone).commit();
     }
@@ -33,15 +29,13 @@ public class SharedAccount {
         sp.edit().putBoolean("isFirstLogin", isFirstLogin).commit();
     }
 
-    public String getMobile() {
-        return sp.getString("mobile", "");
+    public String getPhone() {
+        return sp.getString("phone", "");
     }
 
     public boolean isFirstLogin() {
         return sp.getBoolean("isFirstLogin", false);
     }
-
-
 
     public void clear() {
         sp.clear();

@@ -39,4 +39,38 @@
     <string name="apply_after_sale_order">售后申请工单</string>
     <string name="data_entry">资料录入</string>
     <string name="solar_energy">太阳能</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="input_phone_number">请输入手机号</string>
+    <string name="input_real_name">请输入真实姓名 (注册后不可修改)</string>
+    <string name="not_mobile_format">手机号码格式不正确</string>
+    <string name="input_pwd">请输入密码</string>
+    <string name="input_pwd_again">请再次输入密码</string>
+    <string name="obtain_code">获取验证码</string>
+    <string name="input_code">请输入验证码</string>
+    <string name="code_error">验证码不正确</string>
+    <string name="input_password_count">请输入6-18位密码</string>
+    <string name="password_inconformity">两次密码输入不一致</string>
+    <string name="send_code_succeed">验证码发送成功</string>
+    <string name="agree_protocol"><![CDATA[点击注册即表示同意 <font color="#ff2456">%s</font>]]></string>
+    <string name="news_details">资讯详情</string>
+    <string name="collect">收藏</string>
+    <string name="collected">已收藏</string>
+    <string name="just_now">刚刚</string>
+    <string name="minutes_ago">分钟前</string>
+    <string name="hours_ago">小时前</string>
+    <string name="yesterday">昨天</string>
+    <string name="day_before_yesterday">前天</string>
+    <string name="days_ago">天前</string>
+    <string name="months_ago">个月前</string>
+    <string name="years_ago">年前</string>
+    <string name="format_all_time">yyyy-MM-dd HH:mm:ss</string>
+    <string name="format_time_no_second">yyyy-MM-dd HH:mm</string>
+    <string name="format_time_year_month_day">yyyy-MM-dd</string>
+    <string name="reviews_num">%1$s条评论</string>
+    <string name="input_comment">请输入评论内容</string>
+    <string name="setting">设置</string>
+    <string name="about_us">关于我们</string>
+    <string name="comments"><![CDATA[商品评价(<font color="#F5484A">%s</font>)]]></string>
+    <string name="simulation_income">模拟收入</string>
 </resources>

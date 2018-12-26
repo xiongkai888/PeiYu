@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_top">
+
+    <LinearLayout
+        android:layout_width="@dimen/d_80dp"
+        android:id="@+id/ll_collect"
+        style="@style/text"
+        android:layout_marginBottom="@dimen/d_2dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/collect_iv"
+            style="@style/text"
+            android:layout_margin="@dimen/d_2dp"
+            android:src="@mipmap/goods_collect_off" />
+
+        <TextView
+            android:id="@+id/collect_tv"
+            style="@style/text"
+            android:text="@string/collect" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_shop"
+        style="@style/text"
+        android:layout_width="@dimen/d_80dp"
+        android:layout_marginBottom="@dimen/d_2dp"
+        android:layout_marginTop="@dimen/d_2dp">
+
+        <ImageView
+            android:id="@+id/shop_iv"
+            style="@style/text"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/d_2dp"
+            android:src="@mipmap/goods_shop" />
+
+
+        <TextView
+            android:id="@+id/shop_tv"
+            style="@style/text"
+            android:layout_below="@+id/shop_iv"
+            android:layout_centerHorizontal="true"
+            android:text="购物车" />
+
+
+        <TextView
+            android:id="@+id/num_tv"
+            android:layout_width="@dimen/d_15dp"
+            android:layout_height="@dimen/d_15dp"
+            android:layout_marginTop="@dimen/d_2dp"
+            android:background="@drawable/circle_shop_num"
+            android:gravity="center"
+            android:text="0"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/shop_iv"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_8sp" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/add_shop_car_tv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:text="加入购物车"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/pay_now_tv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@color/color666"
+        android:gravity="center"
+        android:text="立即购买"
+        android:textColor="@color/white" />
+
+</LinearLayout>

@@ -29,9 +29,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入联系电话"
-                android:paddingBottom="@dimen/d_5dp"
-                android:paddingLeft="@dimen/d_10dp"
-                android:paddingRight="@dimen/d_10dp" />
+                android:padding="@dimen/d_10dp" />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -46,9 +44,7 @@
                 android:background="@drawable/border_bottom_divider"
                 android:hint="请输入联系电话"
                 android:inputType="phone"
-                android:paddingBottom="@dimen/d_5dp"
-                android:paddingLeft="@dimen/d_10dp"
-                android:paddingRight="@dimen/d_10dp" />
+                android:padding="@dimen/d_10dp" />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -63,9 +59,7 @@
                 android:background="@drawable/border_bottom_divider"
                 android:drawableRight="@mipmap/o_down"
                 android:hint="请选择用户电站信息"
-                android:paddingBottom="@dimen/d_5dp"
-                android:paddingLeft="@dimen/d_10dp"
-                android:paddingRight="@dimen/d_10dp" />
+                android:padding="@dimen/d_10dp"/>
 
             <TextView
                 style="@style/text14color1ca637"
@@ -80,9 +74,7 @@
                 android:background="@drawable/border_bottom_divider"
                 android:drawableRight="@mipmap/o_down"
                 android:hint="请选择问题类型"
-                android:paddingBottom="@dimen/d_5dp"
-                android:paddingLeft="@dimen/d_10dp"
-                android:paddingRight="@dimen/d_10dp" />
+                android:padding="@dimen/d_10dp" />
 
 
             <TextView

@@ -19,6 +19,11 @@ public abstract class AbstractApi {
     public static String API_URL = "";
     private String key = "yxg";
     public HashMap<String, Object> paramsHashMap = new HashMap<String, Object>();
+    private Method method = Method.POST;
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
 
     public static enum Method {
         GET,
@@ -33,7 +38,7 @@ public abstract class AbstractApi {
     protected abstract String getPath();
 
     public Method requestMethod() {
-        return Method.POST;
+        return method;
     }
 
     public Enctype requestEnctype() {
@@ -61,7 +66,6 @@ public abstract class AbstractApi {
 
     public Map<String, Object> getParams() {
         HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("key", key);
         for (Map.Entry<String, Object> item : paramsHashMap.entrySet()) {
             params.put(item.getKey(), item.getValue());
 //            if (item.getValue() instanceof com.alibaba.fastjson.JSONArray) {

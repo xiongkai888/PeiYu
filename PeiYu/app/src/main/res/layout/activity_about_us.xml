@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent"
+    tools:context=".ui.mine.activity.AboutUsActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/v_all_match_parent">
+
+
+            <ImageView
+                style="@style/match_parent"
+                android:layout_height="@dimen/d_200dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/temp5" />
+
+
+            <TextView
+                style="@style/text"
+                android:padding="@dimen/d_10dp"
+                android:text="\u3000\u3000我们不一样" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
