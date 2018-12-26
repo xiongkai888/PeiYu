@@ -12,11 +12,38 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'peiyu'
+            keyPassword 'lanmei888'
+            storeFile file('peiyu.jks')
+            storePassword 'lanmei888'
+        }
+
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.startsWith('app-release')) {
+                    def fileName = outputFile.name.replace("app-release", "peiyu_vc${defaultConfig.versionCode}_vn${defaultConfig.versionName}_${buildTime()}")
+                    outputFileName = fileName
+                }
+            }
+        }
+
     }
 
     configurations.all {
@@ -24,6 +51,14 @@ android {
     }
 
 }
+
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmm')
+    return formattedDate
+}
+
 
 repositories {
     maven { url "https://jitpack.io" }
@@ -48,4 +83,6 @@ dependencies {
     implementation 'pub.devrel:easypermissions:1.0.1'
     implementation 'cn.bingoogolapple:bga-photopicker:1.2.3@aar'
     implementation 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
+    //浏览图片
+    implementation 'com.bm.photoview:library:1.4.1'
 }
