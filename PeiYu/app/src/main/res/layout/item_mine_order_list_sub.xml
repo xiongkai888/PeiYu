@@ -5,32 +5,31 @@
     android:padding="@dimen/d_10dp">
 
     <ImageView
-        android:layout_width="@dimen/d_60dp"
-        android:layout_height="@dimen/d_60dp"
+        android:layout_width="@dimen/d_80dp"
+        android:layout_height="@dimen/d_80dp"
         android:src="@mipmap/temp2" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_marginLeft="@dimen/d_10dp"
-        style="@style/v_match_parent_no">
+        style="@style/match_parent_all">
 
         <TextView
             style="@style/text"
             android:ellipsize="end"
-            android:maxLines="2"
-            android:text="逆变器" />
+            android:maxLines="3"
+            android:text="@string/solar_energy" />
 
+        <TextView
+            style="@style/text14color666"
+            android:layout_weight="1"
+            android:layout_alignParentBottom="true"
+            android:text="x1" />
 
-        <LinearLayout style="@style/h_match_parent_no">
+        <TextView
+            style="@style/text14colorRed"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/price_string" />
 
-            <TextView
-                style="@style/text14color666"
-                android:layout_weight="1"
-                android:text="x2" />
-
-            <TextView
-                style="@style/text14colorRed"
-                android:text="￥97" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

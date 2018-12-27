@@ -32,22 +32,22 @@
         <com.xson.common.widget.FormatTextView
             style="@style/text12color666"
             android:layout_weight="1"
-            app:defaultValue="194.00"
+            app:defaultValue="1800.00"
             app:formatText="@string/order_total_price" />
 
 
         <TextView
             style="@style/text10colorRed"
-            android:background="@drawable/order_sure"
+            android:background="@drawable/shape_b_r"
             android:gravity="center"
-            android:text="确定收货" />
+            android:text="@string/confirm_receipt" />
 
         <TextView
             style="@style/text10colorWhite"
             android:layout_marginLeft="@dimen/d_10dp"
-            android:background="@drawable/order_pay_again"
+            android:background="@drawable/shape_f_r"
             android:gravity="center"
-            android:text="再次购买" />
+            android:text="@string/buy_again" />
 
     </LinearLayout>
 

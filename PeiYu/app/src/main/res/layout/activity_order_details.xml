@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent_no"
+    tools:context="com.lanmei.peiyu.ui.mine.activity.OrderDetailsActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <android.support.v4.widget.NestedScrollView style="@style/match_parent_all">
+
+        <LinearLayout style="@style/v_all_match_parent">
+
+
+
+            <LinearLayout
+                android:id="@+id/ll_logistics"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                style="@style/h_match_parent_no">
+
+
+            </LinearLayout>
+
+
+
+            <TextView
+                style="@style/line_H1dp_divider"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp" />
+
+
+            <com.xson.common.widget.FormatTextView
+                style="@style/text14color666"
+                android:layout_marginBottom="@dimen/d_3dp"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:layout_marginTop="@dimen/d_10dp"
+                app:defaultValue="配送中"
+                app:formatText="@string/order_status" />
+
+            <com.xson.common.widget.FormatTextView
+                style="@style/text14color666"
+                android:layout_marginBottom="@dimen/d_3dp"
+                android:layout_marginLeft="@dimen/d_15dp"
+                app:defaultValue="55695889147523"
+                app:formatText="@string/order_number" />
+
+            <com.xson.common.widget.FormatTextView
+                style="@style/text14color666"
+                android:layout_marginLeft="@dimen/d_15dp"
+                app:defaultValue="@string/time"
+                app:formatText="@string/order_time" />
+
+
+            <Button
+                style="@style/button_style"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:layout_marginRight="@dimen/d_15dp"
+                android:background="@drawable/shape_login_red"
+                android:text="@string/buy_again" />
+
+            <TextView
+                style="@style/line_H1dp_divider"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginRight="@dimen/d_10dp" />
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:gravity="right"
+                android:padding="@dimen/d_10dp">
+
+
+                <TextView
+                    style="@style/text12colorBlack"
+                    android:background="@drawable/shape_b_b"
+                    android:gravity="center"
+                    android:text="@string/buy_again" />
+
+                <TextView
+                    style="@style/text12colorRed"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:background="@drawable/shape_b_r"
+                    android:gravity="center"
+                    android:text="@string/confirm_receipt" />
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H10dp_on" />
+
+
+            <com.xson.common.widget.FormatTextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:background="@drawable/border_bottom_divider"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                app:defaultValue="￥1800.00 (在线支付)"
+                app:formatText="@string/amount_goods" />
+
+            <com.xson.common.widget.FormatTextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:background="@drawable/border_bottom_divider"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                app:defaultValue="广州市天河区天河北新源大厦"
+                app:formatText="@string/delivery_address" />
+
+            <com.xson.common.widget.FormatTextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:background="@drawable/border_bottom_divider"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                app:defaultValue="yelena 138***8888"
+                app:formatText="@string/consignee" />
+
+            <com.xson.common.widget.FormatTextView
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                app:defaultValue="中通快递"
+                app:formatText="@string/mode_distribution" />
+
+            <TextView style="@style/line_H10dp_on" />
+
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+               style="@style/ll_bottom_h">
+
+                <TextView
+                    android:text="商品详情"
+                    style="@style/text_weight" />
+
+                <TextView
+                    android:text="共计1件商品"
+                    style="@style/text12color666" />
+
+            </LinearLayout>
+
+            <include layout="@layout/item_mine_order_list_sub"/>
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+                style="@style/ll_bottom_h">
+
+                <TextView
+                    android:text="商品总额："
+                    android:textColor="@color/color666"
+                    style="@style/text_weight" />
+
+                <TextView
+                    android:text="@string/price_string"
+                    style="@style/text12colorBlack" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:paddingRight="@dimen/d_10dp"
+                style="@style/ll_bottom_h">
+
+                <TextView
+                    android:text="运费："
+                    android:textColor="@color/color666"
+                    style="@style/text_weight" />
+
+                <TextView
+                    android:text="￥0.00"
+                    style="@style/text12colorBlack" />
+
+            </LinearLayout>
+
+            <TextView
+                android:gravity="right"
+                android:padding="@dimen/d_10dp"
+                android:layout_width="match_parent"
+                android:text="实付金额：￥1800.00"
+                style="@style/text14colorRed" />
+
+            <TextView style="@style/line_H10dp_on" />
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

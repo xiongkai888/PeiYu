@@ -50,7 +50,7 @@
                 android:paddingLeft="@dimen/d_2dp"
                 android:paddingRight="@dimen/d_2dp"
                 android:layout_marginLeft="@dimen/d_5dp"
-                android:background="@drawable/order_sure"
+                android:background="@drawable/shape_b_r"
                 android:textColor="@color/colorAccent" />
 
             <TextView

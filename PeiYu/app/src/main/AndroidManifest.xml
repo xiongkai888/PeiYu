@@ -72,6 +72,9 @@
         <activity
             android:name=".webviewpage.PhotoBrowserActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.mine.activity.OrderDetailsActivity"/>
     </application>
 
 </manifest>

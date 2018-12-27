@@ -105,105 +105,80 @@
                 android:paddingRight="@dimen/d_5dp"
                 style="@style/h_match_parent_no">
 
-                <LinearLayout
-                    style="@style/text_weight"
-                    android:gravity="center_vertical">
+
+                <RelativeLayout style="@style/text_weight">
 
                     <TextView
                         style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                        android:layout_centerVertical="true" />
 
                     <TextView
                         style="@style/text10color666"
+                        android:layout_centerInParent="true"
                         android:background="@mipmap/icon_jindu"
                         android:gravity="center"
                         android:text="1" />
 
-                    <TextView
-                        style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                </RelativeLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/text_weight"
-                    android:gravity="center_vertical">
+                <RelativeLayout style="@style/text_weight">
 
                     <TextView
                         style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                        android:layout_centerVertical="true" />
 
                     <TextView
                         style="@style/text10color666"
+                        android:layout_centerInParent="true"
                         android:background="@mipmap/icon_jindu"
                         android:gravity="center"
                         android:text="2" />
 
-                    <TextView
-                        style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                </RelativeLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/text_weight"
-                    android:gravity="center_vertical">
+                <RelativeLayout style="@style/text_weight">
 
                     <TextView
                         style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                        android:layout_centerVertical="true" />
 
                     <TextView
                         style="@style/text10color666"
+                        android:layout_centerInParent="true"
                         android:background="@mipmap/icon_jindu"
                         android:gravity="center"
                         android:text="3" />
 
-                    <TextView
-                        style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                </RelativeLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/text_weight"
-                    android:gravity="center_vertical">
+                <RelativeLayout style="@style/text_weight">
 
                     <TextView
                         style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                        android:layout_centerVertical="true" />
 
                     <TextView
                         style="@style/text10color666"
+                        android:layout_centerInParent="true"
                         android:background="@mipmap/icon_jindu"
                         android:gravity="center"
                         android:text="4" />
 
-                    <TextView
-                        style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/text_weight"
-                    android:gravity="center_vertical">
+                </RelativeLayout>
+                <RelativeLayout style="@style/text_weight">
 
                     <TextView
                         style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
+                        android:layout_centerVertical="true" />
 
                     <TextView
                         style="@style/text10color666"
+                        android:layout_centerInParent="true"
                         android:background="@mipmap/icon_jindu"
                         android:gravity="center"
                         android:text="5" />
 
-                    <TextView
-                        style="@style/line_H1dp_divider"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 

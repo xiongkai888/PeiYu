@@ -13,6 +13,7 @@ import com.lanmei.peiyu.adapter.HomeRecommendAdapter;
 import com.lanmei.peiyu.ui.home.activity.DataEntryActivity;
 import com.lanmei.peiyu.ui.home.activity.SimulationIncomeActivity;
 import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
+import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
 import com.xson.common.utils.IntentUtil;
@@ -74,6 +75,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         recyclerView.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (swipeRefreshLayout != null)
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 500);
@@ -86,10 +88,10 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 IntentUtil.startActivity(context, SimulationIncomeActivity.class);
                 break;
             case R.id.home_classify2_tv://资料录入
-                IntentUtil.startActivity(context, DataEntryActivity.class);
+                IntentUtil.startActivity(context, DataEntryActivity.class);//ApplyInstallActivity
                 break;
             case R.id.home_classify3_tv://安装申报
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, InstallApplyActivity.class);
                 break;
             case R.id.home_classify4_tv://售后报修
                 IntentUtil.startActivity(context, AfterSaleOrderActivity.class);

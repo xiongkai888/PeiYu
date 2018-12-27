@@ -51,7 +51,7 @@
             android:layout_width="@dimen/d_80dp"
             android:layout_height="@dimen/d_30dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/order_pay_again"
+            android:background="@drawable/shape_f_r"
             android:text="结算"
             android:textColor="@color/white" />
 

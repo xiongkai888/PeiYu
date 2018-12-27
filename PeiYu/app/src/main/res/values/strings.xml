@@ -9,7 +9,7 @@
 
     <string name="developing">开发中</string>
     <string name="input_keyword">请输入关键字</string>
-    <string name="time">2018-12-17 08:21</string>
+    <string name="time">2018-12-27 08:21</string>
     <string name="all">全部</string>
     <string name="wait_pay">待付款</string>
     <string name="wait_receiving">待收货</string>
@@ -39,6 +39,7 @@
     <string name="apply_after_sale_order">售后申请工单</string>
     <string name="data_entry">资料录入</string>
     <string name="solar_energy">太阳能</string>
+    <string name="price_string">￥1800.00</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
     <string name="input_phone_number">请输入手机号</string>
@@ -73,4 +74,15 @@
     <string name="about_us">关于我们</string>
     <string name="comments"><![CDATA[商品评价(<font color="#F5484A">%s</font>)]]></string>
     <string name="simulation_income">模拟收入</string>
+    <string name="name">小不点</string>
+    <string name="order_details">订单详情</string>
+    <string name="order_status"><![CDATA[订单状态：<font color="#FF0000">%s</font>]]></string>
+    <string name="order_number"><![CDATA[订单号：<font color="#000000">%s</font>]]></string>
+    <string name="order_time"><![CDATA[下单时间：<font color="#000000">%s</font>]]></string>
+    <string name="amount_goods"><![CDATA[商品金额：<font color="#000000">%s</font>]]></string>
+    <string name="delivery_address"><![CDATA[收货地址：<font color="#000000">%s</font>]]></string>
+    <string name="consignee"><![CDATA[收货人：<font color="#000000">%s</font>]]></string>
+    <string name="mode_distribution"><![CDATA[配送方式：<font color="#000000">%s</font>]]></string>
+    <string name="buy_again">再次购买</string>
+    <string name="confirm_receipt">确定收货</string>
 </resources>

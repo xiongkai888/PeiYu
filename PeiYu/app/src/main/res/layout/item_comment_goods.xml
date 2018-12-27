@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/match_parent"
-    android:orientation="vertical"
+    style="@style/v_match_parent"
     android:padding="@dimen/d_10dp">
 
     <LinearLayout
-        style="@style/ll_bottom_h_no"
-        android:orientation="horizontal">
+        style="@style/h_match_parent_no"
+        android:gravity="center_vertical">
 
         <com.xson.common.widget.CircleImageView
             android:id="@+id/head_iv"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/default_pic" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/temp_pic" />
 
 
         <TextView
             android:id="@+id/name_tv"
             style="@style/text_weight"
             android:layout_marginLeft="@dimen/d_5dp"
-            android:text="小不点" />
+            android:text="@string/name"
+            android:textSize="@dimen/txt_12sp" />
 
         <LinearLayout
             style="@style/text"
@@ -27,19 +27,15 @@
             android:gravity="end"
             android:orientation="vertical">
 
-            <!--<LinearLayout-->
-            <!--android:id="@+id/ll_star"-->
-            <!--style="@style/text"-->
-            <!--android:orientation="horizontal"/>-->
             <RatingBar
                 android:id="@+id/ratingbar"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:progressTint="@android:color/holo_red_dark"
-                android:rating="1"
-                android:stepSize="1" />
+                android:progressTint="@color/red"
+                android:rating="3.5"
+                android:stepSize="0.5" />
 
             <TextView
                 android:id="@+id/time_tv"
@@ -51,8 +47,9 @@
 
     <TextView
         android:id="@+id/content_tv"
-        style="@style/text"
-        android:layout_marginLeft="@dimen/d_10dp"
-        android:layout_marginTop="@dimen/d_3dp"
-        android:text="小不点" />
+        style="@style/text12colorBlack"
+        android:layout_marginLeft="@dimen/d_45dp"
+        android:lineSpacingExtra="@dimen/d_1dp"
+        android:text="真心不错，大品牌值得信赖，回油管路滤器，不是小品牌可以比的，过滤效果真好。" />
+
 </LinearLayout>

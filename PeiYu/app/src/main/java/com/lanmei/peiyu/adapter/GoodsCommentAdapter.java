@@ -103,6 +103,6 @@ public class GoodsCommentAdapter extends SwipeRefreshAdapter<GoodsCommentBean> {
         if (isOnly && super.getCount() > 1) {
             return 1;
         }
-        return super.getCount();
+        return 2;
     }
 }

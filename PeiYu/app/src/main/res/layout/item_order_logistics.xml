@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/v_match_parent_no"
+    android:layout_weight="1"
+    android:layout_width="@dimen/d_0dp"
+    android:paddingBottom="@dimen/d_10dp"
+    android:paddingTop="@dimen/d_10dp">
+
+    <TextView
+        android:id="@+id/name_tv"
+        style="@style/text12color999"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="提交订单" />
+
+
+    <RelativeLayout
+        style="@style/text"
+        android:layout_marginTop="@dimen/d_5dp">
+
+        <TextView
+            android:id="@+id/line_tv"
+            style="@style/line_H1dp_divider"
+            android:layout_centerVertical="true" />
+
+        <ImageView
+            android:id="@+id/pic_iv"
+            style="@style/text"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/icon_jindu" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -43,8 +43,8 @@
             <TextView
                 style="@style/match_parent"
                 android:drawableRight="@mipmap/in_right"
-                android:padding="@dimen/d_10dp"
                 android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp"
                 android:text="选择" />
 
 
@@ -59,7 +59,7 @@
                 <com.xson.common.widget.FormatTextView
                     android:id="@+id/comment_num_tv"
                     style="@style/text_weight"
-                    app:defaultValue="1"
+                    app:defaultValue="2"
                     app:formatText="@string/comments" />
 
                 <TextView
@@ -71,31 +71,11 @@
             </LinearLayout>
 
 
+            <include layout="@layout/item_comment_goods" />
 
-            <LinearLayout
-                style="@style/h_match_parent_no"
-                android:gravity="center_vertical"
-                android:padding="@dimen/d_10dp">
+            <TextView style="@style/line_H1dp_divider" />
 
-                <com.xson.common.widget.CircleImageView
-                    android:id="@+id/pic_iv"
-                    android:layout_width="@dimen/d_60dp"
-                    android:layout_height="@dimen/d_60dp"
-                    android:src="@mipmap/temp_pic" />
-
-                <TextView
-                    style="@style/text14color666"
-                    android:layout_marginLeft="@dimen/d_10dp"
-                    android:text="159*****523" />
-
-            </LinearLayout>
-
-            <TextView
-                style="@style/text"
-                android:layout_marginLeft="@dimen/d_10dp"
-                android:layout_marginRight="@dimen/d_10dp"
-                android:layout_marginBottom="@dimen/d_10dp"
-                android:text="真心不错" />
+            <include layout="@layout/item_comment_goods" />
 
             <TextView style="@style/line_H10dp_on" />
 
