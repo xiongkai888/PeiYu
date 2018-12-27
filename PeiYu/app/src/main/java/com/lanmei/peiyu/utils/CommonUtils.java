@@ -16,17 +16,31 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.sdk.android.oss.common.utils.OssUserInfo;
+import com.alibaba.sdk.android.oss.model.DeleteObjectRequest;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.data.volley.Response;
+import com.data.volley.error.VolleyError;
+import com.lanmei.peiyu.PeiYuApp;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.BannerHolderView;
+import com.lanmei.peiyu.bean.UserInfoBean;
+import com.lanmei.peiyu.event.SetUserInfoEvent;
 import com.lanmei.peiyu.ui.login.LoginActivity;
 import com.lanmei.peiyu.webviewpage.PhotoBrowserActivity;
+import com.xson.common.api.AbstractApi;
+import com.xson.common.api.PeiYuApi;
+import com.xson.common.bean.DataBean;
 import com.xson.common.bean.UserBean;
+import com.xson.common.helper.BeanRequest;
+import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
 import com.xson.common.utils.UserHelper;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -34,6 +48,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import oss.ManageOssUpload;
 
 
 public class CommonUtils {
@@ -364,6 +380,106 @@ public class CommonUtils {
             sb.append(numberChar.charAt(random.nextInt(numberChar.length())));
         }
         return sb.toString();
+    }
+
+
+    //获取用户信息
+    public static void loadUserInfo(final Context context, final UserInfoListener l) {
+        PeiYuApi api = new PeiYuApi("member/member");
+        api.addParams("uid", api.getUserId(context));
+        api.setMethod(AbstractApi.Method.GET);
+        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<DataBean<UserInfoBean>>() {
+            @Override
+            public void onResponse(DataBean<UserInfoBean> response) {
+                if (context == null) {
+                    return;
+                }
+                UserInfoBean userInfoBean = response.data;
+                if (userInfoBean != null) {
+                    UserBean bean = CommonUtils.getUserBean(context);
+                    if (bean == null){
+                        return;
+                    }
+                    bean.setNickname(userInfoBean.getNickname());
+                    bean.setPic(userInfoBean.getPic());
+                    bean.setRealname(userInfoBean.getRealname());
+                    bean.setEmail(userInfoBean.getEmail());
+                    bean.setPhone(userInfoBean.getPhone());
+                    bean.setCustom(userInfoBean.getCustom());
+                    bean.setSignature(userInfoBean.getSignature());
+                    bean.setMoney(userInfoBean.getMoney());
+                    bean.setFiles_img(userInfoBean.getFiles_img());
+                    bean.setRidname(userInfoBean.getRidname());
+                    bean.setRatio(userInfoBean.getRatio());
+                    if (l != null) {
+                        l.userInfo(bean);
+                    }
+                    UserHelper.getInstance(context).saveBean(bean);
+                    EventBus.getDefault().post(new SetUserInfoEvent(bean));
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (l != null) {
+                    l.error(error.getMessage());
+                }
+            }
+        });
+    }
+
+    public interface UserInfoListener {
+        void userInfo(UserBean bean);
+        void error(String error);
+    }
+
+
+    /**
+     * 删除OSS文件
+     *
+     * @param url
+     */
+    public static void deleteOssObject(String url) {
+        String objectKey = getObjectKey(url);
+        if (StringUtils.isEmpty(objectKey)) {
+            return;
+        }
+        ManageOssUpload manageOssUpload = new ManageOssUpload(PeiYuApp.getInstance());
+        manageOssUpload.deleteObject(new DeleteObjectRequest(OssUserInfo.testBucket, objectKey));
+        manageOssUpload.logAyncListObjects();
+    }
+
+    /**
+     * 删除OSS文件(批量)
+     *
+     * @param paths
+     */
+    public static void deleteOssObjectList(final List<String> paths) {
+        if (StringUtils.isEmpty(paths)) {
+            return;
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ManageOssUpload manageOssUpload = new ManageOssUpload(PeiYuApp.getInstance());
+                manageOssUpload.logAyncListObjects();
+                int size = paths.size();
+                for (int i = 0; i < size; i++) {
+                    String objectKey = getObjectKey(paths.get(i));
+                    if (!StringUtils.isEmpty(objectKey)) {
+                        manageOssUpload.deleteObject(new DeleteObjectRequest(OssUserInfo.testBucket, objectKey));
+                    }
+                }
+                manageOssUpload.logAyncListObjects();
+            }
+        }).start();
+    }
+
+    public static String getObjectKey(String url) {
+        if (StringUtils.isEmpty(url) || !url.contains(OssUserInfo.endpoint)) {
+            return "";
+        }
+        return url.substring(url.indexOf("/", 35) + 1, url.length());
     }
 
 

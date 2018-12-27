@@ -1,12 +1,22 @@
 package com.lanmei.peiyu.utils;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 
 import com.lanmei.peiyu.R;
+import com.lanmei.peiyu.view.ChangePhoneView;
 
 
 /**
@@ -141,61 +151,61 @@ public class AKDialog {
     public AKDialog() {
     }
 
-//    /**
-//     * 拍照、选择相册底部弹框提示
-//     *
-//     * @param context
-//     * @param activity
-//     * @param listener
-//     */
-//    public static void showBottomListDialog(Context context, Activity activity, final AlbumDialogListener listener) {
-//        final Dialog dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
-//        View inflate = LayoutInflater.from(context).inflate(R.layout.album_dialog_layout, null);
-//        Button choosePhoto = (Button) inflate.findViewById(R.id.choosePhoto);
-//        Button takePhoto = (Button) inflate.findViewById(R.id.takePhoto);
-//        Button cancel = (Button) inflate.findViewById(R.id.btn_cancel);
-//
-//        takePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (listener != null) {//拍照
-//                    listener.photograph();
-//                }
-//                dialog.cancel();
-//            }
-//        });
-//        choosePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {//相册
-//                if (listener != null) {
-//                    listener.photoAlbum();
-//                }
-//                dialog.cancel();
-//            }
-//        });
-//        cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {//取消
-//                dialog.cancel();
-//            }
-//        });
-//        dialog.setContentView(inflate);
-//        Window dialogWindow = dialog.getWindow();
-//        dialogWindow.setGravity(Gravity.BOTTOM);
-//        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-//        WindowManager m = activity.getWindowManager();
-//        Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-////        lp.y = 20;
-//        lp.width = (int) (d.getWidth()); // 宽度设置为屏幕的0.8
-//        dialogWindow.setAttributes(lp);
-//        dialog.show();
-//    }
+    /**
+     * 拍照、选择相册底部弹框提示
+     *
+     * @param context
+     * @param activity
+     * @param listener
+     */
+    public static void showBottomListDialog(Context context, Activity activity, final AlbumDialogListener listener) {
+        final Dialog dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.album_dialog_layout, null);
+        Button choosePhoto = (Button) inflate.findViewById(R.id.choosePhoto);
+        Button takePhoto = (Button) inflate.findViewById(R.id.takePhoto);
+        Button cancel = (Button) inflate.findViewById(R.id.btn_cancel);
 
-//    public interface AlbumDialogListener {
-//        void photograph();//拍照
-//
-//        void photoAlbum();//相册
-//    }
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {//拍照
+                    listener.photograph();
+                }
+                dialog.cancel();
+            }
+        });
+        choosePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//相册
+                if (listener != null) {
+                    listener.photoAlbum();
+                }
+                dialog.cancel();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//取消
+                dialog.cancel();
+            }
+        });
+        dialog.setContentView(inflate);
+        Window dialogWindow = dialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        WindowManager m = activity.getWindowManager();
+        Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+//        lp.y = 20;
+        lp.width = (int) (d.getWidth()); // 宽度设置为屏幕的0.8
+        dialogWindow.setAttributes(lp);
+        dialog.show();
+    }
+
+    public interface AlbumDialogListener {
+        void photograph();//拍照
+
+        void photoAlbum();//相册
+    }
 
     public static void getAlertDialog(Context context, String content, final AlertDialogListener l) {
         final AlertDialog dialog = new AlertDialog.Builder(context)
@@ -221,6 +231,40 @@ public class AKDialog {
 
     public interface AlertDialogListener {
         void yes();
+    }
+
+    public static AlertDialog getChangePhoneDialog(Context context, String title, String phone, String type, final ChangePhoneListener l) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        ChangePhoneView view = (ChangePhoneView) View.inflate(context, R.layout.dialog_change_phone, null);
+        view.setTitle(title);
+        view.setPhone(phone);
+        view.setType(type);
+        view.setChangePhoneListener(new ChangePhoneView.ChangePhoneListener() {
+            @Override
+            public void succeed(String newPhone) {
+                if (l != null) {
+                    l.succeed(newPhone);
+                }
+            }
+
+            @Override
+            public void unBound() {
+                if (l != null) {
+                    l.unBound();
+                }
+            }
+        });
+        builder.setView(view);
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        return dialog;
+    }
+
+    public interface ChangePhoneListener {
+        void succeed(String newPhone);//更换手机号
+
+        void unBound();//解绑银行卡
     }
 
 }

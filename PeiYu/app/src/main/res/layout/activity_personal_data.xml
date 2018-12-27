@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.mine.activity.PersonalDataActivity">
+
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_personal_icons"
+                style="@style/ll_bottom_h"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="头\u3000\u3000像：" />
+
+                <com.xson.common.widget.CircleImageView
+                    android:id="@+id/personal_icons_iv"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/default_pic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_nick"
+                style="@style/ll_bottom_h"
+                android:padding="10dp">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="姓\u3000\u3000名：" />
+
+                <TextView
+                    android:id="@+id/nick_tv"
+                    style="@style/text"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@mipmap/in_right" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_bottom_h"
+                android:padding="10dp">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="等\u3000\u3000级：" />
+
+                <TextView
+                    android:id="@+id/rid_tv"
+                    style="@style/text"
+                    android:layout_marginRight="@dimen/d_15dp"
+                    android:drawablePadding="5dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_QQ"
+                style="@style/ll_bottom_h"
+                android:padding="10dp">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="Q \u3000\u3000 Q：" />
+
+                <TextView
+                    android:id="@+id/qq_tv"
+                    style="@style/text"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@mipmap/in_right" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_mail"
+                style="@style/ll_bottom_h"
+                android:padding="10dp">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="邮\u3000\u3000箱：" />
+
+                <TextView
+                    android:id="@+id/mail_tv"
+                    style="@style/text"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@mipmap/in_right" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_phone"
+                style="@style/ll_bottom_h"
+                android:padding="10dp">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="电\u3000\u3000话：" />
+
+                <TextView
+                    android:id="@+id/phone_tv"
+                    style="@style/text"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@mipmap/in_right" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/ll_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom_divider"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/address"
+                    style="@style/text"
+                    android:text="联系地址：" />
+
+
+                <TextView
+                    android:id="@+id/address_tv"
+                    style="@style/text"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/address"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@mipmap/in_right"
+                    android:gravity="right"
+                    android:lineSpacingMultiplier="1.3" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:text="个性签名：" />
+
+                <EditText
+                    android:id="@+id/signature_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请输入个性签名"
+                    android:maxLength="200"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/save_bt"
+        style="@style/button_style"
+        android:text="@string/save" />
+
+
+</LinearLayout>

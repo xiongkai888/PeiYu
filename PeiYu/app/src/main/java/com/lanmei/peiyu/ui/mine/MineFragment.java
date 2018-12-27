@@ -5,10 +5,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
+import com.lanmei.peiyu.event.SetUserInfoEvent;
 import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
 import com.lanmei.peiyu.ui.mine.activity.MineOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.MinePowerStationActivity;
+import com.lanmei.peiyu.ui.mine.activity.PersonalDataActivity;
 import com.lanmei.peiyu.ui.mine.activity.SettingActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
@@ -16,6 +18,10 @@ import com.xson.common.bean.UserBean;
 import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.widget.CircleImageView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -59,6 +65,9 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         setNum(m3NumTv,6);
         setUserBean(CommonUtils.getUserBean(context));
     }
@@ -71,6 +80,11 @@ public class MineFragment extends BaseFragment {
         }
         nameTv.setText(userBean.getNickname());
         ImageHelper.load(context, userBean.getPic(), picIv, null, true, R.mipmap.default_pic, R.mipmap.default_pic);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(SetUserInfoEvent event) {
+        setUserBean(event.getBean());
     }
 
     /**
@@ -95,7 +109,7 @@ public class MineFragment extends BaseFragment {
                 CommonUtils.developing(context);
                 break;
             case R.id.pic_iv://头像
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, PersonalDataActivity.class);
                 break;
             case R.id.m01_tv://余额
                 CommonUtils.developing(context);
@@ -145,4 +159,11 @@ public class MineFragment extends BaseFragment {
                 break;
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 }

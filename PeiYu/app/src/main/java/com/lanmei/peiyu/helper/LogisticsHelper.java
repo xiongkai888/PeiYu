@@ -28,6 +28,11 @@ public class LogisticsHelper {
         this.root = root;
     }
 
+    /**
+     *
+     * @param list
+     * @param position 物流位置,从0开始
+     */
     public void setLogisticsPosition(List<String> list, int position) {
         root.removeAllViews();
         this.list = list;

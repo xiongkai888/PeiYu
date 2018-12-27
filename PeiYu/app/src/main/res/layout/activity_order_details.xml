@@ -17,11 +17,7 @@
                 android:id="@+id/ll_logistics"
                 android:layout_marginLeft="@dimen/d_10dp"
                 android:layout_marginRight="@dimen/d_10dp"
-                style="@style/h_match_parent_no">
-
-
-            </LinearLayout>
-
+                style="@style/h_match_parent_no"/>
 
 
             <TextView
@@ -74,7 +70,7 @@
                     style="@style/text12colorBlack"
                     android:background="@drawable/shape_b_b"
                     android:gravity="center"
-                    android:text="@string/buy_again" />
+                    android:text="@string/application_drawback" />
 
                 <TextView
                     style="@style/text12colorRed"

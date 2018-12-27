@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.GoodsDetailsPagerAdapter;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
@@ -119,8 +120,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                 CommonUtils.developing(this);
                 break;
             case R.id.ll_shop://购物车
-                CommonUtils.developing(this);
-//                IntentUtil.startActivity(this, ShopCarActivity.class);
+                MainActivity.showShopping(this);
                 break;
             case R.id.add_shop_car_tv://加入购物车
             case R.id.pay_now_tv://立即购买

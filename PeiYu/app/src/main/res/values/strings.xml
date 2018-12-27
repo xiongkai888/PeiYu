@@ -85,4 +85,8 @@
     <string name="mode_distribution"><![CDATA[配送方式：<font color="#000000">%s</font>]]></string>
     <string name="buy_again">再次购买</string>
     <string name="confirm_receipt">确定收货</string>
+    <string name="application_drawback">退款申请</string>
+    <string name="save">保存</string>
+    <string name="personal_data">个人资料</string>
+    <string name="change_phone_code">验证码以短息方式发送至您的手机，请在60s内输入验证码！</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.lanmei.peiyu;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 
@@ -40,7 +42,7 @@ public class MainActivity extends BaseActivity {
         tabHelper = new TabHelper(this, mTabLayout);
     }
 
-    public void setOrderNum(int num){
+    public void setOrderNum(int num) {
         tabHelper.setOrderNum(num);
     }
 
@@ -50,6 +52,7 @@ public class MainActivity extends BaseActivity {
         int count = DBShopCartHelper.getInstance(getApplicationContext()).getShopCarListCount();
         tabHelper.setOrderNum(count);
     }
+
     //退出登录
     @Subscribe
     public void loginQuitEvent(LoginQuitEvent event) {
@@ -61,4 +64,27 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+
+    public static final String ACTION_SHOW_HOME = "0";
+    public static final String ACTION_SHOW_SHOPPING = "3";
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        mViewPager.setCurrentItem(Integer.valueOf(intent.getAction()));
+    }
+
+    public static void showHome(Context context) {//至首页
+        Intent intent = new Intent(ACTION_SHOW_HOME);
+        intent.setClass(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showShopping(Context context) {//至购物车
+        Intent intent = new Intent(ACTION_SHOW_SHOPPING);
+        intent.setClass(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
 }
