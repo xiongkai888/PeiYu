@@ -1,12 +1,12 @@
 package com.xson.common.bean;
 
-/**
- * Created by xkai on 2018/8/30.
- * 用户信息
- *
- */
+import java.io.Serializable;
 
-public class UserBean {
+/**
+ * Created by xkai on 2017/5/15.
+ */
+public class UserBean implements Serializable{
+
 
     /**
      * id : 202
@@ -15,10 +15,10 @@ public class UserBean {
      * realname :
      * user_type : 1
      * user_type_fix : 0
-     * pic : http://stdrimages.oss-cn-shenzhen.aliyuncs.com/lanmei/kang/img1/head1054357286.jpg
+     * pic : http://stdrimages.oss-cn-shenzhen.aliyuncs.com/lanmei/kang/img1/head-1763391191.jpg
      * email : dfghh@qq.com
-     * password : 3f63bed244cba40a535a012759173c77
-     * hash : vBuGcK
+     * password : 6b64dbfdfc7eda8a52e7660a4e81c9d8
+     * hash : WqQiOU
      * proxy : 0
      * pid : 0
      * rebate : 0.00
@@ -27,11 +27,11 @@ public class UserBean {
      * city_id :
      * sex : 0
      * birth :
-     * qq : 855556
+     * qq :
      * reg_ip : 113.119.134.195
      * reg_time : 2018-01-17 17:06:42
      * ip :
-     * address : 广州市天河区
+     * address :
      * time : 0
      * login_count : 0
      * point :
@@ -58,20 +58,14 @@ public class UserBean {
      * month_expenditure : 0.00
      * year_expenditure : 0.00
      * today_earnings : 10000000.00
-     * token : ghc905fb032v1oabuqfiupd8a1
+     * token : ls4tensd2f8he6pfo7m0h93q77
      * talent_label :
      * distance_total : 0.00
      * water_area : 0
      * avatar_bg :
-     * menber_num : 15392285776778
-     * tg_status : 0
-     * tg_id : 200
-     * yongjin : 0.00
-     * files_img :
-     * rid : 8
-     * money : 9976646.30
-     * ratio : 58
-     * rank : 铂金
+     * menber_num : 1539228577B0100T6778
+     * money : 9996173.00
+     * files_img : http:\/\/qkmimages.img-cn-shenzhen.aliyuncs.com\/Uploads\/imgs\/20181113\/1542095148494.pdf
      */
 
     private String id;
@@ -129,14 +123,35 @@ public class UserBean {
     private String water_area;
     private String avatar_bg;
     private String menber_num;
-    private String tg_status;
-    private String tg_id;
-    private String yongjin;
-    private String files_img;
-    private String rid;
     private String money;
-    private String ratio;
-    private String rank;
+    private String files_img;
+    private String ridname;
+
+    public void setRidname(String ridname) {
+        this.ridname = ridname;
+    }
+
+    public String getRidname() {
+        return ridname;
+    }
+
+    private double ratio;//折扣
+
+    public void setRatio(double ratio) {
+        this.ratio = ratio;
+    }
+
+    public double getRatio() {
+        return ratio;
+    }
+
+    public void setFiles_img(String files_img) {
+        this.files_img = files_img;
+    }
+
+    public String getFiles_img() {
+        return files_img;
+    }
 
     public String getId() {
         return id;
@@ -578,67 +593,11 @@ public class UserBean {
         this.menber_num = menber_num;
     }
 
-    public String getTg_status() {
-        return tg_status;
-    }
-
-    public void setTg_status(String tg_status) {
-        this.tg_status = tg_status;
-    }
-
-    public String getTg_id() {
-        return tg_id;
-    }
-
-    public void setTg_id(String tg_id) {
-        this.tg_id = tg_id;
-    }
-
-    public String getYongjin() {
-        return yongjin;
-    }
-
-    public void setYongjin(String yongjin) {
-        this.yongjin = yongjin;
-    }
-
-    public String getFiles_img() {
-        return files_img;
-    }
-
-    public void setFiles_img(String files_img) {
-        this.files_img = files_img;
-    }
-
-    public String getRid() {
-        return rid;
-    }
-
-    public void setRid(String rid) {
-        this.rid = rid;
-    }
-
     public String getMoney() {
         return money;
     }
 
     public void setMoney(String money) {
         this.money = money;
-    }
-
-    public String getRatio() {
-        return ratio;
-    }
-
-    public void setRatio(String ratio) {
-        this.ratio = ratio;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
     }
 }

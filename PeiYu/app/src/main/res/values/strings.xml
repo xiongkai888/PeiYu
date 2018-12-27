@@ -88,5 +88,6 @@
     <string name="application_drawback">退款申请</string>
     <string name="save">保存</string>
     <string name="personal_data">个人资料</string>
+    <string name="register_protocol">注册协议</string>
     <string name="change_phone_code">验证码以短息方式发送至您的手机，请在60s内输入验证码！</string>
 </resources>

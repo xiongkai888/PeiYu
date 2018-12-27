@@ -19,6 +19,7 @@ import com.xson.common.bean.BaseBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.CodeCountDownTimer;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
 import com.xson.common.widget.CenterTitleToolbar;
@@ -189,7 +190,7 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
                 loadObtainCode(phone);
                 break;
             case R.id.agree_protocol_tv://用户协议
-                CommonUtils.developing(this);
+                IntentUtil.startActivity(this,ProtocolActivity.class);
                 break;
         }
     }

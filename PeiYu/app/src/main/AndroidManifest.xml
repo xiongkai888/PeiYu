@@ -77,6 +77,9 @@
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.login.ProtocolActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.login.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity

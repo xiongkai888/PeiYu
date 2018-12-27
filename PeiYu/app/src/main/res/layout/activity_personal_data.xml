@@ -56,7 +56,6 @@
                 <TextView
                     android:id="@+id/nick_tv"
                     style="@style/text"
-                    android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/in_right" />
 
 
@@ -91,7 +90,6 @@
                 <TextView
                     android:id="@+id/qq_tv"
                     style="@style/text"
-                    android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/in_right" />
 
 
@@ -109,7 +107,6 @@
                 <TextView
                     android:id="@+id/mail_tv"
                     style="@style/text"
-                    android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/in_right" />
 
 
@@ -127,7 +124,6 @@
                 <TextView
                     android:id="@+id/phone_tv"
                     style="@style/text"
-                    android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/in_right" />
 
 
@@ -151,7 +147,6 @@
                     style="@style/text"
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@id/address"
-                    android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/in_right"
                     android:gravity="right"
                     android:lineSpacingMultiplier="1.3" />

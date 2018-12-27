@@ -29,8 +29,6 @@ public class CodeCountDownTimer extends CountDownTimer {
             anewSendTv.setText(l / 1000 + context.getString(R.string.s_regain));
             anewSendTv.setClickable(false);
             anewSendTv.setTextSize(11);
-        }else {
-            L.d(L.TAG,"anewSendTv == null");
         }
     }
 
