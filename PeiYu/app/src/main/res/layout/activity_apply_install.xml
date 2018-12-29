@@ -22,15 +22,16 @@
                 android:paddingBottom="@dimen/d_2dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingTop="@dimen/d_10dp"
-                android:text="安装信息" />
+                android:text="用户姓名" />
 
-            <TextView
+            <EditText
+                android:id="@+id/name_et"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
-                android:drawableRight="@mipmap/o_down"
-                android:hint="请选择用户基本信息"
+                android:hint="请输入用户姓名"
                 android:padding="@dimen/d_10dp" />
+
 
             <TextView
                 style="@style/text14color1ca637"
@@ -40,6 +41,7 @@
                 android:text="安装电话" />
 
             <EditText
+                android:id="@+id/phone_et"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
@@ -56,6 +58,7 @@
                 android:text="安装时间" />
 
             <TextView
+                android:id="@+id/time_tv"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
@@ -69,9 +72,24 @@
                 android:paddingBottom="@dimen/d_2dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingTop="@dimen/d_10dp"
+                android:text="地址" />
+
+            <EditText
+                android:id="@+id/address_et"
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/icon_coordinate"
+                android:hint="请输入安装地址"
+                android:padding="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:padding="@dimen/d_10dp"
                 android:text="其他说明" />
 
             <EditText
+                android:id="@+id/content_et"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_120dp"
@@ -80,7 +98,7 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/shape_explain"
                 android:gravity="top"
-                android:hint="请输入说明文字"
+                android:hint="@string/input_explain"
                 android:padding="@dimen/d_5dp" />
 
             <TextView style="@style/line_H10dp_on" />
@@ -222,7 +240,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/bt_login"
+                android:id="@+id/submit_bt"
                 style="@style/button_style"
                 android:layout_marginTop="@dimen/d_30dp"
                 android:text="@string/submit" />

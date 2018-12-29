@@ -22,21 +22,7 @@ public class AfterSaleOrderAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         AfterSaleOrderListFragment fragment = new AfterSaleOrderListFragment();
         Bundle bundle = new Bundle();
-        switch (position) {
-            case 0:
-                bundle.putString("status","0");
-                break;
-            case 1:
-                bundle.putString("status","1");
-                break;
-            case 2:
-                bundle.putString("status","3");
-                break;
-            case 3:
-                bundle.putString("status","4");
-                break;
-
-        }
+        bundle.putInt("state",position);
         fragment.setArguments(bundle);
         return fragment;
     }

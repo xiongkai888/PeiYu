@@ -6,33 +6,7 @@
 
     <include layout="@layout/include_home_search" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/d_0dp"
-            android:layout_weight="1">
-
-            <LinearLayout
-                style="@style/v_match_parent_no"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
-
-                <include layout="@layout/include_head_home" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+    <include layout="@layout/fragment_single_listview"/>
 
 
 </LinearLayout>

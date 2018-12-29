@@ -104,7 +104,7 @@
 
             <TextView
                 style="@style/text14color1ca637"
-                android:paddingBottom="@dimen/d_2dp"
+                android:paddingBottom="@dimen/d_10dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:text="其他说明" />
 
@@ -117,7 +117,7 @@
                 android:layout_marginRight="@dimen/d_10dp"
                 android:background="@drawable/shape_explain"
                 android:gravity="top"
-                android:hint="请输入说明文字"
+                android:hint="@string/input_explain"
                 android:padding="@dimen/d_5dp" />
 
             <TextView style="@style/line_H10dp_on" />

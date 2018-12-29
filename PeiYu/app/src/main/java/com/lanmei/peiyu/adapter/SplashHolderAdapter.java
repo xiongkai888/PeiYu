@@ -14,7 +14,7 @@ import butterknife.InjectView;
 /**
  * 引导页
  */
-public class SplashHolderView implements Holder<Integer> {
+public class SplashHolderAdapter implements Holder<Integer> {
 
     @InjectView(R.id.banner_img)
     ImageView bannerImg;

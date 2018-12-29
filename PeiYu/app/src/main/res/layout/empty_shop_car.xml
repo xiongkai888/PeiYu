@@ -6,10 +6,15 @@
     android:orientation="vertical">
 
 
+    <ImageView
+        style="@style/text"
+        android:layout_marginBottom="@dimen/d_20dp"
+        android:src="@mipmap/icon_shopping_null" />
+
     <TextView
         style="@style/text"
-        android:text="HI~\n购物车暂时没有商品"
         android:gravity="center_horizontal"
+        android:text="HI~\n购物车暂时没有商品"
         android:textColor="@color/color999"
         android:textSize="@dimen/txt_18sp" />
 
@@ -17,10 +22,10 @@
     <Button
         android:id="@+id/go_bt"
         style="@style/button_style"
-        android:layout_height="@dimen/d_40dp"
-        android:layout_marginLeft="@dimen/d_80dp"
-        android:layout_marginRight="@dimen/d_80dp"
-        android:layout_marginTop="@dimen/d_10dp"
-        android:text="去逛逛" />
+        android:background="@drawable/shape_f_r"
+        android:layout_marginLeft="@dimen/d_120dp"
+        android:layout_marginRight="@dimen/d_120dp"
+        android:layout_marginTop="@dimen/d_20dp"
+        android:text="开始选购" />
 
 </LinearLayout>

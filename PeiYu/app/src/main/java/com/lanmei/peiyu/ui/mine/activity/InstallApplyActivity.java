@@ -49,14 +49,13 @@ public class InstallApplyActivity extends BaseActivity implements TabLayout.OnTa
         actionbar.setHomeAsUpIndicator(R.mipmap.back);
 
         helper = new TabSubHelper(this,mTabLayout,getTitleList());
-        helper.setOrderNum(0,6,0,0,0,0);
+        helper.setOrderNum(0,6,0,0,0);
 
         mViewPager.setAdapter(new InstallApplyAdapter(getSupportFragmentManager()));
 //        mViewPager.setOffscreenPageLimit(3);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.addOnTabSelectedListener(this);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));;
-//        mViewPager.setCurrentItem(getIntent().getIntExtra("type",0));
     }
 
 
@@ -82,8 +81,7 @@ public class InstallApplyActivity extends BaseActivity implements TabLayout.OnTa
                 "施工申报",
                 "设备发货",
                 "施工安装",
-                "竣工验收",
-                getString(R.string.done));
+                "竣工验收");
         return titles;
     }
 
@@ -102,4 +100,5 @@ public class InstallApplyActivity extends BaseActivity implements TabLayout.OnTa
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
 }

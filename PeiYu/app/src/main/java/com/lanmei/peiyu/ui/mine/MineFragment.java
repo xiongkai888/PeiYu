@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.event.SetUserInfoEvent;
+import com.lanmei.peiyu.ui.login.RegisterActivity;
 import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
 import com.lanmei.peiyu.ui.mine.activity.MineOrderActivity;
@@ -13,8 +14,12 @@ import com.lanmei.peiyu.ui.mine.activity.MinePowerStationActivity;
 import com.lanmei.peiyu.ui.mine.activity.PersonalDataActivity;
 import com.lanmei.peiyu.ui.mine.activity.SettingActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
+import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
+import com.xson.common.bean.BaseBean;
 import com.xson.common.bean.UserBean;
+import com.xson.common.helper.BeanRequest;
+import com.xson.common.helper.HttpClient;
 import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.widget.CircleImageView;
@@ -146,13 +151,20 @@ public class MineFragment extends BaseFragment {
                 CommonUtils.developing(context);
                 break;
             case R.id.m10_tv://我的收藏
-                CommonUtils.developing(context);
+                PeiYuApi api = new PeiYuApi("station/class_list");
+//                api.addParams("",1);
+                HttpClient.newInstance(context).loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {
+                    @Override
+                    public void onResponse(BaseBean response) {
+
+                    }
+                });
                 break;
             case R.id.m11_tv://我的地址
                 CommonUtils.developing(context);
                 break;
             case R.id.m12_tv://修改密码
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context,RegisterActivity.class,CommonUtils.isThree);
                 break;
             case R.id.m13_tv://设置
                 IntentUtil.startActivity(context, SettingActivity.class);

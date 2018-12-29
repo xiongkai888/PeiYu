@@ -53,7 +53,7 @@
     <string name="input_password_count">请输入6-18位密码</string>
     <string name="password_inconformity">两次密码输入不一致</string>
     <string name="send_code_succeed">验证码发送成功</string>
-    <string name="agree_protocol"><![CDATA[点击注册即表示同意 <font color="#ff2456">%s</font>]]></string>
+    <string name="agree_protocol"><![CDATA[点击注册即表示同意 <font color="#ff2456">《%s》</font>]]></string>
     <string name="news_details">资讯详情</string>
     <string name="collect">收藏</string>
     <string name="collected">已收藏</string>
@@ -90,4 +90,12 @@
     <string name="personal_data">个人资料</string>
     <string name="register_protocol">注册协议</string>
     <string name="change_phone_code">验证码以短息方式发送至您的手机，请在60s内输入验证码！</string>
+    <string name="input_explain">请输入说明文字</string>
+    <string name="address">地址：%1$s</string>
+    <string name="link_name">联系人：%1$s</string>
+    <string name="phone">电\u3000话：%1$s</string>
+    <string name="completion_acceptance">已竣工验收</string>
+    <string name="being_installed">正在安装中</string>
+    <string name="shipped">已发货</string>
+    <string name="apply_being_processed">施工申报-处理中</string>
 </resources>

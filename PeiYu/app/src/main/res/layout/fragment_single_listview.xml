@@ -6,6 +6,7 @@
     android:divider="@color/divider"
     android:background="@color/colorF4F4"
     android:dividerHeight="0.5dp"
+    android:descendantFocusability="blocksDescendants"
     android:listSelector="@null">
 
 </com.xson.common.widget.SmartSwipeRefreshLayout>

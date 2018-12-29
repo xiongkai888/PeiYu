@@ -1,41 +1,32 @@
 package com.lanmei.peiyu.ui.home;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.HomeAdapter;
-import com.lanmei.peiyu.adapter.HomeRecommendAdapter;
-import com.lanmei.peiyu.ui.home.activity.DataEntryActivity;
-import com.lanmei.peiyu.ui.home.activity.SimulationIncomeActivity;
-import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
-import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
-import com.lanmei.peiyu.utils.CommonUtils;
+import com.lanmei.peiyu.bean.AdBean;
+import com.lanmei.peiyu.bean.HomeBean;
+import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
-import com.xson.common.utils.IntentUtil;
+import com.xson.common.bean.NoPageListBean;
+import com.xson.common.helper.BeanRequest;
+import com.xson.common.helper.HttpClient;
+import com.xson.common.helper.SwipeRefreshController;
+import com.xson.common.utils.StringUtils;
+import com.xson.common.widget.SmartSwipeRefreshLayout;
 
 import butterknife.InjectView;
-import butterknife.OnClick;
 
 /**
  * Created by xkai on 2018/7/13.
  * 首页
  */
 
-public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class HomeFragment extends BaseFragment {
 
-    @InjectView(R.id.banner)
-    ConvenientBanner banner;
-    @InjectView(R.id.recyclerView_recommend)
-    RecyclerView recyclerViewRecommend;
-    @InjectView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    @InjectView(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
+    @InjectView(R.id.pull_refresh_rv)
+    SmartSwipeRefreshLayout smartSwipeRefreshLayout;
+    private HomeAdapter adapter;
 
     public int getContentViewId() {
         return R.layout.fragment_home;
@@ -43,59 +34,39 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-        swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeResources(R.color.color83AE05);
-        initHome();
-        initRecyclerViewRecommend();
-        CommonUtils.setBanner(banner, CommonUtils.getList(), true);
+        smartSwipeRefreshLayout.initWithLinearLayout();
+        PeiYuApi api = new PeiYuApi("app/good_list");//热销产品
+        api.addParams("hot",1);
+        adapter = new HomeAdapter(context);
+        smartSwipeRefreshLayout.setAdapter(adapter);
+        SwipeRefreshController<NoPageListBean<HomeBean>> controller = new SwipeRefreshController<NoPageListBean<HomeBean>>(context, smartSwipeRefreshLayout, api, adapter) {
+        };
+        controller.loadFirstPage();
+        adapter.notifyDataSetChanged();
+        loadAd(1);
     }
 
 
-    private void initHome() {
-        HomeAdapter adapter = new HomeAdapter(context);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setAdapter(adapter);
-    }
 
-
-    //推荐商品
-    private void initRecyclerViewRecommend() {
-        HomeRecommendAdapter adapter = new HomeRecommendAdapter(context);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewRecommend.setLayoutManager(layoutManager);
-        recyclerViewRecommend.setNestedScrollingEnabled(false);
-        recyclerViewRecommend.setAdapter(adapter);
-    }
-
-
-    @Override
-    public void onRefresh() {
-        recyclerView.postDelayed(new Runnable() {
+    //用户端-商家tab  轮播图
+    private void loadAd(final int type) {
+        PeiYuApi api = new PeiYuApi("app/index_img");
+        api.addParams("type",type);//1是头部轮播，2是推荐图(即热门活动)
+        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<NoPageListBean<AdBean>>() {
             @Override
-            public void run() {
-                if (swipeRefreshLayout != null)
-                swipeRefreshLayout.setRefreshing(false);
+            public void onResponse(NoPageListBean<AdBean> response) {
+                if (smartSwipeRefreshLayout == null) {
+                    return;
+                }
+                if (StringUtils.isEmpty(response.data)) {
+                    return;
+                }
+                if (type == 1){
+                    adapter.setBannerParameter(response.data);
+                    adapter.setRecommendGoods(response.data);
+                }
             }
-        }, 500);
+        });
     }
 
-    @OnClick({R.id.home_classify1_tv, R.id.home_classify2_tv, R.id.home_classify3_tv, R.id.home_classify4_tv})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.home_classify1_tv://模拟收入
-                IntentUtil.startActivity(context, SimulationIncomeActivity.class);
-                break;
-            case R.id.home_classify2_tv://资料录入
-                IntentUtil.startActivity(context, DataEntryActivity.class);//ApplyInstallActivity
-                break;
-            case R.id.home_classify3_tv://安装申报
-                IntentUtil.startActivity(context, InstallApplyActivity.class);
-                break;
-            case R.id.home_classify4_tv://售后报修
-                IntentUtil.startActivity(context, AfterSaleOrderActivity.class);
-                break;
-        }
-    }
 }

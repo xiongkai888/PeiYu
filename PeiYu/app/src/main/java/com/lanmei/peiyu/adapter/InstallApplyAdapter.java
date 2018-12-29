@@ -22,14 +22,14 @@ public class InstallApplyAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         InstallApplyListFragment fragment = new InstallApplyListFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("status",position+1);
+        bundle.putInt("state",position);
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public int getCount() {
-        return 6;
+        return 5;
     }
 
 }

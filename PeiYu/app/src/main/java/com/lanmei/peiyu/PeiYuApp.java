@@ -18,7 +18,7 @@ public class PeiYuApp extends BaseApp {
     @Override
     protected void installMonitor() {
         instance = this;
-        L.debug = OSSLog.enableLog = true;//true,false
+        L.debug = OSSLog.enableLog = false;//true,false
     }
 
     @Override

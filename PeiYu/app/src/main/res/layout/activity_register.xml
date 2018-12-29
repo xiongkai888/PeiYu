@@ -198,8 +198,8 @@
                 android:layout_marginBottom="@dimen/d_30dp"
                 android:layout_marginLeft="@dimen/d_15dp"
                 android:layout_marginTop="@dimen/d_5dp"
-                android:visibility="gone"
-                app:defaultValue="《用户协议》"
+                android:visibility="visible"
+                app:defaultValue="@string/register_protocol"
                 app:formatText="@string/agree_protocol" />
 
         </LinearLayout>

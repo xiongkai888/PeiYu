@@ -10,8 +10,9 @@
 
         <TextView
             android:id="@+id/content_tv"
-            style="@style/text"
+            style="@style/text14color666"
             android:padding="@dimen/d_10dp"
+            android:lineSpacingExtra="@dimen/d_3dp"
             android:layout_marginBottom="@dimen/d_10dp" />
 
     </ScrollView>

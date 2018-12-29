@@ -27,7 +27,7 @@ import butterknife.InjectView;
  */
 public class NewsDetailsAdapter extends SwipeRefreshAdapter<NewsCommentBean> {
 
-    final public static int TYPE_BANNER = 100;
+    public int TYPE_BANNER = 100;
     private BannerViewHolder bannerHolder;
     private FormatTime time;
 

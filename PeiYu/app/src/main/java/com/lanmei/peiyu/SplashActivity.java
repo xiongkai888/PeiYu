@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-import com.lanmei.peiyu.adapter.SplashHolderView;
+import com.lanmei.peiyu.adapter.SplashHolderAdapter;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.helper.SharedAccount;
 import com.xson.common.utils.IntentUtil;
@@ -67,14 +67,14 @@ public class SplashActivity extends AppCompatActivity implements ViewPager.OnPag
         mSkipIv = (ImageView) findViewById(R.id.skip_tv);
 
         List<Integer> list = new ArrayList<>();
-        list.add(R.mipmap.launch);
-        list.add(R.mipmap.launch);
-        list.add(R.mipmap.launch);
+        list.add(R.mipmap.guidance1);
+        list.add(R.mipmap.guidance2);
+        list.add(R.mipmap.guidance3);
         banner = (ConvenientBanner) findViewById(R.id.banner);
         banner.setPages(new CBViewHolderCreator() {
             @Override
             public Object createHolder() {
-                return new SplashHolderView();
+                return new SplashHolderAdapter();
             }
         }, list);
         banner.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);

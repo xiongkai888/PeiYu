@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.AfterSaleOrderListAdapter;
-import com.lanmei.peiyu.bean.HomeClassifyBean;
+import com.lanmei.peiyu.bean.AfterSaleOrderBean;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
 import com.xson.common.bean.NoPageListBean;
@@ -23,7 +23,7 @@ public class AfterSaleOrderListFragment extends BaseFragment {
 
     @InjectView(R.id.pull_refresh_rv)
     SmartSwipeRefreshLayout smartSwipeRefreshLayout;
-    private SwipeRefreshController<NoPageListBean<HomeClassifyBean>> controller;
+    private SwipeRefreshController<NoPageListBean<AfterSaleOrderBean>> controller;
 
     @Override
     public int getContentViewId() {
@@ -38,13 +38,14 @@ public class AfterSaleOrderListFragment extends BaseFragment {
 
     private void initSwipeRefreshLayout() {
         smartSwipeRefreshLayout.initWithLinearLayout();
-        PeiYuApi api = new PeiYuApi("Reservation/index");
+        PeiYuApi api = new PeiYuApi("station/saled_list");
+        api.addParams("uid",api.getUserId(context));
+        api.addParams("state",getArguments().getInt("state"));
         AfterSaleOrderListAdapter adapter = new AfterSaleOrderListAdapter(context);
         smartSwipeRefreshLayout.setAdapter(adapter);
-        controller = new SwipeRefreshController<NoPageListBean<HomeClassifyBean>>(context, smartSwipeRefreshLayout, api, adapter) {
+        controller = new SwipeRefreshController<NoPageListBean<AfterSaleOrderBean>>(context, smartSwipeRefreshLayout, api, adapter) {
         };
-        smartSwipeRefreshLayout.setMode(SmartSwipeRefreshLayout.Mode.NO_PAGE);
-        adapter.notifyDataSetChanged();
+        controller.loadFirstPage();
     }
 
 }

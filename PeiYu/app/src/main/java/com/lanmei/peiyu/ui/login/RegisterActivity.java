@@ -111,11 +111,11 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
 
     //注册或找回密码、修改密码
     private void registerOrRetrievePwd(final String phone, String pwd) {
-        PeiYuApi api = new PeiYuApi("public/resetPwd");
+        PeiYuApi api = new PeiYuApi("public/resetPwd");//找回密码、修改密码
         api.addParams("phone",phone);
         api.addParams("password",pwd);
-        if (StringUtils.isSame(type,CommonUtils.isOne)){//注册
-            api.setPath("public/regist");
+        if (StringUtils.isSame(type,CommonUtils.isOne)){
+            api.setPath("public/regist");//注册
             api.addParams("nickname","p_"+phone);
             api.addParams("repassword",pwd);
             api.addParams("tgid",CommonUtils.getStringByEditText(idEt));
@@ -220,7 +220,6 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
 
     //注册
     private void loadRegister() {
-        boolean b = StringUtils.isSame(type, CommonUtils.isThree);//修改密码
         phone = CommonUtils.getStringByEditText(phoneEt);//电话号码
         if (StringUtils.isEmpty(phone)) {
             UIHelper.ToastMessage(this, R.string.input_phone_number);
