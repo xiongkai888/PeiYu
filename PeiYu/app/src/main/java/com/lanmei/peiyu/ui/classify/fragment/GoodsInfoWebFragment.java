@@ -1,12 +1,11 @@
 package com.lanmei.peiyu.ui.classify.fragment;
 
 import android.os.Bundle;
-import android.webkit.WebView;
 
 import com.lanmei.peiyu.R;
+import com.lanmei.peiyu.view.ItemWebView;
 import com.lanmei.peiyu.webviewpage.WebViewPhotoBrowserUtil;
 import com.xson.common.app.BaseFragment;
-import com.xson.common.utils.StringUtils;
 
 import butterknife.InjectView;
 
@@ -17,7 +16,7 @@ import butterknife.InjectView;
 public class GoodsInfoWebFragment extends BaseFragment {
 
     @InjectView(R.id.detail_webView)
-    WebView detailWebView;
+    ItemWebView detailWebView;
 
     
     @Override
@@ -32,9 +31,6 @@ public class GoodsInfoWebFragment extends BaseFragment {
             return;
         }
         String content = bundle.getString("content");
-        if (StringUtils.isEmpty(content)){
-            return;
-        }
         WebViewPhotoBrowserUtil.photoBrowser(context, detailWebView, content);
     }
 

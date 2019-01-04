@@ -26,7 +26,7 @@ public class GoodsDetailsBean implements Serializable{
      * imgs : ["http://qkmimages.img-cn-shenzhen.aliyuncs.com/Uploads/imgs/20180927/15380301212568.jpg"]
      * state : 1
      * userid : 5
-     * content : 
+     * content :
      * hot : 1
      * vipprice : 0.00
      * sales : 50
@@ -36,8 +36,8 @@ public class GoodsDetailsBean implements Serializable{
      * comments : 0
      * model : 0
      * specifications : 红色,M
-     * specificationsname : 
-     * attribute : 
+     * specificationsname :
+     * attribute :
      * business_price : 500.00
      * sale_price : 500.00
      * barcode : 552111www

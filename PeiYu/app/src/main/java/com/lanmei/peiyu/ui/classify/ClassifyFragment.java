@@ -9,10 +9,14 @@ import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.ClassifyListAdapter;
 import com.lanmei.peiyu.adapter.ClassifyTabAdapter;
 import com.lanmei.peiyu.bean.ClassifyTabBean;
+import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
+import com.xson.common.bean.NoPageListBean;
+import com.xson.common.helper.BeanRequest;
+import com.xson.common.helper.HttpClient;
+import com.xson.common.utils.StringUtils;
 import com.xson.common.widget.SmartSwipeRefreshLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
@@ -39,46 +43,43 @@ public class ClassifyFragment extends BaseFragment {
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-        ClassifyTabAdapter voterTabAdapter = new ClassifyTabAdapter(context);
-        voterTabAdapter.setData(getVoterTabList());
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(voterTabAdapter);
-
+        //分类列表
         adapter = new ClassifyListAdapter(context);
-        adapter.setClassifyList(true);
         smartSwipeRefreshLayout.setLayoutManager(new GridLayoutManager(context,3));
         smartSwipeRefreshLayout.setAdapter(adapter);
         smartSwipeRefreshLayout.setMode(SmartSwipeRefreshLayout.Mode.NO_PAGE);
         adapter.notifyDataSetChanged();
+
+        PeiYuApi api = new PeiYuApi("station/goods_class");
+        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<NoPageListBean<ClassifyTabBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<ClassifyTabBean> response) {
+                if (recyclerView == null){
+                    return;
+                }
+                setRecyclerView(response.data);
+            }
+        });
     }
 
 
-
-    private List<ClassifyTabBean> getVoterTabList() {
-        List<ClassifyTabBean> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            ClassifyTabBean bean = new ClassifyTabBean();
-            switch (i){
-                case 0:
-                    bean.setName("为您推荐");//"Snack","Frunt","Drink","Others"
-                    bean.setChoose(true);
-                    break;
-                case 1:
-                    bean.setName("风电");
-                    break;
-                case 2:
-                    bean.setName("太阳能");
-                    break;
-                case 3:
-                    bean.setName("生物质发电");
-                    break;
-                case 4:
-                    bean.setName("节能");
-                    break;
+    //分类Tab
+    private void setRecyclerView(List<ClassifyTabBean> list){
+        if (StringUtils.isEmpty(list)){return;}
+        ClassifyTabAdapter voterTabAdapter = new ClassifyTabAdapter(context);
+        list.get(0).setChoose(true);
+        adapter.setData(list.get(0).get_child());
+        adapter.notifyDataSetChanged();
+        voterTabAdapter.setData(list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(voterTabAdapter);
+        voterTabAdapter.setListener(new ClassifyTabAdapter.OnTabClickListener() {
+            @Override
+            public void OnClickListener(List<ClassifyTabBean.ChildBean> list) {
+                adapter.setData(list);
+                adapter.notifyDataSetChanged();
             }
-            list.add(bean);
-        }
-        return list;
+        });
     }
 
 }

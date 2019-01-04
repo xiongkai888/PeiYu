@@ -98,4 +98,40 @@
     <string name="being_installed">正在安装中</string>
     <string name="shipped">已发货</string>
     <string name="apply_being_processed">施工申报-处理中</string>
+    <string name="graphic_details">图文详情</string>
+    <string name="input_household_name">请输入电表户主姓名</string>
+    <string name="input_contact_number">请输入联系电话</string>
+    <string name="input_installation_address">请输入安装地址</string>
+    <string name="input_roof_area">请输入屋顶面积 (㎡)</string>
+    <string name="input_roof_gutter_area">请输入天沟面积 (㎡)</string>
+    <string name="touch_to_focus">触摸屏幕对焦</string>
+
+    <!--电压等级-->
+    <string-array name="capacity">
+        <item>220V</item>
+        <item>380V</item>
+    </string-array>
+
+    <!--屋顶结构形式-->
+    <string-array name="structure">
+        <item>木质结构</item>
+        <item>混凝土结构</item>
+    </string-array>
+
+    <!--瓦的材质-->
+    <string-array name="material">
+        <item>彩钢瓦</item>
+        <item>玻璃瓦</item>
+        <item>青瓦</item>
+        <item>其他</item>
+    </string-array>
+
+    <!--房屋朝向-->
+    <string-array name="direction">
+        <item>朝东</item>
+        <item>朝南</item>
+        <item>朝西</item>
+        <item>朝北</item>
+    </string-array>
+
 </resources>

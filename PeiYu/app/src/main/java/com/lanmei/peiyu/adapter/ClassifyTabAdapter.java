@@ -54,9 +54,23 @@ public class ClassifyTabAdapter extends SwipeRefreshAdapter<ClassifyTabBean> {
                 }
                 bean.setChoose(true);
                 notifyDataSetChanged();
+                if (listener != null){
+                    listener.OnClickListener(bean.get_child());
+                }
             }
         });
     }
+
+    private OnTabClickListener listener;
+
+    public void setListener(OnTabClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnTabClickListener{
+        void OnClickListener(List<ClassifyTabBean.ChildBean> list);
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

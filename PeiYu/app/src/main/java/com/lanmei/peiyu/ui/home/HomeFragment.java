@@ -5,7 +5,9 @@ import android.os.Bundle;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.HomeAdapter;
 import com.lanmei.peiyu.bean.AdBean;
-import com.lanmei.peiyu.bean.HomeBean;
+import com.lanmei.peiyu.bean.GoodsDetailsBean;
+import com.lanmei.peiyu.bean.HomeClassifyBean;
+import com.lanmei.peiyu.bean.NewsListBean;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
 import com.xson.common.bean.NoPageListBean;
@@ -35,20 +37,29 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
         smartSwipeRefreshLayout.initWithLinearLayout();
-        PeiYuApi api = new PeiYuApi("app/good_list");//热销产品
-        api.addParams("hot",1);
+        PeiYuApi api = new PeiYuApi("post/index");
+        api.addParams("cid",5);
         adapter = new HomeAdapter(context);
         smartSwipeRefreshLayout.setAdapter(adapter);
-        SwipeRefreshController<NoPageListBean<HomeBean>> controller = new SwipeRefreshController<NoPageListBean<HomeBean>>(context, smartSwipeRefreshLayout, api, adapter) {
+        SwipeRefreshController<NoPageListBean<NewsListBean>> controller = new SwipeRefreshController<NoPageListBean<NewsListBean>>(context, smartSwipeRefreshLayout, api, adapter) {
+            @Override
+            public boolean onSuccessResponse(NoPageListBean<NewsListBean> response) {
+                return super.onSuccessResponse(response);
+            }
         };
         controller.loadFirstPage();
         adapter.notifyDataSetChanged();
         loadAd(1);
+        loadAd(2);
+        loadClassList();   //首页分类(模拟收益、资料录入等)
+        loadRecommendGoods();  //推荐商品
     }
 
 
-
-    //用户端-商家tab  轮播图
+    /**
+     *
+     * @param type type  图片类型 （1是头部轮播，2是推荐图）
+     */
     private void loadAd(final int type) {
         PeiYuApi api = new PeiYuApi("app/index_img");
         api.addParams("type",type);//1是头部轮播，2是推荐图(即热门活动)
@@ -63,8 +74,36 @@ public class HomeFragment extends BaseFragment {
                 }
                 if (type == 1){
                     adapter.setBannerParameter(response.data);
-                    adapter.setRecommendGoods(response.data);
+                }else {
+                    adapter.setRecommendImge(response.data);
                 }
+            }
+        });
+    }
+    //首页分类(模拟收益、资料录入等)
+    private void loadClassList() {
+        PeiYuApi api = new PeiYuApi("station/class_list");
+        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<NoPageListBean<HomeClassifyBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<HomeClassifyBean> response) {
+                if (smartSwipeRefreshLayout == null) {
+                    return;
+                }
+                adapter.setClassifyList(response.data);
+            }
+        });
+    }
+    //推荐商品
+    private void loadRecommendGoods() {
+        PeiYuApi api = new PeiYuApi("app/good_list");//热销产品
+        api.addParams("hot",1);
+        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<NoPageListBean<GoodsDetailsBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<GoodsDetailsBean> response) {
+                if (smartSwipeRefreshLayout == null) {
+                    return;
+                }
+                adapter.setRecommendGoods(response.data);
             }
         });
     }

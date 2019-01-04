@@ -15,7 +15,13 @@ import com.lanmei.peiyu.utils.CommonUtils;
 import com.lanmei.peiyu.utils.FormatTime;
 import com.lanmei.peiyu.webviewpage.WebViewPhotoBrowserUtil;
 import com.xson.common.adapter.SwipeRefreshAdapter;
+import com.xson.common.api.PeiYuApi;
+import com.xson.common.bean.BaseBean;
+import com.xson.common.helper.BeanRequest;
+import com.xson.common.helper.HttpClient;
 import com.xson.common.helper.ImageHelper;
+import com.xson.common.utils.StringUtils;
+import com.xson.common.utils.UIHelper;
 import com.xson.common.widget.CircleImageView;
 
 import butterknife.ButterKnife;
@@ -53,20 +59,19 @@ public class NewsDetailsAdapter extends SwipeRefreshAdapter<NewsCommentBean> {
     @Override
     public void onBindViewHolder2(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_BANNER) {
-//            onBindBannerViewHolder(holder, position); // banner
             return;
         }
-//        NewsCommentBean bean = getItem(position - 1);
-//        if (StringUtils.isEmpty(bean)) {
-//            return;
-//        }
-//        ViewHolder viewHolder = (ViewHolder) holder;
-//        viewHolder.setParameter(bean);
+        NewsCommentBean bean = getItem(position - 1);
+        if (StringUtils.isEmpty(bean)) {
+            return;
+        }
+        ViewHolder viewHolder = (ViewHolder) holder;
+        viewHolder.setParameter(bean);
     }
 
     @Override
     public int getCount() {
-        return 3 + 1;
+        return super.getCount()+1;
     }
 
     @Override
@@ -142,31 +147,31 @@ public class NewsDetailsAdapter extends SwipeRefreshAdapter<NewsCommentBean> {
                 @Override
                 public void onClick(View v) {
                     CommonUtils.developing(context);
-//                    if (!CommonUtils.isLogin(context)) {
-//                        return;
-//                    }
-//                    PeiYuApi api = new PeiYuApi("post/do_favour");
-//                    api.addParams("uid", api.getUserId(context));
-//                    api.addParams("id", detailsBean.getId());
-//                    if (StringUtils.isSame(detailsBean.getFavoured(), CommonUtils.isOne)) {
-//                        api.addParams("del", detailsBean.getFavoured());
-//                    }
-//                    HttpClient.newInstance(context).loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {
-//                        @Override
-//                        public void onResponse(BaseBean response) {
-//                            if (mTime1Tv == null) {
-//                                return;
-//                            }
-//                            if (StringUtils.isSame(detailsBean.getFavoured(), CommonUtils.isZero)) {//0为未收藏，1为收藏
-//                                detailsBean.setFavoured(CommonUtils.isOne);
-//                            } else {
-//                                detailsBean.setFavoured(CommonUtils.isZero);
-//                            }
-//                            CommonUtils.setTextViewType(context, detailsBean.getFavoured(), mCollectTv, R.string.collect, R.string.collected);
-//                            UIHelper.ToastMessage(context, response.getInfo());
-////                            EventBus.getDefault().post(new CollectNewsEvent());
-//                        }
-//                    });
+                    if (!CommonUtils.isLogin(context)) {
+                        return;
+                    }
+                    PeiYuApi api = new PeiYuApi("post/do_favour");
+                    api.addParams("uid", api.getUserId(context));
+                    api.addParams("id", detailsBean.getId());
+                    if (StringUtils.isSame(detailsBean.getFavoured(), CommonUtils.isOne)) {
+                        api.addParams("del", detailsBean.getFavoured());
+                    }
+                    HttpClient.newInstance(context).loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {
+                        @Override
+                        public void onResponse(BaseBean response) {
+                            if (mTime1Tv == null) {
+                                return;
+                            }
+                            if (StringUtils.isSame(detailsBean.getFavoured(), CommonUtils.isZero)) {//0为未收藏，1为收藏
+                                detailsBean.setFavoured(CommonUtils.isOne);
+                            } else {
+                                detailsBean.setFavoured(CommonUtils.isZero);
+                            }
+                            CommonUtils.setTextViewType(context, detailsBean.getFavoured(), mCollectTv, R.string.collect, R.string.collected);
+                            UIHelper.ToastMessage(context, response.getInfo());
+//                            EventBus.getDefault().post(new CollectNewsEvent());
+                        }
+                    });
                 }
             });
             WebViewPhotoBrowserUtil.photoBrowser(context, mWebView, detailsBean.getContent());

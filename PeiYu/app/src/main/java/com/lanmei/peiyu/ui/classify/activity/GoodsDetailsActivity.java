@@ -39,23 +39,22 @@ public class GoodsDetailsActivity extends BaseActivity {
     TabLayout tabLayout;
     @InjectView(R.id.viewPager)
     NoScrollViewPager viewPager;
-    @InjectView(R.id.menu_iv)
-    ImageView menuIv;
     @InjectView(R.id.collect_iv)
     ImageView collectIv;
     @InjectView(R.id.collect_tv)
     TextView collectTv;
+    @InjectView(R.id.title_tv)
+    TextView titleTv;
     @InjectView(R.id.ll_details_bottom)
     View llDetailsBottom;
     @InjectView(R.id.num_tv)
     TextView shopNumTv;//购物车数量
     GoodsDetailsBean bean;//商品详情信息
-    String id;//商品详情ID
 
     @Override
     public void initIntent(Intent intent) {
         super.initIntent(intent);
-        id = intent.getStringExtra("value");
+        bean = (GoodsDetailsBean)intent.getBundleExtra("bundle").getSerializable("bean");
     }
 
     @Override
@@ -66,14 +65,15 @@ public class GoodsDetailsActivity extends BaseActivity {
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
-        menuIv.setVisibility(View.VISIBLE);
 //        loadGoodsDetails();
-        init(null);
+        if (!StringUtils.isEmpty(bean)) {
+            init(bean);
+        }
     }
 
     private void loadGoodsDetails() {
         PeiYuApi api = new PeiYuApi("app/goodsdetail");
-        api.addParams("id",id);
+        api.addParams("id",bean.getId());
         HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<DataBean<GoodsDetailsBean>>() {
             @Override
             public void onResponse(DataBean<GoodsDetailsBean> response) {
@@ -88,6 +88,12 @@ public class GoodsDetailsActivity extends BaseActivity {
         });
     }
 
+
+    public void operaTitleBar(boolean scroAble, boolean titleVisiable) {
+        viewPager.setNoScroll(scroAble);
+        titleTv.setText(titleVisiable ? getString(R.string.graphic_details) : "");
+        tabLayout.setVisibility(titleVisiable ? View.GONE : View.VISIBLE);
+    }
 
 //    int favorite;//是否收藏了该商品
 
@@ -107,7 +113,7 @@ public class GoodsDetailsActivity extends BaseActivity {
 
 
 
-    @OnClick({R.id.ll_collect, R.id.ll_shop, R.id.add_shop_car_tv, R.id.pay_now_tv,R.id.menu_iv,R.id.back_iv})
+    @OnClick({R.id.ll_collect, R.id.ll_shop, R.id.add_shop_car_tv, R.id.pay_now_tv,R.id.back_iv})
     public void onViewClicked(View view) {
 //        if (!CommonUtils.isLogin(this)) {
 //            return;
@@ -124,9 +130,6 @@ public class GoodsDetailsActivity extends BaseActivity {
                 break;
             case R.id.add_shop_car_tv://加入购物车
             case R.id.pay_now_tv://立即购买
-                CommonUtils.developing(this);
-                break;
-            case R.id.menu_iv://
                 CommonUtils.developing(this);
                 break;
             case R.id.back_iv://

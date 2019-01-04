@@ -1,43 +1,47 @@
 package com.lanmei.peiyu.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.AdBean;
-import com.lanmei.peiyu.bean.HomeBean;
+import com.lanmei.peiyu.bean.GoodsDetailsBean;
 import com.lanmei.peiyu.bean.HomeClassifyBean;
-import com.lanmei.peiyu.ui.home.activity.DataEntryActivity;
-import com.lanmei.peiyu.ui.home.activity.SimulationIncomeActivity;
-import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
-import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
+import com.lanmei.peiyu.bean.NewsListBean;
 import com.lanmei.peiyu.ui.news.activity.NewsDetailsActivity;
+import com.lanmei.peiyu.utils.CommonUtils;
+import com.lanmei.peiyu.utils.FormatTime;
 import com.xson.common.adapter.SwipeRefreshAdapter;
 import com.xson.common.utils.IntentUtil;
+import com.xson.common.utils.StringUtils;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 
 
 /**
  * 首页
  */
-public class HomeAdapter extends SwipeRefreshAdapter<HomeBean> {
+public class HomeAdapter extends SwipeRefreshAdapter<NewsListBean> {
 
     public int TYPE_BANNER = 100;
     private BannerViewHolder bannerViewHolder;
+    private FormatTime time;
 
     public HomeAdapter(Context context) {
         super(context);
+        time = new FormatTime(context);
     }
 
     @Override
@@ -57,21 +61,21 @@ public class HomeAdapter extends SwipeRefreshAdapter<HomeBean> {
         if (getItemViewType(position) == TYPE_BANNER) {
             return;
         }
+        final NewsListBean bean = getItem(position-1);
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.setParameter(null);
+        viewHolder.setParameter(bean);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtil.startActivity(context, NewsDetailsActivity.class);
+                IntentUtil.startActivity(context, NewsDetailsActivity.class,bean.getId());
             }
         });
     }
 
     @Override
     public int getCount() {
-        return 7;
+        return super.getCount()+1;
     }
-
 
     @Override
     public int getItemViewType2(int position) {
@@ -84,14 +88,25 @@ public class HomeAdapter extends SwipeRefreshAdapter<HomeBean> {
     //
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @InjectView(R.id.title_tv)
+        TextView titleTv;
+        @InjectView(R.id.name_tv)
+        TextView nameTv;
+        @InjectView(R.id.time_tv)
+        TextView timeTv;
+        @InjectView(R.id.pic_iv)
+        ImageView picIv;
 
         ViewHolder(View view) {
             super(view);
             ButterKnife.inject(this, view);
         }
 
-        public void setParameter(HomeClassifyBean bean) {
-
+        public void setParameter(NewsListBean bean) {
+            titleTv.setText(bean.getTitle());
+            nameTv.setText(bean.getName());
+            timeTv.setText(time.formatterTime(bean.getAddtime()));
+            CommonUtils.loadImage(context,picIv, StringUtils.isEmpty(bean.getFile())?"":bean.getFile().get(0));
         }
     }
 
@@ -102,30 +117,15 @@ public class HomeAdapter extends SwipeRefreshAdapter<HomeBean> {
         ConvenientBanner banner;
         @InjectView(R.id.recyclerView_recommend)
         RecyclerView recyclerViewRecommend;//推荐商品
+        @InjectView(R.id.recyclerView_classify)
+        RecyclerView recyclerViewClassify;//分类
+        @InjectView(R.id.recyclerView_img)
+        RecyclerView recyclerViewImg;//推荐图
 
         public BannerViewHolder(View view) {
             super(view);
             ButterKnife.inject(this, view);
         }
-
-        @OnClick({R.id.home_classify1_tv, R.id.home_classify2_tv, R.id.home_classify3_tv, R.id.home_classify4_tv})
-        public void onViewClicked(View view) {
-            switch (view.getId()) {
-                case R.id.home_classify1_tv://模拟收入
-                    IntentUtil.startActivity(context, SimulationIncomeActivity.class);
-                    break;
-                case R.id.home_classify2_tv://资料录入
-                    IntentUtil.startActivity(context, DataEntryActivity.class);//
-                    break;
-                case R.id.home_classify3_tv://安装申报
-                    IntentUtil.startActivity(context, InstallApplyActivity.class);
-                    break;
-                case R.id.home_classify4_tv://售后报修
-                    IntentUtil.startActivity(context, AfterSaleOrderActivity.class);
-                    break;
-            }
-        }
-
 
         public void setBannerParameter(List<AdBean> adBeanList) {
             banner.setPages(new CBViewHolderCreator() {
@@ -139,25 +139,57 @@ public class HomeAdapter extends SwipeRefreshAdapter<HomeBean> {
             banner.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
             banner.startTurning(3000);
         }
-        public void setRecommendGoods(List<AdBean> adBeanList) {
+        //推荐商品
+        public void setRecommendGoods(List<GoodsDetailsBean> list) {
             HomeRecommendAdapter adapter = new HomeRecommendAdapter(context);
+            adapter.setData(list);
             LinearLayoutManager layoutManager = new LinearLayoutManager(context);
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerViewRecommend.setLayoutManager(layoutManager);
             recyclerViewRecommend.setNestedScrollingEnabled(false);
             recyclerViewRecommend.setAdapter(adapter);
         }
+        //首页分类(模拟收益、资料录入等)
+        public void setClassifyList(List<HomeClassifyBean> list) {
+            HomeClassifyAdapter adapter = new HomeClassifyAdapter(context);
+            adapter.setData(list);
+            recyclerViewClassify.setLayoutManager(new GridLayoutManager(context, 4));
+            recyclerViewClassify.setNestedScrollingEnabled(false);
+            recyclerViewClassify.setAdapter(adapter);
+        }
+
+        //推荐图
+        public void setRecommendImge(List<AdBean> list) {
+            RecommendImgeAdapter adapter = new RecommendImgeAdapter(context);
+            adapter.setData(list);
+            recyclerViewImg.setLayoutManager(new LinearLayoutManager(context));
+            recyclerViewImg.setNestedScrollingEnabled(false);
+            recyclerViewImg.setAdapter(adapter);
+        }
+
     }
 
 
     //轮播图
     public void setBannerParameter(List<AdBean> adBeanList) {
+        if (bannerViewHolder != null)
         bannerViewHolder.setBannerParameter(adBeanList);
     }
 
     //推荐商品
-    public void setRecommendGoods(List<AdBean> list) {
+    public void setRecommendGoods(List<GoodsDetailsBean> list) {
+        if (bannerViewHolder != null)
         bannerViewHolder.setRecommendGoods(list);
+    }
+    //首页分类(模拟收益、资料录入等)
+    public void setClassifyList(List<HomeClassifyBean> list) {
+        if (bannerViewHolder != null)
+        bannerViewHolder.setClassifyList(list);
+    }
+    //首页推荐图
+    public void setRecommendImge(List<AdBean> list) {
+        if (bannerViewHolder != null)
+        bannerViewHolder.setRecommendImge(list);
     }
 
 }

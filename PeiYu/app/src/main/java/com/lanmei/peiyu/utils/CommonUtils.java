@@ -13,6 +13,7 @@ import android.text.style.RelativeSizeSpan;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ import com.xson.common.bean.DataBean;
 import com.xson.common.bean.UserBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
+import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
@@ -123,6 +125,16 @@ public class CommonUtils {
 
     public static void developing(Context context) {
         UIHelper.ToastMessage(context, R.string.developing);
+    }
+
+    /**
+     * 加载图片
+     * @param context
+     * @param image
+     * @param url
+     */
+    public static void loadImage(Context context, ImageView image,String url) {
+        ImageHelper.load(context,url,image,null,true,R.mipmap.default_pic,R.mipmap.default_pic);
     }
 
 

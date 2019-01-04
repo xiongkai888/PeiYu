@@ -151,9 +151,11 @@ public class MineFragment extends BaseFragment {
                 CommonUtils.developing(context);
                 break;
             case R.id.m10_tv://我的收藏
-                PeiYuApi api = new PeiYuApi("station/class_list");
-//                api.addParams("",1);
-                HttpClient.newInstance(context).loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {
+                CommonUtils.developing(context);
+
+                PeiYuApi api = new PeiYuApi("station/station_list");
+                api.addParams("uid",api.getUserId(context));
+                HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<BaseBean>() {
                     @Override
                     public void onResponse(BaseBean response) {
 

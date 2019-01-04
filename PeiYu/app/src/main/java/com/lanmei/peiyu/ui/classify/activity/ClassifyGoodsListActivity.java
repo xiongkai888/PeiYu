@@ -6,7 +6,8 @@ import android.view.View;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.ClassifyGoodsListAdapter;
-import com.lanmei.peiyu.bean.HomeClassifyBean;
+import com.lanmei.peiyu.bean.GoodsDetailsBean;
+import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseActivity;
 import com.xson.common.bean.NoPageListBean;
@@ -23,7 +24,7 @@ public class ClassifyGoodsListActivity extends BaseActivity {
 
     @InjectView(R.id.pull_refresh_rv)
     SmartSwipeRefreshLayout smartSwipeRefreshLayout;
-    private SwipeRefreshController<NoPageListBean<HomeClassifyBean>> controller;
+    private SwipeRefreshController<NoPageListBean<GoodsDetailsBean>> controller;
 
     @Override
     public int getContentViewId() {
@@ -32,14 +33,15 @@ public class ClassifyGoodsListActivity extends BaseActivity {
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
+
         smartSwipeRefreshLayout.setLayoutManager(new GridLayoutManager(this, 2));
-        PeiYuApi api = new PeiYuApi("Reservation/index");
+        PeiYuApi api = new PeiYuApi("app/good_list");
+        api.addParams("classid",getIntent().getStringExtra("value"));
         ClassifyGoodsListAdapter adapter = new ClassifyGoodsListAdapter(this);
         smartSwipeRefreshLayout.setAdapter(adapter);
-        controller = new SwipeRefreshController<NoPageListBean<HomeClassifyBean>>(this, smartSwipeRefreshLayout, api, adapter) {
+        controller = new SwipeRefreshController<NoPageListBean<GoodsDetailsBean>>(this, smartSwipeRefreshLayout, api, adapter) {
         };
-        smartSwipeRefreshLayout.setMode(SmartSwipeRefreshLayout.Mode.NO_PAGE);
-        adapter.notifyDataSetChanged();
+        controller.loadFirstPage();
     }
 
     @OnClick({R.id.back_iv, R.id.keywordEditText})
@@ -49,6 +51,7 @@ public class ClassifyGoodsListActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.keywordEditText:
+                CommonUtils.developing(this);
                 break;
         }
     }

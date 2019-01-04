@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:id="@+id/content_tv"
+            android:id="@+id/name_tv"
             style="@style/text"
             android:textSize="@dimen/txt_12sp"
             android:layout_marginTop="@dimen/d_2dp"
@@ -36,7 +36,7 @@
             android:paddingRight="@dimen/d_5dp">
 
             <TextView
-                android:id="@+id/money_tv"
+                android:id="@+id/price_tv"
                 style="@style/text"
                 android:text="￥121"
                 android:textColor="@color/colorAccent" />
@@ -57,6 +57,7 @@
                 style="@style/text_weight" />
 
             <ImageView
+                android:id="@+id/add_goods_iv"
                 android:layout_width="@dimen/d_20dp"
                 android:layout_height="@dimen/d_20dp"
                 android:src="@mipmap/icon_add_shopping_cart" />

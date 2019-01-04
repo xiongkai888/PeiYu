@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/v_match_parent"
-    android:padding="@dimen/d_5dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:padding="@dimen/d_5dp">
 
-    <ImageView
-        android:src="@mipmap/temp_c1"
-        style="@style/text" />
+    <com.xson.common.widget.CircleImageView
+        android:id="@+id/pic_iv"
+        android:layout_width="@dimen/d_60dp"
+        android:layout_height="@dimen/d_60dp"
+        android:src="@mipmap/temp_c1" />
+
 
     <TextView
-        android:text="太阳能"
+        android:id="@+id/name_tv"
+        style="@style/text"
         android:layout_marginTop="@dimen/d_5dp"
-        style="@style/text"/>
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/solar_energy" />
 
 </LinearLayout>

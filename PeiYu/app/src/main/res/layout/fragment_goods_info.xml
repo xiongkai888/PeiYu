@@ -5,84 +5,123 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/scrollView"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <LinearLayout style="@style/v_match_parent">
+        <com.lanmei.peiyu.view.SlideDetailsLayout
+            android:id="@+id/slideDetailsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <com.bigkoo.convenientbanner.ConvenientBanner
-                android:id="@+id/banner"
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:canLoop="true" />
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical">
 
-            <TextView
-                android:id="@+id/name_tv"
-                style="@style/text"
-                android:layout_marginLeft="@dimen/d_10dp"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:text="爽舒适" />
+                <LinearLayout style="@style/v_match_parent">
 
+                    <com.bigkoo.convenientbanner.ConvenientBanner
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:canLoop="true" />
 
-            <TextView
-                android:id="@+id/price_tv"
-                style="@style/text"
-                android:layout_marginLeft="@dimen/d_10dp"
-                android:layout_marginTop="@dimen/d_10dp"
-                android:paddingBottom="@dimen/d_5dp"
-                android:text="￥0"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-
-            <TextView style="@style/line_H10dp_on" />
+                    <TextView
+                        android:id="@+id/name_tv"
+                        style="@style/text"
+                        android:layout_marginLeft="@dimen/d_10dp"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:text="爽舒适" />
 
 
-            <TextView
-                style="@style/match_parent"
-                android:drawableRight="@mipmap/in_right"
-                android:gravity="center_vertical"
-                android:padding="@dimen/d_10dp"
-                android:text="选择" />
+                    <TextView
+                        android:id="@+id/price_tv"
+                        style="@style/text"
+                        android:layout_marginLeft="@dimen/d_10dp"
+                        android:layout_marginTop="@dimen/d_10dp"
+                        android:paddingBottom="@dimen/d_5dp"
+                        android:text="￥0"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold" />
+
+                    <TextView style="@style/line_H10dp_on" />
 
 
-            <TextView style="@style/line_H10dp_on" />
-
-            <LinearLayout
-                style="@style/ll_bottom_h"
-                android:gravity="center_vertical"
-                android:padding="10dp">
-
-
-                <com.xson.common.widget.FormatTextView
-                    android:id="@+id/comment_num_tv"
-                    style="@style/text_weight"
-                    app:defaultValue="2"
-                    app:formatText="@string/comments" />
-
-                <TextView
-                    style="@style/text14color999"
-                    android:drawableRight="@mipmap/in_right"
-                    android:gravity="center_vertical"
-                    android:text="查看全部" />
-
-            </LinearLayout>
+                    <TextView
+                        style="@style/match_parent"
+                        android:drawableRight="@mipmap/in_right"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/d_10dp"
+                        android:text="选择" />
 
 
-            <include layout="@layout/item_comment_goods" />
+                    <TextView style="@style/line_H10dp_on" />
 
-            <TextView style="@style/line_H1dp_divider" />
+                    <LinearLayout
+                        style="@style/ll_bottom_h"
+                        android:gravity="center_vertical"
+                        android:padding="10dp">
 
-            <include layout="@layout/item_comment_goods" />
 
-            <TextView style="@style/line_H10dp_on" />
+                        <com.xson.common.widget.FormatTextView
+                            android:id="@+id/comment_num_tv"
+                            style="@style/text_weight"
+                            app:defaultValue="2"
+                            app:formatText="@string/comments" />
+
+                        <TextView
+                            style="@style/text14color999"
+                            android:drawableRight="@mipmap/in_right"
+                            android:gravity="center_vertical"
+                            android:text="查看全部" />
+
+                    </LinearLayout>
+
+
+                    <include layout="@layout/item_comment_goods" />
+
+                    <TextView style="@style/line_H1dp_divider" />
+
+                    <include layout="@layout/item_comment_goods" />
+
+                    <!-- 上拉查看图文详情 -->
+                    <TextView
+                        android:id="@+id/pull_up_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:drawableLeft="@mipmap/top"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="上拉查看图文详情"
+                        android:textColor="#222222" />
+
+
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
 
             <include layout="@layout/include_item_tab" />
 
-        </LinearLayout>
-    </ScrollView>
+        </com.lanmei.peiyu.view.SlideDetailsLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="30dp"
+            android:src="@mipmap/go_top"
+            app:backgroundTint="@color/white"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:rippleColor="@color/white" />
+
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>

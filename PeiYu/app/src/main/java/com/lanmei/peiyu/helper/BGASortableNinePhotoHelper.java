@@ -26,8 +26,8 @@ import static android.app.Activity.RESULT_OK;
 public class BGASortableNinePhotoHelper {
 
     public final int REQUEST_CODE_PERMISSION_PHOTO_PICKER = 1;
-    public final int REQUEST_CODE_CHOOSE_PHOTO = 1;
-    public final int REQUEST_CODE_PHOTO_PREVIEW = 2;
+    public final int REQUEST_CODE_CHOOSE_PHOTO = 10000;
+    public final int REQUEST_CODE_PHOTO_PREVIEW = 20000;
     BGASortableNinePhotoLayout mPhotosSnpl;
     Activity context;
 

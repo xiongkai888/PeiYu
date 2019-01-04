@@ -5,8 +5,16 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.lanmei.peiyu.R;
-import com.lanmei.peiyu.adapter.NewsAdapter;
+import com.lanmei.peiyu.adapter.NewsTabAdapter;
+import com.lanmei.peiyu.bean.NewsTabBean;
+import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
+import com.xson.common.bean.NoPageListBean;
+import com.xson.common.helper.BeanRequest;
+import com.xson.common.helper.HttpClient;
+import com.xson.common.utils.StringUtils;
+
+import java.util.List;
 
 import butterknife.InjectView;
 
@@ -28,9 +36,27 @@ public class NewsFragment extends BaseFragment{
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-        mViewPager.setAdapter(new NewsAdapter(getChildFragmentManager(),context));
-//        mViewPager.setOffscreenPageLimit(3);
-//        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        PeiYuApi api = new PeiYuApi("post/category");
+        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<NoPageListBean<NewsTabBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<NewsTabBean> response) {
+                if (mTabLayout == null){
+                    return;
+                }
+                initTabLayout(response.data);
+            }
+        });
+    }
+
+    private void initTabLayout(List<NewsTabBean> list){
+        if (StringUtils.isEmpty(list)){
+            return;
+        }
+        NewsTabAdapter tabAdapter = new NewsTabAdapter(getChildFragmentManager());
+        tabAdapter.setList(list);
+        mViewPager.setAdapter(tabAdapter);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.setupWithViewPager(mViewPager);
     }
+
 }

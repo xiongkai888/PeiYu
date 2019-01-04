@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/v_match_parent_no"
+    style="@style/v_match_parent"
     android:gravity="center_horizontal"
     android:padding="@dimen/d_5dp">
 
     <ImageView
         android:id="@+id/image"
-        style="@style/text"
+        android:layout_height="@dimen/d_50dp"
+        android:layout_width="@dimen/d_50dp"
         android:src="@mipmap/home_classify_1" />
 
     <TextView

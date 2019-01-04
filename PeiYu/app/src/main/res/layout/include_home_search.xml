@@ -10,7 +10,6 @@
 
     <TextView
         style="@style/text"
-        android:drawablePadding="@dimen/d_5dp"
         android:drawableRight="@mipmap/icon_classify"
         android:paddingLeft="@dimen/d_5dp"
         android:paddingRight="@dimen/d_10dp" />
