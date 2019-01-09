@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.lanmei.peiyu.adapter.SplashHolderAdapter;
-import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.helper.SharedAccount;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.L;
@@ -57,9 +56,7 @@ public class SplashActivity extends AppCompatActivity implements ViewPager.OnPag
         if (isFinishing()){
             return;
         }
-        if (CommonUtils.isLogin(this)) {
-            IntentUtil.startActivity(this, MainActivity.class);
-        }
+        IntentUtil.startActivity(this, MainActivity.class);
         finish();
     }
 

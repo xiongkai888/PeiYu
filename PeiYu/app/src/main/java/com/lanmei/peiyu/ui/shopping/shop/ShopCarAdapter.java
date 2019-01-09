@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
+import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.adapter.SwipeRefreshAdapter;
 
 import butterknife.ButterKnife;
@@ -71,7 +72,7 @@ public class ShopCarAdapter extends SwipeRefreshAdapter<ShopCarBean> {
 
         public void setParameter(final ShopCarBean bean,final int position) {
             goodsCount = bean.getGoodsCount();
-//            ImageHelper.load(context,bean.getGoodsImg(),headIv,null,true,R.mipmap.default_pic,R.mipmap.default_pic);
+            CommonUtils.loadImage(context,headIv,bean.getGoodsImg());
 //            headIv.setImageResource(R.mipmap.temp2);
             priceTv.setText(String.format(context.getString(R.string.price),String.valueOf(bean.getSell_price())));
             nameTv.setText(bean.getGoodsName());

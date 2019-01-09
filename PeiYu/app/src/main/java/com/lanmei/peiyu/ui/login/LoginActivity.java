@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.event.RegisterEvent;
+import com.lanmei.peiyu.event.SetUserInfoEvent;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseActivity;
@@ -123,9 +124,11 @@ public class LoginActivity extends BaseActivity {
                 if (isFinishing()) {
                     return;
                 }
+                UserBean bean = response.data;
                 SharedAccount.getInstance(getContext()).savePhone(phone);
-                UserHelper.getInstance(getContext()).saveBean(response.data);
-                IntentUtil.startActivity(getContext(),MainActivity.class);
+                UserHelper.getInstance(getContext()).saveBean(bean);
+                MainActivity.showHome(getContext());
+                EventBus.getDefault().post(new SetUserInfoEvent(bean));
                 finish();
             }
         });

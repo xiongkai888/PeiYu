@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.lanmei.peiyu.event.RefreshShopCartEvent;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.utils.L;
 import com.xson.common.utils.StringUtils;
@@ -80,48 +81,34 @@ public class DBShopCartHelper {
      */
     public List<ShopCarBean> getShopCarList() {
         List<ShopCarBean> shopCarBeanList = new ArrayList<>();
-//        String selection = Cart_user_id + " = " + uid;
-//        Cursor c = db.query(Cart, null, selection, null, null, null, null);
-//        momey = 0;
-//        goodsCount = 0;
-//        if (c.getCount() > 0) {
-//            ShopCarBean cartGoods;
-//            while (c.moveToNext()) {
-//                cartGoods = new ShopCarBean();
-//                cartGoods.setGoodsCount(c.getInt(c.getColumnIndex(Cart_goodsCount)));
-//                cartGoods.setGoodsName(c.getString(c.getColumnIndex(Cart_goodsName)));
-//                cartGoods.setGoodsImg(c.getString(c.getColumnIndex(Cart_goodsImg)));
-//                cartGoods.setGoods_id(c.getString(c.getColumnIndex(Cart_goodsid)));
-//                cartGoods.setSell_price(c.getDouble(c.getColumnIndex(Cart_goodsPrice)));
-//                cartGoods.setSpecifications(c.getString(c.getColumnIndex(Cart_goodsSpecifications)));
-//                cartGoods.setGid(c.getString(c.getColumnIndex(Cart_gid)));
-//                shopCarBeanList.add(cartGoods);
-//            }
-//        }
-//        L.d(Cart, "c.getCount():" + c.getCount());
-//        c.close();
-
-        for (int i = 0; i < 5; i++) {
-            ShopCarBean bean = new ShopCarBean();
-            bean.setGoodsCount(1);
-            bean.setGoodsName("逆变器");
-            bean.setGoodsImg("");
-            bean.setGoods_id(i+"");
-            bean.setSell_price(1200);
-            bean.setSpecifications("");
-            bean.setGid(i+"");
-            shopCarBeanList.add(bean);
+        String selection = Cart_user_id + " = " + uid;
+        Cursor c = db.query(Cart, null, selection, null, null, null, null);
+        momey = 0;
+        goodsCount = 0;
+        if (c.getCount() > 0) {
+            ShopCarBean cartGoods;
+            while (c.moveToNext()) {
+                cartGoods = new ShopCarBean();
+                cartGoods.setGoodsCount(c.getInt(c.getColumnIndex(Cart_goodsCount)));
+                cartGoods.setGoodsName(c.getString(c.getColumnIndex(Cart_goodsName)));
+                cartGoods.setGoodsImg(c.getString(c.getColumnIndex(Cart_goodsImg)));
+                cartGoods.setGoods_id(c.getString(c.getColumnIndex(Cart_goodsid)));
+                cartGoods.setSell_price(c.getDouble(c.getColumnIndex(Cart_goodsPrice)));
+                cartGoods.setSpecifications(c.getString(c.getColumnIndex(Cart_goodsSpecifications)));
+                cartGoods.setGid(c.getString(c.getColumnIndex(Cart_gid)));
+                shopCarBeanList.add(cartGoods);
+            }
         }
-
+        L.d(Cart, "c.getCount():" + c.getCount());
+        c.close();
         return shopCarBeanList;
     }
 
     //获取购物车个数
     public int getShopCarListCount() {
-//        String selection = Cart_user_id + " = " + uid;
-//        Cursor c = db.query(Cart, null, selection, null, null, null, null);
-//        return c.getCount();
-        return getShopCarList().size();//假的数据
+        String selection = Cart_user_id + " = " + uid;
+        Cursor c = db.query(Cart, null, selection, null, null, null, null);
+        return c.getCount();
     }
 
 
@@ -133,7 +120,8 @@ public class DBShopCartHelper {
             while (c.moveToNext()) {
                 if (StringUtils.isSame(c.getString(c.getColumnIndex(Cart_goodsid)), bean.getGoods_id()) && StringUtils.isSame(c.getString(c.getColumnIndex(Cart_goodsSpecifications)), bean.getSpecifications())) {//已经插入的商品（根据id判断）
                     updateGoods(bean.getGoods_id(), c.getInt(c.getColumnIndex(Cart_goodsCount)) + bean.getGoodsCount(), bean.getGoodsImg(), bean.getGoodsName(), bean.getSell_price(), bean.getSpecifications());
-                    UIHelper.ToastMessage(context, "加入购物车成功!");
+                    UIHelper.ToastMessage(context, "加入购物车成功.");
+                    EventBus.getDefault().post(new RefreshShopCartEvent());
                     return;
                 }
             }
@@ -151,8 +139,8 @@ public class DBShopCartHelper {
         long insC = db.insert(Cart, Cart_goodsid, values);
         L.d(DBhelper.TAG, ":加入购物车:id" + bean.getGoods_id() + "---insC:" + insC);
         if (insC > 0) {
-            UIHelper.ToastMessage(context, "加入购物车成功!!");
-            EventBus.getDefault().post(new ShowShopCountEvent());
+            UIHelper.ToastMessage(context, "加入购物车成功。");
+            EventBus.getDefault().post(new RefreshShopCartEvent());
         }
     }
 

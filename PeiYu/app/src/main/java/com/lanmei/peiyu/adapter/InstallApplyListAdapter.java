@@ -69,7 +69,7 @@ public class InstallApplyListAdapter extends SwipeRefreshAdapter<InstallApplyBea
         }
 
         public void setParameter(final InstallApplyBean bean) {
-//            titleTv.setText(bean.getId());
+            titleTv.setText(String.format(context.getString(R.string.s_name),bean.getSname()));
             String state = "";
             if (StringUtils.isEmpty(bean.getState())){
                 bean.setState(CommonUtils.isZero);

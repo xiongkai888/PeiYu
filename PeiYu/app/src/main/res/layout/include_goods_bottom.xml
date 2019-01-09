@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/h_match_parent"
+    android:layout_height="@dimen/d_45dp"
+    >
+
+    <TextView
+        android:id="@+id/add_shop_car_tv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:text="加入购物车"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/pay_now_tv"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:background="@color/colorAccent"
+        android:text="立即购买" />
+
+</LinearLayout>

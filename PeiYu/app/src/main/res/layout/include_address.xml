@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_bottom_h"
+    android:orientation="vertical"
+    android:padding="@dimen/d_10dp">
+
+
+    <TextView
+        android:id="@+id/name_tv"
+        style="@style/text"
+        android:layout_marginBottom="@dimen/d_5dp"
+        android:text="郭美美   10010" />
+
+    <TextView
+        android:id="@+id/address_tv"
+        style="@style/text"
+        android:lineSpacingMultiplier="1.3"
+        android:text="联系地址：广州市天河区科韵路101号" />
+
+
+</LinearLayout>

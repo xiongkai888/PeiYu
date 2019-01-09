@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_bottom_h_no"
+    android:padding="@dimen/d_10dp">
+
+    <ImageView
+        android:id="@+id/pic_iv"
+        android:layout_width="@dimen/d_55dp"
+        android:layout_height="@dimen/d_55dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/default_pic" />
+
+    <TextView
+        android:id="@+id/nickname_tv"
+        style="@style/text14color666"
+        android:layout_marginLeft="@dimen/d_10dp"
+        android:layout_weight="1"
+        android:text="会员名：" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/in_right" />
+
+</LinearLayout>

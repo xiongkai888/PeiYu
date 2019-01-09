@@ -124,17 +124,17 @@ public class DoubleUtil implements Serializable {
      */
     public static String formatFloatNumber(double value) {
         if(value != 0.00){
-            java.text.DecimalFormat df = new java.text.DecimalFormat("##########.00");
+            java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
             return df.format(value);
         }else{
-            return "0.0";
+            return "0.00";
         }
 
     }
     public static String formatFloatNumber(Double value) {
         if(value != null){
             if(value.doubleValue() != 0.00){
-                java.text.DecimalFormat df = new java.text.DecimalFormat("##########.00");
+                java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
                 return df.format(value.doubleValue());
             }else{
                 return "0.0";
@@ -142,28 +142,22 @@ public class DoubleUtil implements Serializable {
         }
         return "";
     }
-    public static double formatFloatNumber(String valueStr) {
+    public static double formatDoubleNumber(String valueStr) {
         double value = 0.00;
         if (!StringUtils.isEmpty(valueStr)){
             value = Double.valueOf(valueStr);
         }
-        value = Double.valueOf(formatFloatNumber(value));
+        value = formatDoubleNumber(value);
         return value;
     }
 
-    public static double formatDouble(String valueStr) {
-        double value = 0.00;
-        if (!StringUtils.isEmpty(valueStr)){
-            value = Double.valueOf(valueStr);
-        }
-        return value;
+    /**
+     * 两位小数点
+     * @param valueStr
+     * @return
+     */
+    public static double formatDoubleNumber(double valueStr) {
+        return Double.valueOf(formatFloatNumber(valueStr));
     }
-    public static String formatWan(String valueStr) {
-        double value = 0.00;
-        if (!StringUtils.isEmpty(valueStr)){
-            value = Double.valueOf(valueStr);
-            value = value/10000;
-        }
-        return formatFloatNumber(value);
-    }
+
 }

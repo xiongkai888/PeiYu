@@ -52,13 +52,19 @@ public class HomeClassifyAdapter extends SwipeRefreshAdapter<HomeClassifyBean> {
                         IntentUtil.startActivity(context, SimulationIncomeActivity.class);
                         break;
                     case 1://资料录入
-                        IntentUtil.startActivity(context, DataEntryActivity.class);//
+                        if (CommonUtils.isLogin(context)){
+                            IntentUtil.startActivity(context, DataEntryActivity.class);//
+                        }
                         break;
                     case 2://安装申报
-                        IntentUtil.startActivity(context, InstallApplyActivity.class);
+                        if (CommonUtils.isLogin(context)){
+                            IntentUtil.startActivity(context, InstallApplyActivity.class);
+                        }
                         break;
                     case 3://售后报修
-                        IntentUtil.startActivity(context, AfterSaleOrderActivity.class);
+                        if (CommonUtils.isLogin(context)){
+                            IntentUtil.startActivity(context, AfterSaleOrderActivity.class);
+                        }
                         break;
                 }
             }

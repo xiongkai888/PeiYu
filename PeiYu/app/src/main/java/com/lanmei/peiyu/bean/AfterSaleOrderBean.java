@@ -1,5 +1,7 @@
 package com.lanmei.peiyu.bean;
 
+import java.util.List;
+
 /**
  * Created by xkai on 2018/12/29.
  * 售后工单
@@ -33,7 +35,13 @@ public class AfterSaleOrderBean {
     private String uptime;
     private String content;
     private String problem_id;
-    private String pic;
+    /**
+     * pic : [""]
+     * sname : xcxc
+     */
+
+    private String sname;
+    private List<String> pic;
 
     public String getId() {
         return id;
@@ -123,11 +131,19 @@ public class AfterSaleOrderBean {
         this.problem_id = problem_id;
     }
 
-    public String getPic() {
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
+
+    public List<String> getPic() {
         return pic;
     }
 
-    public void setPic(String pic) {
+    public void setPic(List<String> pic) {
         this.pic = pic;
     }
 }

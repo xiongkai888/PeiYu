@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.NewsCommentBean;
 import com.lanmei.peiyu.bean.NewsDetailsBean;
+import com.lanmei.peiyu.event.CollectNewsEvent;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.lanmei.peiyu.utils.FormatTime;
 import com.lanmei.peiyu.webviewpage.WebViewPhotoBrowserUtil;
@@ -23,6 +24,8 @@ import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
 import com.xson.common.widget.CircleImageView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -146,7 +149,6 @@ public class NewsDetailsAdapter extends SwipeRefreshAdapter<NewsCommentBean> {
             mCollectTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonUtils.developing(context);
                     if (!CommonUtils.isLogin(context)) {
                         return;
                     }
@@ -169,7 +171,7 @@ public class NewsDetailsAdapter extends SwipeRefreshAdapter<NewsCommentBean> {
                             }
                             CommonUtils.setTextViewType(context, detailsBean.getFavoured(), mCollectTv, R.string.collect, R.string.collected);
                             UIHelper.ToastMessage(context, response.getInfo());
-//                            EventBus.getDefault().post(new CollectNewsEvent());
+                            EventBus.getDefault().post(new CollectNewsEvent());//通知收藏列表刷新
                         }
                     });
                 }

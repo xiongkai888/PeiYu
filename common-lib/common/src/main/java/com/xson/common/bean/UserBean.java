@@ -125,7 +125,7 @@ public class UserBean implements Serializable{
     private String menber_num;
     private String money;
     private String files_img;
-    private String ridname;
+    private String ridname;//等级
 
     public void setRidname(String ridname) {
         this.ridname = ridname;

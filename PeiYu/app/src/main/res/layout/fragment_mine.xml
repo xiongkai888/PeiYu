@@ -12,8 +12,8 @@
 
 
         <LinearLayout
-            android:background="@color/colorF4F4"
-            style="@style/v_all_match_parent_no">
+            style="@style/v_all_match_parent_no"
+            android:background="@color/colorF4F4">
 
             <LinearLayout
                 style="@style/v_match_parent_no"
@@ -47,11 +47,15 @@
                     android:id="@+id/name_tv"
                     style="@style/text16colorWhite"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/d_10dp"
+                    android:layout_marginBottom="@dimen/d_15dp"
                     android:layout_marginTop="@dimen/d_10dp"
                     android:text="小甜甜" />
 
-                <TextView style="@style/line_H1dp_divider" />
+                <TextView
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:background="@color/colorAAA"
+                    style="@style/line_H1dp_divider" />
 
 
                 <LinearLayout
@@ -62,27 +66,27 @@
                     <TextView
                         android:id="@+id/m01_tv"
                         style="@style/style_my_bg"
-                        android:text="8686.02\n我的余额" />
+                        android:text="0\n我的余额" />
 
                     <TextView
                         android:id="@+id/m02_tv"
                         style="@style/style_my_bg"
-                        android:text="2\n我的团队" />
+                        android:text="0\n我的团队" />
 
                     <TextView
                         android:id="@+id/m03_tv"
                         style="@style/style_my_bg"
-                        android:text="3\n我的业绩" />
+                        android:text="0\n我的业绩" />
 
                     <TextView
                         android:id="@+id/m04_tv"
                         style="@style/style_my_bg"
-                        android:text="4\n团队业绩" />
+                        android:text="0\n团队业绩" />
 
                     <TextView
                         android:id="@+id/m05_tv"
                         style="@style/style_my_bg"
-                        android:text="13\n我的电站" />
+                        android:text="0\n我的电站" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -109,21 +113,14 @@
                         style="@style/text_weight"
                         android:gravity="center">
 
-                        <LinearLayout
-                            style="@style/match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <TextView
+                            style="@style/text14color666"
+                            android:layout_width="match_parent"
+                            android:gravity="center_horizontal"
+                            android:drawablePadding="@dimen/d_3dp"
+                            android:drawableTop="@mipmap/mine1"
+                            android:text="@string/wait_pay" />
 
-                            <ImageView
-                                style="@style/text"
-                                android:src="@mipmap/mine1" />
-
-                            <TextView
-                                style="@style/text14color666"
-                                android:layout_marginTop="@dimen/d_3dp"
-                                android:text="待付款" />
-
-                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/m1_num_tv"
@@ -142,21 +139,13 @@
                         style="@style/text_weight"
                         android:gravity="center">
 
-                        <LinearLayout
-                            style="@style/match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                style="@style/text"
-                                android:src="@mipmap/mine2" />
-
-                            <TextView
-                                style="@style/text14color666"
-                                android:layout_marginTop="@dimen/d_3dp"
-                                android:text="待发货" />
-
-                        </LinearLayout>
+                        <TextView
+                            style="@style/text14color666"
+                            android:layout_width="match_parent"
+                            android:gravity="center_horizontal"
+                            android:drawablePadding="@dimen/d_3dp"
+                            android:drawableTop="@mipmap/mine2"
+                            android:text="@string/wait_send_goods" />
 
                         <TextView
                             android:id="@+id/m2_num_tv"
@@ -174,21 +163,13 @@
                         style="@style/text_weight"
                         android:gravity="center">
 
-                        <LinearLayout
-                            style="@style/match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                style="@style/text"
-                                android:src="@mipmap/mine3" />
-
-                            <TextView
-                                style="@style/text14color666"
-                                android:layout_marginTop="@dimen/d_3dp"
-                                android:text="待收货" />
-
-                        </LinearLayout>
+                        <TextView
+                            style="@style/text14color666"
+                            android:layout_width="match_parent"
+                            android:gravity="center_horizontal"
+                            android:drawablePadding="@dimen/d_3dp"
+                            android:drawableTop="@mipmap/mine3"
+                            android:text="待收货" />
 
                         <TextView
                             android:id="@+id/m3_num_tv"
@@ -206,21 +187,13 @@
                         style="@style/text_weight"
                         android:gravity="center">
 
-                        <LinearLayout
-                            style="@style/match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                style="@style/text"
-                                android:src="@mipmap/mine5" />
-
-                            <TextView
-                                style="@style/text14color666"
-                                android:layout_marginTop="@dimen/d_3dp"
-                                android:text="待评价" />
-
-                        </LinearLayout>
+                        <TextView
+                            style="@style/text14color666"
+                            android:layout_width="match_parent"
+                            android:gravity="center_horizontal"
+                            android:drawablePadding="@dimen/d_3dp"
+                            android:drawableTop="@mipmap/mine5"
+                            android:text="待评价" />
 
                         <TextView
                             android:id="@+id/m4_num_tv"
@@ -238,21 +211,13 @@
                         style="@style/text_weight"
                         android:gravity="center">
 
-                        <LinearLayout
-                            style="@style/match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                style="@style/text"
-                                android:src="@mipmap/mine5" />
-
-                            <TextView
-                                style="@style/text14color666"
-                                android:layout_marginTop="@dimen/d_3dp"
-                                android:text="退款/售后" />
-
-                        </LinearLayout>
+                        <TextView
+                            style="@style/text14color666"
+                            android:layout_width="match_parent"
+                            android:gravity="center_horizontal"
+                            android:drawablePadding="@dimen/d_3dp"
+                            android:drawableTop="@mipmap/mine5"
+                            android:text="退款/售后" />
 
                         <TextView
                             android:id="@+id/m5_num_tv"
@@ -336,25 +301,25 @@
                     <TextView
                         android:id="@+id/m10_tv"
                         style="@style/mine_text_style"
-                        android:drawableTop="@mipmap/mine6"
+                        android:drawableTop="@mipmap/mine10"
                         android:text="我的收藏" />
 
                     <TextView
                         android:id="@+id/m11_tv"
                         style="@style/mine_text_style"
-                        android:drawableTop="@mipmap/mine7"
+                        android:drawableTop="@mipmap/mine11"
                         android:text="我的地址" />
 
                     <TextView
                         android:id="@+id/m12_tv"
                         style="@style/mine_text_style"
-                        android:drawableTop="@mipmap/mine8"
+                        android:drawableTop="@mipmap/mine12"
                         android:text="修改密码" />
 
                     <TextView
                         android:id="@+id/m13_tv"
                         style="@style/mine_text_style"
-                        android:drawableTop="@mipmap/mine9"
+                        android:drawableTop="@mipmap/mine13"
                         android:text="设置" />
 
                 </LinearLayout>

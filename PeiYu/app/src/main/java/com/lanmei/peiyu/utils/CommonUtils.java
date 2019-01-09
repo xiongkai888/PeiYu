@@ -61,6 +61,8 @@ public class CommonUtils {
     public final static String isTwo = "2";
     public final static String isThree = "3";
     public final static String uid = "uid";
+    //支付宝回调
+    public static final String ALIPAY_NOTIFY_URL = AbstractApi.API_URL + "payment/callback/_id/1";
 
     public static int quantity = 3;
 

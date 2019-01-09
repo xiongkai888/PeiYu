@@ -11,17 +11,16 @@ import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.InstallApplyActivity;
 import com.lanmei.peiyu.ui.mine.activity.MineOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.MinePowerStationActivity;
+import com.lanmei.peiyu.ui.mine.activity.MyCollectActivity;
+import com.lanmei.peiyu.ui.mine.activity.MyTeamActivity;
 import com.lanmei.peiyu.ui.mine.activity.PersonalDataActivity;
 import com.lanmei.peiyu.ui.mine.activity.SettingActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
-import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
-import com.xson.common.bean.BaseBean;
 import com.xson.common.bean.UserBean;
-import com.xson.common.helper.BeanRequest;
-import com.xson.common.helper.HttpClient;
 import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.IntentUtil;
+import com.xson.common.utils.StringUtils;
 import com.xson.common.widget.CircleImageView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,25 +42,25 @@ public class MineFragment extends BaseFragment {
     @InjectView(R.id.name_tv)
     TextView nameTv;
     @InjectView(R.id.m01_tv)
-    TextView m01Tv;
+    TextView m01Tv;//我的余额
     @InjectView(R.id.m02_tv)
-    TextView m02Tv;
+    TextView m02Tv;//我的团队
     @InjectView(R.id.m03_tv)
-    TextView m03Tv;
+    TextView m03Tv;//我的业绩
     @InjectView(R.id.m04_tv)
-    TextView m04Tv;
+    TextView m04Tv;//团队业绩
     @InjectView(R.id.m05_tv)
-    TextView m05Tv;
+    TextView m05Tv;//我的电站
     @InjectView(R.id.m1_num_tv)
-    TextView m1NumTv;
+    TextView m1NumTv;//待付款数量
     @InjectView(R.id.m2_num_tv)
-    TextView m2NumTv;
+    TextView m2NumTv;//待发货数量
     @InjectView(R.id.m3_num_tv)
-    TextView m3NumTv;
+    TextView m3NumTv;//待收货数量
     @InjectView(R.id.m4_num_tv)
-    TextView m4NumTv;
+    TextView m4NumTv;//待评价数量
     @InjectView(R.id.m5_num_tv)
-    TextView m5NumTv;
+    TextView m5NumTv;//退款/售后 数量
 
     @Override
     public int getContentViewId() {
@@ -80,10 +79,21 @@ public class MineFragment extends BaseFragment {
     private void setUserBean(UserBean userBean) {
         if (userBean == null) {
             nameTv.setText("游客");
+            m01Tv.setText(String.format(context.getString(R.string.my_balance),CommonUtils.isZero));
+            m02Tv.setText(String.format(context.getString(R.string.my_team_sub),CommonUtils.isZero));
+            m03Tv.setText(String.format(context.getString(R.string.my_performance),CommonUtils.isZero));
+            m04Tv.setText(String.format(context.getString(R.string.team_performance),CommonUtils.isZero));
+            m05Tv.setText(String.format(context.getString(R.string.my_power_station),CommonUtils.isZero));
             picIv.setImageResource(R.mipmap.default_pic);
             return;
         }
-        nameTv.setText(userBean.getNickname());
+        m01Tv.setText(String.format(context.getString(R.string.my_balance),userBean.getMoney()));
+        m02Tv.setText(String.format(context.getString(R.string.my_team_sub),CommonUtils.isZero));
+        m03Tv.setText(String.format(context.getString(R.string.my_performance),CommonUtils.isZero));
+        m04Tv.setText(String.format(context.getString(R.string.team_performance),CommonUtils.isZero));
+        m05Tv.setText(String.format(context.getString(R.string.my_power_station),CommonUtils.isZero));
+
+        nameTv.setText(userBean.getNickname()+ (StringUtils.isEmpty(userBean.getRidname())?"":(" ("+userBean.getRidname()+")")));
         ImageHelper.load(context, userBean.getPic(), picIv, null, true, R.mipmap.default_pic, R.mipmap.default_pic);
     }
 
@@ -102,17 +112,21 @@ public class MineFragment extends BaseFragment {
             textView.setVisibility(View.GONE);
         }else {
             textView.setVisibility(View.VISIBLE);
-            textView.setText(num+"");
+            textView.setText(String.valueOf(num));
         }
     }
 
 
-    @OnClick({R.id.m_message_iv, R.id.pic_iv, R.id.m01_tv, R.id.m02_tv, R.id.m03_tv, R.id.m04_tv, R.id.m05_tv, R.id.m1_rl, R.id.m2_rl, R.id.m3_rl, R.id.m4_rl, R.id.m5_rl, R.id.m6_tv, R.id.m7_tv, R.id.m8_tv, R.id.m9_tv, R.id.m10_tv, R.id.m11_tv, R.id.m12_tv, R.id.m13_tv})
+    @OnClick({R.id.name_tv,R.id.m_message_iv, R.id.pic_iv, R.id.m01_tv, R.id.m02_tv, R.id.m03_tv, R.id.m04_tv, R.id.m05_tv, R.id.m1_rl, R.id.m2_rl, R.id.m3_rl, R.id.m4_rl, R.id.m5_rl, R.id.m6_tv, R.id.m7_tv, R.id.m8_tv, R.id.m9_tv, R.id.m10_tv, R.id.m11_tv, R.id.m12_tv, R.id.m13_tv})
     public void onViewClicked(View view) {
+        if (!CommonUtils.isLogin(context)){
+            return;
+        }
         switch (view.getId()) {
             case R.id.m_message_iv://消息
                 CommonUtils.developing(context);
                 break;
+            case R.id.name_tv://
             case R.id.pic_iv://头像
                 IntentUtil.startActivity(context, PersonalDataActivity.class);
                 break;
@@ -120,7 +134,7 @@ public class MineFragment extends BaseFragment {
                 CommonUtils.developing(context);
                 break;
             case R.id.m02_tv://我的团队
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, MyTeamActivity.class);
                 break;
             case R.id.m03_tv://我的业绩
                 CommonUtils.developing(context);
@@ -151,19 +165,19 @@ public class MineFragment extends BaseFragment {
                 CommonUtils.developing(context);
                 break;
             case R.id.m10_tv://我的收藏
-                CommonUtils.developing(context);
-
-                PeiYuApi api = new PeiYuApi("station/station_list");
-                api.addParams("uid",api.getUserId(context));
-                HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<BaseBean>() {
-                    @Override
-                    public void onResponse(BaseBean response) {
-
-                    }
-                });
+                IntentUtil.startActivity(context, MyCollectActivity.class);
+//                PeiYuApi api = new PeiYuApi("station/electricity_price");
+////                api.addParams("uid",api.getUserId(context));
+//                HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<BaseBean>() {
+//                    @Override
+//                    public void onResponse(BaseBean response) {
+//
+//                    }
+//                });
                 break;
             case R.id.m11_tv://我的地址
                 CommonUtils.developing(context);
+//                IntentUtil.startActivity(context, MapActivity.class);
                 break;
             case R.id.m12_tv://修改密码
                 IntentUtil.startActivity(context,RegisterActivity.class,CommonUtils.isThree);

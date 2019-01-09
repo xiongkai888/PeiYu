@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by xkai on 2018/10/9.
+ * 商品详情
  */
 
 public class GoodsDetailsBean implements Serializable{

@@ -30,6 +30,16 @@ public class InstallApplyBean {
     private String linkname;
     private String phone;
     private String contents;
+    /**
+     * contents : null
+     * installtime : null
+     * means_id : 3
+     * sname : 个很好
+     */
+
+    private String installtime;
+    private String means_id;
+    private String sname;
 
     public String getId() {
         return id;
@@ -109,5 +119,29 @@ public class InstallApplyBean {
 
     public void setContents(String contents) {
         this.contents = contents;
+    }
+
+    public String getInstalltime() {
+        return installtime;
+    }
+
+    public void setInstalltime(String installtime) {
+        this.installtime = installtime;
+    }
+
+    public String getMeans_id() {
+        return means_id;
+    }
+
+    public void setMeans_id(String means_id) {
+        this.means_id = means_id;
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 }

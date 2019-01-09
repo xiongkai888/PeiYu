@@ -13,6 +13,7 @@
     <string name="all">全部</string>
     <string name="wait_pay">待付款</string>
     <string name="wait_receiving">待收货</string>
+    <string name="wait_send_goods">待发货</string>
     <string name="doned">已完成</string>
     <string name="untreated">未处理</string>
     <string name="being_processed">处理中</string>
@@ -94,6 +95,7 @@
     <string name="address">地址：%1$s</string>
     <string name="link_name">联系人：%1$s</string>
     <string name="phone">电\u3000话：%1$s</string>
+    <string name="s_name">电站名称：%1$s</string>
     <string name="completion_acceptance">已竣工验收</string>
     <string name="being_installed">正在安装中</string>
     <string name="shipped">已发货</string>
@@ -105,6 +107,45 @@
     <string name="input_roof_area">请输入屋顶面积 (㎡)</string>
     <string name="input_roof_gutter_area">请输入天沟面积 (㎡)</string>
     <string name="touch_to_focus">触摸屏幕对焦</string>
+    <string name="choose_user_info">请选择用户基本信息</string>
+    <string name="no_problem">暂无问题类型</string>
+    <string name="input_covered_area">请输入建筑面积 (㎡)</string>
+    <string name="choose_power_info">请选择电站信息</string>
+    <string name="input_electricity_price">请输入电费价格</string>
+    <string name="inventory">库存：%1$s</string>
+    <string name="understock">库存不足</string>
+    <string name="my_team">我的团队</string>
+    <string name="my_balance">%1$s\n我的余额</string>
+    <string name="my_team_sub">%1$s\n我的团队</string>
+    <string name="my_performance">%1$s\n我的业绩</string>
+    <string name="team_performance">%1$s\n团队业绩</string>
+    <string name="my_power_station">%1$s\n我的电站</string>
+    <string name="bask_in_a_single_comment">晒单评价</string>
+    <string name="order_no">订单号：%1$s</string>
+    <string name="goods_price_and_num">￥%1$s\u3000x%2$s</string>
+    <string name="cancel_order">取消订单</string>
+    <string name="go_pay">去付款</string>
+    <string name="refund_ok">退款完成</string>
+    <string name="refund">退款</string>
+    <string name="refund_apply">退款中</string>
+    <string name="order_cancel">订单已取消</string>
+    <string name="delete_order">删除订单</string>
+    <string name="submit_order">提交订单</string>
+    <string name="confirm_order">确认订单</string>
+    <string name="is_default">默认</string>
+    <string name="set_default">设为默认</string>
+    <string name="input_reception_name">请输入收货人姓名</string>
+    <string name="input_details_address">请输入详细地址</string>
+    <string name="choose_address">请选择收货地址</string>
+    <string name="pay_type">请选择支付方式</string>
+    <string name="pay_failure">支付失败</string>
+    <string name="pay_succeed">支付成功</string>
+    <string name="delete_this_address">确定要删除该地址？</string>
+    <string name="province">广东</string>
+    <string name="city">广州</string>
+    <string name="county">天河</string>
+    <string name="compile_address">编辑地址</string>
+    <string name="choose_area">请选择项所在区域</string>
 
     <!--电压等级-->
     <string-array name="capacity">
@@ -132,6 +173,13 @@
         <item>朝南</item>
         <item>朝西</item>
         <item>朝北</item>
+    </string-array>
+
+    <!--房屋朝向-->
+    <string-array name="problem_types">
+        <item>没有办法输电</item>
+        <item>逆变器出现故障</item>
+        <item>其他</item>
     </string-array>
 
 </resources>

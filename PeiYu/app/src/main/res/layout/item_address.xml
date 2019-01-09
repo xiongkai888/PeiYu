@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/v_match_parent_no">
+
+    <include layout="@layout/include_address"/>
+
+    <LinearLayout
+        android:padding="@dimen/d_10dp"
+        style="@style/ll_bottom_h">
+
+        <ImageView
+            android:id="@+id/select_iv"
+            style="@style/text"
+            android:src="@mipmap/choose_off"/>
+        <TextView
+            android:id="@+id/default_tv"
+            android:text="设为默认"
+            android:layout_marginLeft="@dimen/d_10dp"
+            style="@style/text_weight"/>
+
+        <TextView
+            android:id="@+id/compile_tv"
+            android:text="编辑"
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/delete_tv"
+            android:text="删除"
+            android:layout_marginLeft="@dimen/d_20dp"
+            style="@style/text"/>
+
+    </LinearLayout>
+
+</LinearLayout>

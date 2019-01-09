@@ -8,6 +8,7 @@
     <include layout="@layout/include_search_back" />
 
     <LinearLayout
+        android:id="@+id/ll_by"
         style="@style/ll_bottom_h_no"
         android:layout_height="@dimen/d_40dp">
 
@@ -18,6 +19,7 @@
 
             <TextView
                 style="@style/text"
+                android:id="@+id/synthesize_tv"
                 android:drawablePadding="@dimen/d_3dp"
                 android:drawableRight="@mipmap/o_down"
                 android:gravity="center_vertical"
@@ -28,6 +30,7 @@
         <TextView style="@style/line_v1dp_divider" />
 
         <TextView
+            android:id="@+id/sales_volume_tv"
             style="@style/text_weight"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -41,6 +44,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/price_tv"
                 style="@style/text"
                 android:drawablePadding="@dimen/d_3dp"
                 android:drawableRight="@mipmap/o_bothway"
@@ -50,6 +54,8 @@
         </RelativeLayout>
 
     </LinearLayout>
+    <TextView
+        style="@style/line_H1dp_divider" />
 
     <include layout="@layout/fragment_single_listview_no" />
 

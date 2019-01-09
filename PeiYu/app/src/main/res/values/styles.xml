@@ -19,7 +19,6 @@
     </style>
 
 
-
     <!--Toolbar TitleText-->
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">@dimen/txt_18sp</item>
@@ -239,7 +238,7 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-
+    <!--我的 - 我的余额、我的团队等style-->
     <style name="style_my_bg" parent="text_weight">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:lineSpacingExtra">@dimen/d_8dp</item>
@@ -247,6 +246,7 @@
         <item name="android:textSize">@dimen/txt_12sp</item>
     </style>
 
+    <!--我的 - 安装信息、在线客服等style-->
     <style name="mine_text_style" parent="text_weight">
         <item name="android:drawablePadding">@dimen/d_3dp</item>
         <item name="android:gravity">center_horizontal</item>
@@ -300,5 +300,35 @@
         <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
     </style>
 
+    <style name="UI.Dialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及透明程度-->
+        <item name="android:windowBackground">@color/dim_bg</item>
+        <!--是否有标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否模糊，灰色背景-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowFrame">@null</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <item name="android:windowAnimationStyle">@style/MyDialogAnimation</item>
+    </style>
+
+    <!--进入 -->
+    <style name="MyDialogAnimation">
+        <!--进入 -->
+        <item name="android:windowEnterAnimation">@anim/picker_panel_bottom_up</item>
+        <!--退出-->
+        <item name="android:windowExitAnimation">@anim/picker_panel_bottom_down</item>
+    </style>
+
+    <!--背景白色，有上下边框-->
+    <style name="ll_h_border_bottom_and_top">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/border_bottom_top_1dp_bg_white</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
 
 </resources>

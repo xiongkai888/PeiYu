@@ -11,13 +11,16 @@ import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.GoodsDetailsPagerAdapter;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
+import com.lanmei.peiyu.bean.GoodsSpecificationsBean;
 import com.lanmei.peiyu.event.PaySucceedEvent;
+import com.lanmei.peiyu.ui.classify.fragment.AddShopCarDialogFragment;
 import com.lanmei.peiyu.ui.shopping.shop.DBShopCartHelper;
 import com.lanmei.peiyu.ui.shopping.shop.ShowShopCountEvent;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseActivity;
 import com.xson.common.bean.DataBean;
+import com.xson.common.bean.NoPageListBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.StringUtils;
@@ -26,6 +29,8 @@ import com.xson.common.widget.NoScrollViewPager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -49,7 +54,9 @@ public class GoodsDetailsActivity extends BaseActivity {
     View llDetailsBottom;
     @InjectView(R.id.num_tv)
     TextView shopNumTv;//购物车数量
-    GoodsDetailsBean bean;//商品详情信息
+    private GoodsDetailsBean bean;//商品详情信息
+    private AddShopCarDialogFragment mDialog;
+    private static final String DIALOG = "dialog_fragment_kang";
 
     @Override
     public void initIntent(Intent intent) {
@@ -67,6 +74,7 @@ public class GoodsDetailsActivity extends BaseActivity {
         EventBus.getDefault().register(this);
 //        loadGoodsDetails();
         if (!StringUtils.isEmpty(bean)) {
+            loadSpecifications();
             init(bean);
         }
     }
@@ -115,13 +123,17 @@ public class GoodsDetailsActivity extends BaseActivity {
 
     @OnClick({R.id.ll_collect, R.id.ll_shop, R.id.add_shop_car_tv, R.id.pay_now_tv,R.id.back_iv})
     public void onViewClicked(View view) {
-//        if (!CommonUtils.isLogin(this)) {
-//            return;
-//        }
-//        if (StringUtils.isEmpty(bean)) {
-//            return;
-//        }
-        switch (view.getId()) {
+        int id = view.getId();
+        if (id != R.id.back_iv){
+            if (!CommonUtils.isLogin(this)) {
+                return;
+            }
+            if (StringUtils.isEmpty(bean)) {
+                return;
+            }
+        }
+
+        switch (id) {
             case R.id.ll_collect://收藏
                 CommonUtils.developing(this);
                 break;
@@ -130,12 +142,42 @@ public class GoodsDetailsActivity extends BaseActivity {
                 break;
             case R.id.add_shop_car_tv://加入购物车
             case R.id.pay_now_tv://立即购买
-                CommonUtils.developing(this);
+                addShopCar();
                 break;
             case R.id.back_iv://
                 finish();
                 break;
         }
+    }
+
+    private boolean isSpecifications = false;
+    private List<GoodsSpecificationsBean> specificationsBeans;
+
+
+    private void loadSpecifications() {
+        PeiYuApi api = new PeiYuApi("app/good_specifications");
+        api.addParams("gid", bean.getId());
+        HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<NoPageListBean<GoodsSpecificationsBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<GoodsSpecificationsBean> response) {
+                if (isFinishing()) {
+                    return;
+                }
+                isSpecifications = true;
+                specificationsBeans = response.data;
+            }
+        });
+    }
+
+    private void addShopCar() {
+        if (!isSpecifications) {
+            return;
+        }
+        if (mDialog == null) {
+            mDialog = new AddShopCarDialogFragment();
+            mDialog.setData(bean, specificationsBeans);
+        }
+        mDialog.show(getSupportFragmentManager(), DIALOG);
     }
 
 

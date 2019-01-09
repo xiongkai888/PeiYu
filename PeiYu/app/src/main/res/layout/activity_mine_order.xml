@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/v_all_match_parent_no"
-    tools:context="com.lanmei.peiyu.ui.mine.activity.MineOrderActivity">
+    style="@style/v_all_match_parent_no">
 
    <include layout="@layout/include_centertitletoolbar"/>
 

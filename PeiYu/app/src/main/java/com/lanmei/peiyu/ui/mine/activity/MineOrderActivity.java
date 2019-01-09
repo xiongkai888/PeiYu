@@ -48,7 +48,7 @@ public class MineOrderActivity extends BaseActivity implements TabLayout.OnTabSe
         helper = new TabSubHelper(this,mTabLayout,getTitleList());
         helper.setOrderNum(0,6,0,0);
 
-        mViewPager.setAdapter(new MineOrderAdapter(getSupportFragmentManager(),this));
+        mViewPager.setAdapter(new MineOrderAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(3);
 //        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.addOnTabSelectedListener(this);
@@ -60,8 +60,8 @@ public class MineOrderActivity extends BaseActivity implements TabLayout.OnTabSe
     private List<String> getTitleList() {
         List<String> titles = new ArrayList<>();
         Collections.addAll(titles,getString(R.string.all),
-                getString(R.string.wait_receiving),
                 getString(R.string.wait_pay),
+                getString(R.string.wait_receiving),
                 getString(R.string.doned));
         return titles;
     }

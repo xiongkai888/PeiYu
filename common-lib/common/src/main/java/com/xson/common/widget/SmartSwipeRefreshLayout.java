@@ -18,6 +18,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class SmartSwipeRefreshLayout extends FrameLayout {
     private RecyclerView recyclerView;
     private View loadingLayout;
     private View errorLayout;
-    private View emptyLayout;
+    private RelativeLayout emptyLayout;
     private OnLoadingListener onLoadingListener;
     private TextView errorTextView;
     private OnTryLoadListener onTryLoadListener;
@@ -110,8 +111,10 @@ public class SmartSwipeRefreshLayout extends FrameLayout {
         showLoadingLayout();
     }
 
-    public void setEmptyLayout(View emptyLayout){
-        this.emptyLayout = emptyLayout;
+    public void setEmptyLayout(View view){
+        ensureEmptyLayout();
+        emptyLayout.removeAllViews();
+        emptyLayout.addView(view);
     }
 
     private void initRecyclerView() {
@@ -338,7 +341,10 @@ public class SmartSwipeRefreshLayout extends FrameLayout {
 
     private void ensureEmptyLayout() {
         if (emptyLayout == null) {
-            emptyLayout = ((ViewStub) findViewById(R.id.ssrl___empty)).inflate();
+            emptyLayout = (RelativeLayout)((ViewStub) findViewById(R.id.ssrl___empty)).inflate();
+            L.d("setEmptyLayout","111111");
+        }else {
+            L.d("setEmptyLayout","222222");
         }
     }
 

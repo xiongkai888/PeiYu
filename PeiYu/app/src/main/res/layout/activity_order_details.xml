@@ -81,6 +81,34 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_marginLeft="@dimen/d_15dp"
+               style="@style/line_H1dp_divider"/>
+
+            <LinearLayout
+                style="@style/ll_bottom_h_no"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/d_15dp">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:paddingTop="@dimen/d_10dp"
+                    android:paddingBottom="@dimen/d_10dp"
+                    android:text="付款方式" />
+
+
+                <TextView
+                    android:id="@+id/pay_way_tv"
+                    style="@style/text" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
             <TextView style="@style/line_H10dp_on" />
 
 

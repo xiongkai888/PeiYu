@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.classify.activity.AddAddressActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <TextView style="@style/line_H10dp_on" />
+
+    <LinearLayout style="@style/ll_bottom_h">
+
+        <TextView
+            style="@style/text"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:text="收货人：" />
+
+
+        <EditText
+            android:id="@+id/name_et"
+            style="@style/editText_bottom_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:hint="@string/input_reception_name"
+            android:lines="1"
+            android:paddingRight="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/ll_bottom_h">
+
+        <TextView
+            style="@style/text"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:text="手机号：" />
+
+
+        <EditText
+            android:id="@+id/phone_et"
+            style="@style/editText_bottom_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:hint="@string/input_phone_number"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingRight="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_area"
+        style="@style/ll_bottom_h"
+        android:paddingBottom="@dimen/d_8dp"
+        android:paddingTop="@dimen/d_8dp">
+
+        <TextView
+            style="@style/text"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:text="所在地区：" />
+
+
+        <TextView
+            android:id="@+id/area_tv"
+            style="@style/text_weight"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="15dp" />
+
+        <ImageView
+            android:src="@mipmap/in_right"
+            style="@style/text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/ll_bottom_h">
+
+        <TextView
+            style="@style/text"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:text="详细地址：" />
+
+
+        <EditText
+            android:id="@+id/detail_address_et"
+            style="@style/editText_bottom_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:hint="@string/input_details_address"
+            android:paddingRight="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/ll_bottom_h">
+
+        <TextView
+            style="@style/text_weight"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:text="是否设为默认地址" />
+
+
+        <CheckBox
+            android:id="@+id/is_default_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:background="@drawable/check_bg"
+            android:button="@null" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

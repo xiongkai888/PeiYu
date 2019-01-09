@@ -1,35 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/ll_bottom_h"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_bottom_divider"
     android:padding="@dimen/d_10dp">
 
     <ImageView
-        android:layout_width="@dimen/d_80dp"
-        android:layout_height="@dimen/d_80dp"
-        android:src="@mipmap/temp2" />
+        android:id="@+id/items_icon_iv"
+        style="@style/text14color999"
+        android:layout_width="@dimen/d_100dp"
+        android:layout_height="@dimen/d_100dp"
+        android:layout_marginRight="@dimen/d_10dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/default_pic" />
 
-    <RelativeLayout
-        android:layout_marginLeft="@dimen/d_10dp"
-        style="@style/match_parent_all">
+    <TextView
+        android:id="@+id/title_tv"
+        style="@style/text14color666"
+        android:layout_toRightOf="@id/items_icon_iv"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="@string/mine" />
+
+    <TextView
+        android:id="@+id/specifications_name_tv"
+        style="@style/text14color666"
+        android:layout_below="@id/title_tv"
+        android:layout_toRightOf="@id/items_icon_iv"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/mine" />
+
+    <LinearLayout
+        style="@style/h_match_parent_no"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/items_icon_iv"
+        android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/price_num_tv"
+            style="@style/text_weight"
+            android:textColor="@color/color666" />
+
+        <TextView
+            android:id="@+id/comment_tv"
             style="@style/text"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:text="@string/solar_energy" />
-
-        <TextView
-            style="@style/text14color666"
-            android:layout_weight="1"
-            android:layout_alignParentBottom="true"
-            android:text="x1" />
-
-        <TextView
-            style="@style/text14colorRed"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:text="@string/price_string" />
+            android:background="@drawable/mine_order"
+            android:gravity="center"
+            android:minWidth="@dimen/d_70dp"
+            android:text="@string/bask_in_a_single_comment"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_12sp" />
 
-    </RelativeLayout>
-</LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

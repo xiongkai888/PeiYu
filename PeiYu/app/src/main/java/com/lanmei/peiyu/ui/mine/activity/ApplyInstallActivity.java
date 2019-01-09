@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
+import com.lanmei.peiyu.bean.ApplyAfterSaleOrderBean;
 import com.lanmei.peiyu.bean.DataEntryBean;
 import com.lanmei.peiyu.event.ApplyInstallSucceedEvent;
 import com.lanmei.peiyu.event.DataEntryEvent;
@@ -60,12 +61,16 @@ public class ApplyInstallActivity extends BaseActivity {
 
     @InjectView(R.id.spinner)
     Spinner spinner;//用户信息
+    @InjectView(R.id.spinner1)
+    Spinner spinner1;//电站列表
 
     private DateTimePicker picker;
     private FormatTime time;
     private long timeLong;
     private List<DataEntryBean> list;
     private DataEntryBean bean;//选择的用户信息
+    private List<ApplyAfterSaleOrderBean> orderBeanList;
+    private ApplyAfterSaleOrderBean orderBean;//选中的电站信息
 
 
     @Override
@@ -84,8 +89,75 @@ public class ApplyInstallActivity extends BaseActivity {
         actionbar.setTitle(R.string.apply_install);
         actionbar.setHomeAsUpIndicator(R.mipmap.back);
         initDatePicker();
+        loadPowerStationList();
+        loadData();//资料列表
+    }
 
-        loadData();
+    /**
+     * 电站名称列表
+     */
+    private void loadPowerStationList() {
+        PeiYuApi api = new PeiYuApi("station/station");
+        api.addParams("uid", api.getUserId(this));
+        HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<NoPageListBean<ApplyAfterSaleOrderBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<ApplyAfterSaleOrderBean> response) {
+                if (isFinishing()) {
+                    return;
+                }
+                orderBeanList = response.data;
+                if (StringUtils.isEmpty(orderBeanList)) {
+                    UIHelper.ToastMessage(getContext(), "暂无电站信息");
+                    return;
+                }
+                List<String> stringList = new ArrayList<>();
+                int size = orderBeanList.size();
+                for (int i = 0; i < size; i++) {
+                    String sName = orderBeanList.get(i).getS_name();
+                    if (!StringUtils.isEmpty(sName)){
+                        stringList.add(sName);
+                    }
+                }
+                initPowerStationListSpinner(stringList);
+            }
+        });
+    }
+
+    private void initPowerStationListSpinner(List<String> s_list) {
+        if (StringUtils.isEmpty(orderBeanList)) {
+            s_list = new ArrayList<>();
+            s_list.add("暂无电站信息");
+            return;
+        }
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, s_list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(adapter);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                name = (String) parent.getItemAtPosition(position);
+                if (StringUtils.isEmpty(orderBeanList)) {
+                    return;
+                }
+                orderBean = orderBeanList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && StringUtils.isEmpty(orderBeanList)) {
+//                    loadDataList();
+                    UIHelper.ToastMessage(getContext(), "暂无电站信息");
+                    L.d("ApplyInstallActivity", "setOnTouchListener");
+                }
+                return false;
+            }
+        });
     }
 
     //录入资料成功后调用
@@ -137,6 +209,7 @@ public class ApplyInstallActivity extends BaseActivity {
                 }
                 bean = list.get(position);
                 addressEt.setText(bean.getS_address());
+                phoneEt.setText(bean.getS_phone());
             }
 
             @Override
@@ -210,19 +283,24 @@ public class ApplyInstallActivity extends BaseActivity {
             UIHelper.ToastMessage(this, "输入联系电话");
             return;
         }
-        if (timeLong == 0) {
-            UIHelper.ToastMessage(this, "请选择安装时间");
-            return;
-        }
         String address = CommonUtils.getStringByEditText(addressEt);
         if (StringUtils.isEmpty(address)) {
-            UIHelper.ToastMessage(this, "请输入安装地址");
+            UIHelper.ToastMessage(this, R.string.input_installation_address);
+            return;
+        }
+        if (StringUtils.isEmpty(orderBean)) {
+            UIHelper.ToastMessage(this, getString(R.string.choose_power_info));
+            return;
+        }
+        if (timeLong == 0) {
+            UIHelper.ToastMessage(this, "请选择安装时间");
             return;
         }
         PeiYuApi api = new PeiYuApi("station/install_add");
         api.addParams("uid", api.getUserId(this));
         api.addParams("means_id", bean.getId());
         api.addParams("address", address);
+        api.addParams("sname", orderBean.getS_name());//电站名称
         api.addParams("linkname", bean.getS_name());
         api.addParams("phone", phone);
         api.addParams("content", CommonUtils.getStringByEditText(contentEt));

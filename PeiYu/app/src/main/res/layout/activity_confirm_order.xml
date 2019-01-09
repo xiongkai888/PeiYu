@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.classify.activity.ConfirmOrderActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_address"
+                style="@style/h_match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp">
+
+                <ImageView
+                    style="@style/text"
+                    android:src="@mipmap/location_on" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/name_tv"
+                        style="@style/text" />
+
+
+                    <TextView
+                        android:id="@+id/address_tv"
+                        style="@style/text12color666"
+                        android:layout_below="@id/name_tv"
+                        android:layout_marginTop="@dimen/d_5dp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    style="@style/text"
+                    android:src="@mipmap/in_right" />
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout
+                android:id="@+id/ll_coupon"
+                style="@style/v_match_parent_no"
+                android:visibility="gone">
+
+                <LinearLayout
+                    style="@style/h_match_parent_no"
+                    android:visibility="visible">
+
+                    <TextView
+                        style="@style/text_weight"
+                        android:paddingTop="@dimen/d_12dp"
+                        android:paddingBottom="@dimen/d_12dp"
+                        android:layout_marginLeft="@dimen/d_10dp"
+                        android:text="优惠券" />
+
+                    <TextView
+                        android:id="@+id/coupon_name_tv"
+                        style="@style/text12color666"
+                        android:layout_marginLeft="@dimen/d_10dp"
+                        android:layout_marginRight="@dimen/d_10dp"
+                        android:gravity="right"
+                        android:hint="暂无优惠券" />
+
+                </LinearLayout>
+
+                <TextView style="@style/line_H10dp_on" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/match_parent"
+                android:paddingBottom="@dimen/d_12dp"
+                android:paddingTop="@dimen/d_12dp"
+                android:paddingLeft="@dimen/d_10dp"
+                android:text="结算详情" />
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <LinearLayout
+                style="@style/h_match_parent_no"
+                android:padding="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text14color999"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:layout_weight="1"
+                    android:text="商品总数" />
+
+                <TextView
+                    android:id="@+id/goods_num_tv"
+                    style="@style/text14color999"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/line_H1dp_divider"
+                android:layout_marginLeft="@dimen/d_15dp" />
+
+            <LinearLayout
+                style="@style/h_match_parent_no"
+                android:padding="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text14color999"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:layout_weight="1"
+                    android:text="商品金额" />
+
+                <TextView
+                    android:id="@+id/goods_price_tv"
+                    style="@style/text14colorRed"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:text="￥0" />
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout
+                android:id="@+id/ll_distribution"
+                style="@style/ll_bottom_h">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:paddingBottom="@dimen/d_12dp"
+                    android:paddingTop="@dimen/d_12dp"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:text="配送方式" />
+
+                <TextView
+                    android:id="@+id/distribution_tv"
+                    style="@style/text"
+                    android:layout_marginRight="@dimen/d_12dp"
+                    android:drawableRight="@mipmap/in_right"
+                    android:gravity="center_vertical|right"
+                    android:hint="请选择配送方式" />
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <LinearLayout style="@style/ll_bottom_h">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:paddingBottom="@dimen/d_12dp"
+                    android:paddingTop="@dimen/d_12dp"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:text="支付方式" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/include_confirm_order_bottom" />
+
+</LinearLayout>

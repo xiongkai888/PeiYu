@@ -11,7 +11,6 @@ import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.AfterSaleOrderBean;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.adapter.SwipeRefreshAdapter;
-import com.xson.common.utils.L;
 import com.xson.common.utils.StringUtils;
 
 import butterknife.ButterKnife;
@@ -64,7 +63,7 @@ public class AfterSaleOrderListAdapter extends SwipeRefreshAdapter<AfterSaleOrde
         }
 
         public void setParameter(final AfterSaleOrderBean bean) {
-//            titleTv.setText(bean.getId());
+            titleTv.setText(String.format(context.getString(R.string.s_name),bean.getSname()));
             String state = "";
             if (StringUtils.isEmpty(bean.getState())){
                 bean.setState(CommonUtils.isZero);
@@ -81,7 +80,7 @@ public class AfterSaleOrderListAdapter extends SwipeRefreshAdapter<AfterSaleOrde
                     break;
             }
             stateTv.setText(state);
-            L.d(L.TAG,state);
+//            L.d(L.TAG,state);
             linkNameTv.setText(String.format(context.getString(R.string.link_name),bean.getLinkname()));
             phoneTv.setText(String.format(context.getString(R.string.phone),bean.getPhone()));
             addressTv.setText(String.format(context.getString(R.string.address),bean.getAddress()));

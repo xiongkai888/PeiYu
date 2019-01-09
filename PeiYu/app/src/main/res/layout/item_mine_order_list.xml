@@ -9,19 +9,23 @@
         android:padding="@dimen/d_10dp">
 
         <TextView
+            android:id="@+id/pay_no_tv"
             style="@style/text_weight"
             android:background="@color/white"
-            android:text="订单号：10021525222310866" />
+            android:text="订单号：" />
 
         <TextView
+            android:id="@+id/state_tv"
             style="@style/text14colorRed"
             android:background="@color/white"
-            android:text="待发货" />
+            android:text="@string/wait_send_goods" />
 
     </LinearLayout>
 
-
-    <include layout="@layout/item_mine_order_list_sub" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         style="@style/h_match_parent"
@@ -30,6 +34,7 @@
 
 
         <com.xson.common.widget.FormatTextView
+            android:id="@+id/total_price_tv"
             style="@style/text12color666"
             android:layout_weight="1"
             app:defaultValue="1800.00"
@@ -37,15 +42,19 @@
 
 
         <TextView
+            android:id="@+id/order1_tv"
             style="@style/text10colorRed"
             android:background="@drawable/shape_b_r"
+            android:minWidth="@dimen/order_minWidth"
             android:gravity="center"
             android:text="@string/confirm_receipt" />
 
         <TextView
+            android:id="@+id/order2_tv"
             style="@style/text10colorWhite"
             android:layout_marginLeft="@dimen/d_10dp"
             android:background="@drawable/shape_f_r"
+            android:minWidth="@dimen/order_minWidth"
             android:gravity="center"
             android:text="@string/buy_again" />
 

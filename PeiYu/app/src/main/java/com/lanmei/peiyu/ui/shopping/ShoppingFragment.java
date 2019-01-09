@@ -10,14 +10,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
+import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.event.PaySucceedEvent;
+import com.lanmei.peiyu.event.RefreshShopCartEvent;
 import com.lanmei.peiyu.ui.shopping.core.IPresenter;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCarAdapter;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCarBean;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCarPresenter;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCartContract;
-import com.lanmei.peiyu.ui.shopping.shop.ShowShopCountEvent;
 import com.lanmei.peiyu.utils.AKDialog;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
@@ -80,8 +81,7 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
         view.findViewById(R.id.go_bt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                MainActivity.showHome(context);
-                CommonUtils.developing(context);
+                MainActivity.showClassify(context);
             }
         });
         adapter = new ShopCarAdapter(context, mPresenter);
@@ -127,6 +127,7 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
         adapter.setData(list);
         adapter.notifyDataSetChanged();
 //        UIHelper.ToastMessage(context,list.size()+"");
+        llBottom.setVisibility(View.VISIBLE);
         toolbar.getMenu().clear();
         toolbar.inflateMenu(R.menu.menu_edit);
 
@@ -182,8 +183,7 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
             AKDialog.getAlertDialog(context, "确认要删除选择的商品？", new AKDialog.AlertDialogListener() {
                 @Override
                 public void yes() {
-//                    deleteGoods(delecteList);
-                    CommonUtils.developing(context);
+                    deleteGoods(delecteList);
                 }
             });
         }
@@ -191,7 +191,7 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
 
     private void deleteGoods(List<ShopCarBean> list) {
         mPresenter.deleteSelectShopCar(list);
-        EventBus.getDefault().post(new ShowShopCountEvent());//商品详情显示购物车数量(通知购物车个数更新)
+//        EventBus.getDefault().post(new ShowShopCountEvent());//商品详情显示购物车数量(通知购物车个数更新)
     }
 
     private CompoundButton.OnCheckedChangeListener mAllSelectedChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -200,6 +200,12 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
             mPresenter.selectAll(b);
         }
     };
+
+    //添加商品进入购物车时调用
+    @Subscribe
+    public void refreshShopCartEvent(RefreshShopCartEvent event){
+        mPresenter.start();
+    }
 
     @Override
     public void onDestroy() {

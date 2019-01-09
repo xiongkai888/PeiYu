@@ -161,8 +161,18 @@ public class HomeAdapter extends SwipeRefreshAdapter<NewsListBean> {
         //推荐图
         public void setRecommendImge(List<AdBean> list) {
             RecommendImgeAdapter adapter = new RecommendImgeAdapter(context);
+            GridLayoutManager layoutManager = new GridLayoutManager(context, 3);
+            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (position == 0) {
+                        return 3;
+                    }
+                    return 1;
+                }
+            });
             adapter.setData(list);
-            recyclerViewImg.setLayoutManager(new LinearLayoutManager(context));
+            recyclerViewImg.setLayoutManager(layoutManager);
             recyclerViewImg.setNestedScrollingEnabled(false);
             recyclerViewImg.setAdapter(adapter);
         }

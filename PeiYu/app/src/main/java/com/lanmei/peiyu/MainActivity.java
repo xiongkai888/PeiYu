@@ -67,6 +67,7 @@ public class MainActivity extends BaseActivity {
 
 
     public static final String ACTION_SHOW_HOME = "0";
+    public static final String ACTION_SHOW_CLASSIFY = "1";
     public static final String ACTION_SHOW_SHOPPING = "3";
 
     @Override
@@ -83,6 +84,12 @@ public class MainActivity extends BaseActivity {
 
     public static void showShopping(Context context) {//至购物车
         Intent intent = new Intent(ACTION_SHOW_SHOPPING);
+        intent.setClass(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showClassify(Context context) {//至分类
+        Intent intent = new Intent(ACTION_SHOW_CLASSIFY);
         intent.setClass(context, MainActivity.class);
         context.startActivity(intent);
     }

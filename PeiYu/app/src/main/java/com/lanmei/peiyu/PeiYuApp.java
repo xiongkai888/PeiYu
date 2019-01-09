@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.sdk.android.oss.common.OSSLog;
+import com.baidu.mapapi.SDKInitializer;
 import com.xson.common.app.BaseApp;
 import com.xson.common.utils.L;
 
@@ -17,6 +18,7 @@ public class PeiYuApp extends BaseApp {
 
     @Override
     protected void installMonitor() {
+        SDKInitializer.initialize(this);
         instance = this;
         L.debug = OSSLog.enableLog = true;//true,false
     }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ll_top">
+
+    <com.xson.common.widget.FormatTextView
+        android:id="@+id/price_tv"
+        android:paddingBottom="@dimen/d_15dp"
+        android:paddingTop="@dimen/d_15dp"
+        app:defaultValue="0"
+        android:layout_marginLeft="@dimen/d_20dp"
+        app:formatText="@string/total_cash"
+        style="@style/text_weight" />
+
+    <TextView
+        android:id="@+id/submit_order_tv"
+        android:layout_width="@dimen/d_100dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorF5484A"
+        android:gravity="center"
+        android:text="@string/submit_order"
+        android:textColor="@color/white" />
+
+</LinearLayout>

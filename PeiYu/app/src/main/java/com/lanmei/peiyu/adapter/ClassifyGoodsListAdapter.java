@@ -11,10 +11,21 @@ import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
+import com.lanmei.peiyu.bean.GoodsSpecificationsBean;
+import com.lanmei.peiyu.ui.classify.activity.ClassifyGoodsListActivity;
 import com.lanmei.peiyu.ui.classify.activity.GoodsDetailsActivity;
+import com.lanmei.peiyu.ui.shopping.shop.DBShopCartHelper;
+import com.lanmei.peiyu.ui.shopping.shop.ShopCarBean;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.adapter.SwipeRefreshAdapter;
+import com.xson.common.api.PeiYuApi;
+import com.xson.common.bean.NoPageListBean;
+import com.xson.common.helper.BeanRequest;
+import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.IntentUtil;
+import com.xson.common.utils.StringUtils;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -77,10 +88,40 @@ public class ClassifyGoodsListAdapter extends SwipeRefreshAdapter<GoodsDetailsBe
             addGoodsIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonUtils.developing(context);
+                    loadSpecifications(bean);
                 }
             });
         }
+    }
+
+    //获取商品规格，要是有规格的话就取第一个规定的相应数据
+    private void loadSpecifications(final GoodsDetailsBean bean) {
+        PeiYuApi api = new PeiYuApi("app/good_specifications");
+        api.addParams("gid", bean.getId());
+        HttpClient.newInstance(context).loadingRequest(api, new BeanRequest.SuccessListener<NoPageListBean<GoodsSpecificationsBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<GoodsSpecificationsBean> response) {
+                if (((ClassifyGoodsListActivity) context).isFinishing()) {
+                    return;
+                }
+                List<GoodsSpecificationsBean> list = response.data;
+                if (!StringUtils.isEmpty(list)) {
+                    GoodsSpecificationsBean specificationsBean = list.get(0);
+                    bean.setPrice(specificationsBean.getBusiness_price());//规格不变同价格不同
+                    bean.setSpecifications(specificationsBean.getSpecifications());
+                    bean.setGid(specificationsBean.getId());
+                }
+                ShopCarBean shopCarBean = new ShopCarBean();
+                shopCarBean.setGoodsName(bean.getGoodsname());
+                shopCarBean.setSell_price(Double.valueOf(bean.getPrice()));
+                shopCarBean.setGoods_id(bean.getId());
+                shopCarBean.setGoodsImg(bean.getCover());
+                shopCarBean.setGoodsCount(1);
+                shopCarBean.setSpecifications(bean.getSpecifications());
+                shopCarBean.setGid(bean.getGid());
+                DBShopCartHelper.getInstance(context.getApplicationContext()).insertGoods(shopCarBean);
+            }
+        });
     }
 
 }

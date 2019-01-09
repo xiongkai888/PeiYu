@@ -22,14 +22,32 @@
                 android:paddingBottom="@dimen/d_2dp"
                 android:paddingLeft="@dimen/d_10dp"
                 android:paddingTop="@dimen/d_10dp"
-                android:text="联系人" />
+                android:text="请选择用户信息" />
 
-            <EditText
-                style="@style/text14color666"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/border_bottom_divider"
-                android:hint="请输入联系电话"
-                android:padding="@dimen/d_10dp" />
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:padding="@dimen/d_10dp"
+                    android:background="@null"
+                    android:theme="@android:style/Theme.Holo.Light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:src="@mipmap/o_down"
+                    style="@style/text" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                style="@style/line_H1dp_divider" />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -39,11 +57,28 @@
                 android:text="联系电话" />
 
             <EditText
+                android:id="@+id/phone_et"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
-                android:hint="请输入联系电话"
+                android:hint="@string/input_contact_number"
                 android:inputType="phone"
+                android:padding="@dimen/d_10dp" />
+
+            <TextView
+                style="@style/text14color1ca637"
+                android:paddingBottom="@dimen/d_2dp"
+                android:paddingLeft="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_10dp"
+                android:text="地址" />
+
+            <EditText
+                android:id="@+id/address_et"
+                style="@style/text14color666"
+                android:layout_width="match_parent"
+                android:background="@drawable/border_bottom_divider"
+                android:drawableRight="@mipmap/icon_coordinate"
+                android:hint="@string/input_installation_address"
                 android:padding="@dimen/d_10dp" />
 
             <TextView
@@ -53,13 +88,30 @@
                 android:paddingTop="@dimen/d_10dp"
                 android:text="电站信息" />
 
-            <TextView
-                style="@style/text14color666"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/border_bottom_divider"
-                android:drawableRight="@mipmap/o_down"
-                android:hint="请选择用户电站信息"
-                android:padding="@dimen/d_10dp" />
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:padding="@dimen/d_10dp"
+                    android:background="@null"
+                    android:theme="@android:style/Theme.Holo.Light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:src="@mipmap/o_down"
+                    style="@style/text" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                style="@style/line_H1dp_divider" />
 
             <TextView
                 style="@style/text14color1ca637"
@@ -68,13 +120,31 @@
                 android:paddingTop="@dimen/d_10dp"
                 android:text="问题类型" />
 
-            <TextView
-                style="@style/text14color666"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/border_bottom_divider"
-                android:drawableRight="@mipmap/o_down"
-                android:hint="请选择问题类型"
-                android:padding="@dimen/d_10dp" />
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:padding="@dimen/d_10dp"
+                    android:background="@null"
+                    android:entries="@array/problem_types"
+                    android:theme="@android:style/Theme.Holo.Light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:src="@mipmap/o_down"
+                    style="@style/text" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                style="@style/line_H1dp_divider" />
 
 
             <TextView
@@ -109,6 +179,7 @@
                 android:text="其他说明" />
 
             <EditText
+                android:id="@+id/content_et"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_120dp"
@@ -240,7 +311,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/bt_login"
+                android:id="@+id/submit_bt"
                 style="@style/button_style"
                 android:layout_marginTop="@dimen/d_30dp"
                 android:text="@string/submit" />
