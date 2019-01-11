@@ -17,8 +17,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.PoiInfo;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.certificate.CameraActivity;
+import com.lanmei.peiyu.event.AddressChooseEvent;
 import com.lanmei.peiyu.event.DataEntryEvent;
 import com.lanmei.peiyu.helper.BGASortableNinePhotoHelper;
 import com.lanmei.peiyu.helper.IdentityCardHelper;
@@ -30,6 +33,7 @@ import com.xson.common.bean.BaseBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.ImageUtils;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.JsonUtil;
 import com.xson.common.utils.L;
 import com.xson.common.utils.StringUtils;
@@ -37,6 +41,7 @@ import com.xson.common.utils.UIHelper;
 import com.xson.common.widget.CenterTitleToolbar;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +92,7 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
     Spinner spinner3;//瓦的材质
     @InjectView(R.id.spinner4)
     Spinner spinner4;//房屋朝向
-    int capacity,structure,material,direction = 1;
+    int capacity, structure, material, direction = 1;
 
     private IdentityCardHelper helper;
     private CompressPhotoUtils compressPhotoUtils1;//图片上传类（身份证）
@@ -104,6 +109,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
+
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayShowTitleEnabled(true);
@@ -122,8 +129,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                capacity = position+1;
-                L.d(L.TAG,"capacity:"+capacity);
+                capacity = position + 1;
+                L.d(L.TAG, "capacity:" + capacity);
             }
 
             @Override
@@ -134,8 +141,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                structure = position+1;
-                L.d(L.TAG,"structure:"+structure);
+                structure = position + 1;
+                L.d(L.TAG, "structure:" + structure);
             }
 
             @Override
@@ -146,8 +153,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
         spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                material = position+1;
-                L.d(L.TAG,"material:"+material);
+                material = position + 1;
+                L.d(L.TAG, "material:" + material);
             }
 
             @Override
@@ -158,8 +165,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
         spinner4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                direction = position+1;
-                L.d(L.TAG,"direction:"+direction);
+                direction = position + 1;
+                L.d(L.TAG, "direction:" + direction);
             }
 
             @Override
@@ -193,7 +200,7 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
 
     private boolean hasWall;//有无女儿墙
 
-    @OnClick({R.id.card_pic1_iv, R.id.card_pic2_iv, R.id.submit_bt, R.id.wall_tv})
+    @OnClick({R.id.card_pic1_iv, R.id.card_pic2_iv, R.id.submit_bt, R.id.wall_tv, R.id.position_tv})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.card_pic1_iv://身份证正面
@@ -208,6 +215,10 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
                 break;
             case R.id.submit_bt://提交
                 submit();
+                break;
+            case R.id.position_tv://地图
+                center = null;
+                IntentUtil.startActivity(this, MapActivity.class);
                 break;
         }
     }
@@ -237,13 +248,13 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
 
     private void submit() {
         final String name = CommonUtils.getStringByEditText(nameEt);
-        if (StringUtils.isEmpty(name)){
-            UIHelper.ToastMessage(this,R.string.input_household_name);
+        if (StringUtils.isEmpty(name)) {
+            UIHelper.ToastMessage(this, R.string.input_household_name);
             return;
         }
         final String phone = CommonUtils.getStringByEditText(phoneEt);
-        if (StringUtils.isEmpty(phone)){
-            UIHelper.ToastMessage(this,R.string.input_contact_number);
+        if (StringUtils.isEmpty(phone)) {
+            UIHelper.ToastMessage(this, R.string.input_contact_number);
             return;
         }
         final String card = CommonUtils.getStringByEditText(cardEt);//身份证
@@ -257,24 +268,30 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
 //            e.printStackTrace();
 //        }
 
-        if (StringUtils.isEmpty(helper.getCardPic1())||StringUtils.isEmpty(helper.getCardPic2())){
-            UIHelper.ToastMessage(this,"请选择身份证正反面");
+        if (StringUtils.isEmpty(helper.getCardPic1()) || StringUtils.isEmpty(helper.getCardPic2())) {
+            UIHelper.ToastMessage(this, "请选择身份证正反面");
+            return;
+        }
+
+        if (center == null) {
+            UIHelper.ToastMessage(this, "请选择安装地址的经纬度");
             return;
         }
 
         final String address = CommonUtils.getStringByEditText(addressTv);
-        if (StringUtils.isEmpty(address)){
-            UIHelper.ToastMessage(this,R.string.input_installation_address);
+        if (StringUtils.isEmpty(address)) {
+            UIHelper.ToastMessage(this, "请输入选择对应经纬度的安装地址");
             return;
         }
+
         final String acreage = CommonUtils.getStringByEditText(acreageEt);//屋顶面积
-        if (StringUtils.isEmpty(acreage)){
-            UIHelper.ToastMessage(this,R.string.input_roof_area);
+        if (StringUtils.isEmpty(acreage)) {
+            UIHelper.ToastMessage(this, R.string.input_roof_area);
             return;
         }
         final String cullis = CommonUtils.getStringByEditText(cullisEt);//天沟面积
-        if (StringUtils.isEmpty(cullis)){
-            UIHelper.ToastMessage(this,R.string.input_roof_gutter_area);
+        if (StringUtils.isEmpty(cullis)) {
+            UIHelper.ToastMessage(this, R.string.input_roof_gutter_area);
             return;
         }
 
@@ -290,8 +307,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
                 }
                 list1 = list;
                 isIdCard = true;
-                if (!isCompressPhotoUtils){
-                    submitData(name,phone,card,address,acreage,cullis);
+                if (!isCompressPhotoUtils) {
+                    submitData(name, phone, card, address, acreage, cullis);
                 }
             }
         }, CommonUtils.isOne);
@@ -305,8 +322,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
                     }
                     list2 = list;
                     isCompressPhotoUtils = false;
-                    if (isIdCard){
-                        submitData(name,phone,card,address,acreage,cullis);
+                    if (isIdCard) {
+                        submitData(name, phone, card, address, acreage, cullis);
                     }
                 }
             }, CommonUtils.isTwo);
@@ -315,30 +332,32 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
 
     private void submitData(String name, String phone, String card, String address, String acreage, String cullis) {
         PeiYuApi api = new PeiYuApi("station/means_add");
-        api.addParams("uid",api.getUserId(this));
-        api.addParams("s_name",name);//户主名称
-        api.addParams("s_capacity",capacity);//电压等级 （1=220V，2=380V）
-        api.addParams("s_phone",phone);//户主电话
-        api.addParams("s_card",card);//户主身份证号码
-        api.addParams("s_pic",JsonUtil.getJSONArrayByList(list1));//身份证图片
-        api.addParams("s_address",address);//地址信息
-        api.addParams("s_tjman",CommonUtils.getStringByEditText(tjmanTv));//推荐人id
-        api.addParams("s_structure",structure);//屋顶结构   （1木质结构，2混凝土结构）
-        api.addParams("s_material",material);//瓦材质     （1彩钢瓦，2琉璃瓦，3青瓦，4其他）
-        api.addParams("s_direction",direction);//房屋朝向   （1，南2，东3，西4。北）
-        api.addParams("s_acreage",acreage);//屋顶面积
-        api.addParams("s_cullis",cullis);//天沟面积
-        api.addParams("s_wall",hasWall?1:2);//有无女儿墙（1有2无）
+        api.addParams("uid", api.getUserId(this));
+        api.addParams("s_name", name);//户主名称
+        api.addParams("s_capacity", capacity);//电压等级 （1=220V，2=380V）
+        api.addParams("s_phone", phone);//户主电话
+        api.addParams("s_card", card);//户主身份证号码
+        api.addParams("s_pic", JsonUtil.getJSONArrayByList(list1));//身份证图片
+        api.addParams("s_address", address);//地址信息
+        api.addParams("s_tjman", CommonUtils.getStringByEditText(tjmanTv));//推荐人id
+        api.addParams("s_structure", structure);//屋顶结构   （1木质结构，2混凝土结构）
+        api.addParams("s_material", material);//瓦材质     （1彩钢瓦，2琉璃瓦，3青瓦，4其他）
+        api.addParams("s_direction", direction);//房屋朝向   （1，南2，东3，西4。北）
+        api.addParams("s_acreage", acreage);//屋顶面积
+        api.addParams("s_cullis", cullis);//天沟面积
+        api.addParams("s_wall", hasWall ? 1 : 2);//有无女儿墙（1有2无）
         api.addParams("s_img", JsonUtil.getJSONArrayByList(list2));//图片
-        api.addParams("content",CommonUtils.getStringByEditText(contentTv));//说明
+        api.addParams("content", CommonUtils.getStringByEditText(contentTv));//说明
+        api.addParams("lng", center.longitude);// 经度
+        api.addParams("lat", center.latitude);//纬度
         HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {
             @Override
             public void onResponse(BaseBean response) {
-                if (isFinishing()){
+                if (isFinishing()) {
                     return;
                 }
                 EventBus.getDefault().post(new DataEntryEvent());
-                UIHelper.ToastMessage(getContext(),response.getInfo());
+                UIHelper.ToastMessage(getContext(), response.getInfo());
                 finish();
             }
         });
@@ -346,7 +365,7 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 10000||requestCode==20000){//选择图片九宫格
+        if (requestCode == 10000 || requestCode == 20000) {//选择图片九宫格
             mPhotoHelper.onActivityResult(requestCode, resultCode, data);
             return;
         }
@@ -360,8 +379,8 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
                 helper.startActionCrop(image);
                 break;
             case IdentityCardHelper.RESULT_FROM_CROP:
-                helper.uploadNewPhoto((helper.getType() == CameraActivity.TYPE_IDCARD_FRONT)?cardPic1Iv:cardPic2Iv);//
-                L.d(L.TAG,helper.getCardPic1()+","+helper.getCardPic2());
+                helper.uploadNewPhoto((helper.getType() == CameraActivity.TYPE_IDCARD_FRONT) ? cardPic1Iv : cardPic2Iv);//
+                L.d(L.TAG, helper.getCardPic1() + "," + helper.getCardPic2());
                 break;
             case CameraActivity.REQUEST_CODE:
                 String path = data.getStringExtra("result");
@@ -382,14 +401,28 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
         }
     }
 
+    private LatLng center;//地图中心位置的坐标
+
+    //选择地址的时候调用
+    @Subscribe
+    public void addressChooseEvent(AddressChooseEvent event) {
+        PoiInfo info = event.getInfo();
+        addressTv.setText("");
+        center = event.getCenter();
+        if (info != null) {
+            addressTv.setText(info.getAddress());
+        } else {
+            UIHelper.ToastMessage(this, "请输入选择对应经纬度地址");
+        }
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (compressPhotoUtils1 != null){
+        if (compressPhotoUtils1 != null) {
             compressPhotoUtils1.cancelled();
         }
-        if (compressPhotoUtils2 != null){
+        if (compressPhotoUtils2 != null) {
             compressPhotoUtils2.cancelled();
         }
     }

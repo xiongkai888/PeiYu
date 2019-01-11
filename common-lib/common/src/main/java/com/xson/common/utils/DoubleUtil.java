@@ -33,7 +33,7 @@ public class DoubleUtil implements Serializable {
      * @return 两个参数的和
      */
     public static String addToString(Double value1, Double value2) {
-        return formatFloatNumber(add(value1,value2));
+        return formatDoubleNumber(add(value1,value2));
     }
 
     /**
@@ -69,7 +69,7 @@ public class DoubleUtil implements Serializable {
      * @return 两个参数的积
      */
     public static String mulToString(Double value1, Double value2) {
-        return formatFloatNumber(mul(value1,value2));
+        return formatDoubleNumber(mul(value1,value2));
     }
 
     /**
@@ -122,7 +122,7 @@ public class DoubleUtil implements Serializable {
      * @param value
      * @return Sting
      */
-    public static String formatFloatNumber(double value) {
+    public static String formatDoubleNumber(double value) {
         if(value != 0.00){
             java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
             return df.format(value);
@@ -131,33 +131,24 @@ public class DoubleUtil implements Serializable {
         }
 
     }
-    public static String formatFloatNumber(Double value) {
+    public static String formatDoubleNumber(Double value) {
         if(value != null){
             if(value.doubleValue() != 0.00){
                 java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
                 return df.format(value.doubleValue());
-            }else{
-                return "0.0";
             }
         }
-        return "";
+        return "0.00";
     }
-    public static double formatDoubleNumber(String valueStr) {
-        double value = 0.00;
-        if (!StringUtils.isEmpty(valueStr)){
-            value = Double.valueOf(valueStr);
+    public static String formatDoubleNumber(String value) {
+        if(!StringUtils.isEmpty(value)){
+            Double v = Double.valueOf(value);
+            if(v.doubleValue() != 0.00){
+                java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+                return df.format(v.doubleValue());
+            }
         }
-        value = formatDoubleNumber(value);
-        return value;
-    }
-
-    /**
-     * 两位小数点
-     * @param valueStr
-     * @return
-     */
-    public static double formatDoubleNumber(double valueStr) {
-        return Double.valueOf(formatFloatNumber(valueStr));
+        return "0.00";
     }
 
 }

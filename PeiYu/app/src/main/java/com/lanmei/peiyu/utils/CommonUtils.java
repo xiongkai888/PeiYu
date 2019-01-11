@@ -221,12 +221,12 @@ public class CommonUtils {
      *
      * @param context
      * @param arry     图片地址数组
-     * @param imageUrl 点击的图片地址
+     * @param position 点击的第position+1张图片
      */
-    public static void showPhotoBrowserActivity(Context context, List<String> arry, String imageUrl) {
+    public static void showPhotoBrowserActivity(Context context, List<String> arry, int position) {
         Intent intent = new Intent();
         intent.putExtra("imageUrls", (Serializable) arry);
-        intent.putExtra("curImageUrl", imageUrl);
+        intent.putExtra("curImageUrl", arry.get(position));
         intent.setClass(context, PhotoBrowserActivity.class);
         context.startActivity(intent);
     }

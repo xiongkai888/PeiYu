@@ -46,6 +46,7 @@ public class AddressListActivity extends BaseActivity {
     AddressListAdapter adapter;
     private SwipeRefreshController<NoPageListBean<AddressListBean>> controller;
     private List<AddressListBean> list;
+    private String title;
 
     @Override
     public int getContentViewId() {
@@ -58,6 +59,7 @@ public class AddressListActivity extends BaseActivity {
         Bundle bundle = intent.getBundleExtra("bundle");
         if (bundle != null){
             list = (List<AddressListBean>)bundle.getSerializable("list");
+            title = bundle.getString("title");
         }
     }
 
@@ -67,7 +69,7 @@ public class AddressListActivity extends BaseActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayShowTitleEnabled(true);
         actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setTitle("选择收货地址");
+        actionbar.setTitle(title);
         actionbar.setHomeAsUpIndicator(R.mipmap.back);
 
         EventBus.getDefault().register(this);
@@ -99,8 +101,10 @@ public class AddressListActivity extends BaseActivity {
         adapter.setChooseAddressListener(new AddressListAdapter.ChooseAddressListener() {
             @Override
             public void choose(AddressListBean bean) {
-                EventBus.getDefault().post(new ChooseAddressEvent(bean));
-                finish();
+                if (!StringUtils.isSame(title,getString(R.string.my_address))){//我的地址点击不做处理
+                    EventBus.getDefault().post(new ChooseAddressEvent(bean));
+                    finish();
+                }
             }
 
             @Override

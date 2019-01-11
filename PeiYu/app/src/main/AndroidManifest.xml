@@ -58,7 +58,7 @@
             android:process=":remote" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="RZGWkoIi8ogaU1zRZZCDjmWmm7LalIhe" />
+            android:value="Ax5AyKSGGORbQQ09ng4UTurBW7KFlkQW" />
 
         <activity
             android:name=".MainActivity"
@@ -84,6 +84,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.activity.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.BecomeDistributorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.ClubActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.activity.AfterSaleOrderActivity"

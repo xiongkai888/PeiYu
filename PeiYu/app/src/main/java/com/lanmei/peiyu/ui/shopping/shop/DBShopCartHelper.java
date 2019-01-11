@@ -150,6 +150,9 @@ public class DBShopCartHelper {
 
 
     public void delete(List<ShopCarBean> list) {
+        if (StringUtils.isEmpty(list)){//
+            return;
+        }
         int size = list.size();
         for (int i = 0; i < size; i++) {
             ShopCarBean bean = list.get(i);

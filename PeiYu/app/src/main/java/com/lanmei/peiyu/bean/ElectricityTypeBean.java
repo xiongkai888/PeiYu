@@ -11,7 +11,8 @@ public class ElectricityTypeBean {
 
     private List<TypeBean> type1;
     private List<TypeBean> type2;
-    private List<TypeBean> type3; //电费类型（type1电费价格 type2国家补贴电费价格 type3省市级电费补贴）
+    private List<TypeBean> type3; //电费类型（type1电费价格 type2国家补贴电费价格 3省市级电费补贴 type4发电时间）
+    private List<TypeBean> type4; //
 
     public List<TypeBean> getType1() {
         return type1;
@@ -36,6 +37,24 @@ public class ElectricityTypeBean {
     public void setType3(List<TypeBean> type3) {
         this.type3 = type3;
     }
+
+    public void setType4(List<TypeBean> type4) {
+        if (com.xson.common.utils.StringUtils.isEmpty(type4)) {
+            this.type4 = type4;
+            return;
+        }
+        int size = type4.size();
+        for (int i = 0; i < size; i++) {
+            TypeBean bean = type4.get(i);
+            bean.setProblemname(bean.getProblemname()+"\u3000"+bean.getSetval());
+        }
+        this.type4 = type4;
+    }
+
+    public List<TypeBean> getType4() {
+        return type4;
+    }
+
 
     public static class TypeBean {
         /**

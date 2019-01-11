@@ -49,7 +49,7 @@ public class InstallApplyActivity extends BaseActivity implements TabLayout.OnTa
         actionbar.setHomeAsUpIndicator(R.mipmap.back);
 
         helper = new TabSubHelper(this,mTabLayout,getTitleList());
-        helper.setOrderNum(0,6,0,0,0);
+        helper.setOrderNum(0,0,0,0,0);
 
         mViewPager.setAdapter(new InstallApplyAdapter(getSupportFragmentManager()));
 //        mViewPager.setOffscreenPageLimit(3);

@@ -10,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
-import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.event.PaySucceedEvent;
 import com.lanmei.peiyu.event.RefreshShopCartEvent;
@@ -70,20 +69,20 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
         toolbar.setTitle(R.string.shopping_cart);
         EventBus.getDefault().register(this);
 
-        mPresenter = new ShopCarPresenter(context,this);
+        mPresenter = new ShopCarPresenter(context, this);
 
         smartSwipeRefreshLayout.initWithLinearLayout();
-        View view = LayoutInflater.from(context).inflate(R.layout.empty_shop_car, smartSwipeRefreshLayout, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.empty_shop_car_sub, smartSwipeRefreshLayout, false);
         smartSwipeRefreshLayout.setEmptyLayout(view);
         smartSwipeRefreshLayout.setMode(SmartSwipeRefreshLayout.Mode.NO_PAGE);
 //        mEmptyView.addView(view);
         //去逛逛
-        view.findViewById(R.id.go_bt).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.showClassify(context);
-            }
-        });
+//        view.findViewById(R.id.go_bt).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MainActivity.showClassify(context);
+//            }
+//        });
         adapter = new ShopCarAdapter(context, mPresenter);
         smartSwipeRefreshLayout.setAdapter(adapter);
         mAllSelectCheckbox.setOnCheckedChangeListener(mAllSelectedChangeListener);
@@ -91,8 +90,7 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
     }
 
 
-
-    private  int style = 1;//1去付款，2删除
+    private int style = 1;//1去付款，2删除
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
@@ -167,6 +165,7 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
     }
 
     List<ShopCarBean> delecteList;//支付成功后要删除的数据
+
     @OnClick(R.id.balance_bt)
     public void onClick() {
         delecteList = mPresenter.getSeletctedCarList();
@@ -203,7 +202,7 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
 
     //添加商品进入购物车时调用
     @Subscribe
-    public void refreshShopCartEvent(RefreshShopCartEvent event){
+    public void refreshShopCartEvent(RefreshShopCartEvent event) {
         mPresenter.start();
     }
 

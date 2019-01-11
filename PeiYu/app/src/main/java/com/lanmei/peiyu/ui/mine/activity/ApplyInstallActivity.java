@@ -107,7 +107,8 @@ public class ApplyInstallActivity extends BaseActivity {
                 }
                 orderBeanList = response.data;
                 if (StringUtils.isEmpty(orderBeanList)) {
-                    UIHelper.ToastMessage(getContext(), "暂无电站信息");
+                    UIHelper.ToastMessage(getContext(), getString(R.string.no_power_station_information));
+                    initPowerStationListSpinner(null);
                     return;
                 }
                 List<String> stringList = new ArrayList<>();
@@ -124,10 +125,9 @@ public class ApplyInstallActivity extends BaseActivity {
     }
 
     private void initPowerStationListSpinner(List<String> s_list) {
-        if (StringUtils.isEmpty(orderBeanList)) {
+        if (StringUtils.isEmpty(s_list)) {
             s_list = new ArrayList<>();
-            s_list.add("暂无电站信息");
-            return;
+            s_list.add(getString(R.string.no_power_station_information));
         }
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, s_list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -152,8 +152,10 @@ public class ApplyInstallActivity extends BaseActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN && StringUtils.isEmpty(orderBeanList)) {
 //                    loadDataList();
-                    UIHelper.ToastMessage(getContext(), "暂无电站信息");
+                    UIHelper.ToastMessage(getContext(), getString(R.string.no_power_station_information));
+//                    spinner1.setFocusable(true);
                     L.d("ApplyInstallActivity", "setOnTouchListener");
+                    return true;
                 }
                 return false;
             }
@@ -222,7 +224,7 @@ public class ApplyInstallActivity extends BaseActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN && StringUtils.isEmpty(list)){
                     loadData();
-                    L.d("ApplyInstallActivity", "setOnTouchListener");
+                    return true;
                 }
                 return false;
             }

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_match_parent_no">
+
+    <LinearLayout
+        style="@style/v_match_parent_no"
+        android:layout_height="@dimen/d_150dp"
+        android:background="@mipmap/my_bg"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/today_generating_capacity_tv"
+            style="@style/text12colorWhite"
+            android:text="0.00"
+            android:textSize="50sp" />
+
+        <TextView
+            style="@style/text12colorWhite"
+            android:text="今日发电量/kwh" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ll_bottom_h"
+        android:padding="@dimen/d_10dp">
+
+        <include layout="@layout/include_type_icon" />
+
+        <TextView
+            style="@style/text"
+            android:layout_marginLeft="@dimen/d_5dp"
+            android:text="关键指标" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ll_bottom_h_no"
+        android:paddingBottom="@dimen/d_5dp">
+
+
+        <LinearLayout
+            style="@style/text_weight"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/d_5dp">
+
+            <TextView
+                style="@style/text"
+                android:drawablePadding="@dimen/d_3dp"
+                android:drawableTop="@mipmap/home_classify_1"
+                android:gravity="center_horizontal"
+                android:text="电站功率" />
+
+            <com.xson.common.widget.FormatTextView
+                android:id="@+id/power_tv"
+                style="@style/text12color666"
+                app:defaultValue="0.00"
+                app:formatText="@string/power_kw" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/text_weight"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/d_5dp">
+
+            <TextView
+                style="@style/text"
+                android:drawablePadding="@dimen/d_3dp"
+                android:drawableTop="@mipmap/home_classify_2"
+                android:gravity="center_horizontal"
+                android:text="累计发电" />
+
+            <com.xson.common.widget.FormatTextView
+                android:id="@+id/total_generate_electricity"
+                style="@style/text12color666"
+                app:defaultValue="0.00"
+                app:formatText="@string/power_total" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/text_weight"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/d_5dp">
+
+            <TextView
+                style="@style/text"
+                android:drawablePadding="@dimen/d_3dp"
+                android:drawableTop="@mipmap/home_classify_3"
+                android:gravity="center_horizontal"
+                android:text="今日收益" />
+
+            <com.xson.common.widget.FormatTextView
+                android:id="@+id/today_earnings_tv"
+                style="@style/text12color666"
+                app:defaultValue="0.00"
+                app:formatText="@string/earnings_today" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/text_weight"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/d_5dp">
+
+            <TextView
+                style="@style/text"
+                android:drawablePadding="@dimen/d_3dp"
+                android:drawableTop="@mipmap/home_classify_4"
+                android:gravity="center_horizontal"
+                android:text="累计收益" />
+
+            <com.xson.common.widget.FormatTextView
+                android:id="@+id/accumulated_earnings_tv"
+                style="@style/text12color666"
+                app:defaultValue="0.00"
+                app:formatText="@string/earnings_total" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ll_bottom_h"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:padding="@dimen/d_10dp">
+
+        <include layout="@layout/include_type_icon" />
+
+        <TextView
+            style="@style/text_weight"
+            android:layout_marginLeft="@dimen/d_5dp"
+            android:text="我的设备" />
+
+        <TextView
+            android:id="@+id/add_equipment_tv"
+            style="@style/text"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/d_5dp"
+            android:text="+添加" />
+
+    </LinearLayout>
+
+</LinearLayout>

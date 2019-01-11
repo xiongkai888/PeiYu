@@ -7,11 +7,11 @@
 
     <include layout="@layout/include_centertitletoolbar" />
 
-    <android.support.v4.widget.NestedScrollView style="@style/match_parent_all">
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        style="@style/match_parent_all">
 
         <LinearLayout style="@style/v_all_match_parent">
-
-
 
             <LinearLayout
                 android:id="@+id/ll_logistics"
@@ -27,6 +27,7 @@
 
 
             <com.xson.common.widget.FormatTextView
+                android:id="@+id/state_tv"
                 style="@style/text14color666"
                 android:layout_marginBottom="@dimen/d_3dp"
                 android:layout_marginLeft="@dimen/d_15dp"
@@ -35,6 +36,7 @@
                 app:formatText="@string/order_status" />
 
             <com.xson.common.widget.FormatTextView
+                android:id="@+id/order_no_tv"
                 style="@style/text14color666"
                 android:layout_marginBottom="@dimen/d_3dp"
                 android:layout_marginLeft="@dimen/d_15dp"
@@ -42,6 +44,7 @@
                 app:formatText="@string/order_number" />
 
             <com.xson.common.widget.FormatTextView
+                android:id="@+id/order_time_tv"
                 style="@style/text14color666"
                 android:layout_marginLeft="@dimen/d_15dp"
                 app:defaultValue="@string/time"
@@ -67,12 +70,14 @@
 
 
                 <TextView
+                    android:id="@+id/order1_tv"
                     style="@style/text12colorBlack"
                     android:background="@drawable/shape_b_b"
                     android:gravity="center"
                     android:text="@string/application_drawback" />
 
                 <TextView
+                    android:id="@+id/order2_tv"
                     style="@style/text12colorRed"
                     android:layout_marginLeft="@dimen/d_10dp"
                     android:background="@drawable/shape_b_r"
@@ -98,7 +103,6 @@
 
 
                 <TextView
-                    android:id="@+id/pay_way_tv"
                     style="@style/text" />
 
             </LinearLayout>
@@ -113,16 +117,18 @@
 
 
             <com.xson.common.widget.FormatTextView
+                android:id="@+id/pay_way_tv"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="@dimen/d_15dp"
                 android:background="@drawable/border_bottom_divider"
                 android:paddingBottom="@dimen/d_10dp"
                 android:paddingTop="@dimen/d_10dp"
-                app:defaultValue="￥1800.00 (在线支付)"
-                app:formatText="@string/amount_goods" />
+                app:defaultValue="支付宝(未支付)"
+                app:formatText="@string/pay_way" />
 
             <com.xson.common.widget.FormatTextView
+                android:id="@+id/address_tv"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="@dimen/d_15dp"
@@ -133,6 +139,7 @@
                 app:formatText="@string/delivery_address" />
 
             <com.xson.common.widget.FormatTextView
+                android:id="@+id/name_tv"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="@dimen/d_15dp"
@@ -143,6 +150,7 @@
                 app:formatText="@string/consignee" />
 
             <com.xson.common.widget.FormatTextView
+                android:id="@+id/mode_distribution_tv"
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="@dimen/d_15dp"
@@ -166,12 +174,16 @@
                     style="@style/text_weight" />
 
                 <TextView
+                    android:id="@+id/num_tv"
                     android:text="共计1件商品"
                     style="@style/text12color666" />
 
             </LinearLayout>
 
-            <include layout="@layout/item_mine_order_list_sub"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView style="@style/line_H10dp_on" />
 
@@ -188,6 +200,7 @@
                     style="@style/text_weight" />
 
                 <TextView
+                    android:id="@+id/total_price_tv"
                     android:text="@string/price_string"
                     style="@style/text12colorBlack" />
 
@@ -205,12 +218,14 @@
                     style="@style/text_weight" />
 
                 <TextView
+                    android:id="@+id/dis_price_tv"
                     android:text="￥0.00"
                     style="@style/text12colorBlack" />
 
             </LinearLayout>
 
             <TextView
+                android:visibility="gone"
                 android:gravity="right"
                 android:padding="@dimen/d_10dp"
                 android:layout_width="match_parent"

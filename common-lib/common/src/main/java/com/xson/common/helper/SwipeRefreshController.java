@@ -128,6 +128,7 @@ public abstract class SwipeRefreshController<T2 extends AbsListBean> implements 
                         adapter.addData(data);
                     } else {
                         adapter.setData(data);
+                        onRefreshResponse(response);
                     }
                 }
                 /**
@@ -178,6 +179,16 @@ public abstract class SwipeRefreshController<T2 extends AbsListBean> implements 
      */
     public boolean onSuccessResponse(T2 response) {
         return false;
+    }
+
+
+    /**
+     * 下拉刷新数据
+     * @param response
+     * @return
+     */
+    public void onRefreshResponse(T2 response) {
+
     }
 
     public void setCacheType(CacheEnum cache) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/v_match_parent"
+    android:background="@drawable/border_bottom_divider"
     android:padding="@dimen/d_10dp">
 
     <LinearLayout
@@ -48,8 +49,13 @@
     <TextView
         android:id="@+id/content_tv"
         style="@style/text12colorBlack"
-        android:layout_marginLeft="@dimen/d_45dp"
-        android:lineSpacingExtra="@dimen/d_1dp"
-        android:text="真心不错，大品牌值得信赖，回油管路滤器，不是小品牌可以比的，过滤效果真好。" />
+        android:layout_marginTop="@dimen/d_3dp"
+        android:lineSpacingExtra="@dimen/d_2dp" />
+
+
+    <include
+        android:id="@+id/sudokuView"
+        layout="@layout/view_sudoku"
+        android:visibility="visible" />
 
 </LinearLayout>

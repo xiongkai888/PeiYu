@@ -7,9 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.data.volley.Response;
+import com.data.volley.error.VolleyError;
 import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.GoodsDetailsPagerAdapter;
+import com.lanmei.peiyu.bean.GoodsCollectBean;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
 import com.lanmei.peiyu.bean.GoodsSpecificationsBean;
 import com.lanmei.peiyu.event.PaySucceedEvent;
@@ -24,6 +27,7 @@ import com.xson.common.bean.NoPageListBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.StringUtils;
+import com.xson.common.utils.UIHelper;
 import com.xson.common.utils.UserHelper;
 import com.xson.common.widget.NoScrollViewPager;
 
@@ -57,6 +61,7 @@ public class GoodsDetailsActivity extends BaseActivity {
     private GoodsDetailsBean bean;//商品详情信息
     private AddShopCarDialogFragment mDialog;
     private static final String DIALOG = "dialog_fragment_kang";
+    private boolean isCollect;//是否收藏
 
     @Override
     public void initIntent(Intent intent) {
@@ -96,6 +101,10 @@ public class GoodsDetailsActivity extends BaseActivity {
         });
     }
 
+    //到评论
+    public void toCommentPager() {
+        viewPager.setCurrentItem(2);
+    }
 
     public void operaTitleBar(boolean scroAble, boolean titleVisiable) {
         viewPager.setNoScroll(scroAble);
@@ -106,6 +115,9 @@ public class GoodsDetailsActivity extends BaseActivity {
 //    int favorite;//是否收藏了该商品
 
     private void init(GoodsDetailsBean bean) {
+        if (UserHelper.getInstance(this).hasLogin()) {
+            loadCollect(false);
+        }
         llDetailsBottom.setVisibility(View.VISIBLE);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(new GoodsDetailsPagerAdapter(getSupportFragmentManager(), bean));
@@ -117,7 +129,32 @@ public class GoodsDetailsActivity extends BaseActivity {
 
     }
 
+    //修改收藏
+    private void loadCollect(final boolean isClick) {
+        PeiYuApi api = new PeiYuApi(isClick ? "app/collection" : "app/collection_type");
+        api.addParams("userid", api.getUserId(this)).addParams("goodsid", bean.getId());
+        HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<NoPageListBean<GoodsCollectBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<GoodsCollectBean> response) {
+                if (isFinishing()) {
+                    return;
+                }
+                if (isClick) {
+                    isCollect = !isCollect;
+                    UIHelper.ToastMessage(getContext(), response.getInfo());
+                } else {
+                    isCollect = !StringUtils.isEmpty(response.data);
+                }
+                collectIv.setImageResource(isCollect ? R.mipmap.goods_collect_on : R.mipmap.goods_collect_off);
+                collectTv.setText(isCollect ? getString(R.string.collected) : getString(R.string.collect));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
+            }
+        });
+    }
 
 
 
@@ -135,7 +172,7 @@ public class GoodsDetailsActivity extends BaseActivity {
 
         switch (id) {
             case R.id.ll_collect://收藏
-                CommonUtils.developing(this);
+                loadCollect(true);
                 break;
             case R.id.ll_shop://购物车
                 MainActivity.showShopping(this);

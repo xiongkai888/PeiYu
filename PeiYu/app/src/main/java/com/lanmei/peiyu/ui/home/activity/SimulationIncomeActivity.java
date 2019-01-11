@@ -21,13 +21,13 @@ import com.xson.common.bean.DataBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.DoubleUtil;
+import com.xson.common.utils.L;
 import com.xson.common.utils.SimpleTextWatcher;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.SysUtils;
 import com.xson.common.utils.UIHelper;
 import com.xson.common.widget.CenterTitleToolbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
@@ -56,11 +56,11 @@ public class SimulationIncomeActivity extends BaseActivity {
     TextView resultTv;//计算结果
     private DropDownFiltrateAdapter adapter;
     private ElectricityTypeBean electricityTypeBean;
-    private List<ElectricityTypeBean.TypeBean> timeList;
+//    private String coveredArea;//建筑面积
     private String electricity1;
     private String electricity2;
     private String electricity3;
-    private ElectricityTypeBean.TypeBean typeBean;
+    private String electricity4;//发电时间
 
 
     @Override
@@ -76,7 +76,6 @@ public class SimulationIncomeActivity extends BaseActivity {
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setTitle(R.string.simulation_income);
         actionbar.setHomeAsUpIndicator(R.mipmap.back);
-        timeList = getTimeList();
         loadElectricity();
         initEditText();
     }
@@ -100,6 +99,12 @@ public class SimulationIncomeActivity extends BaseActivity {
                 electricity3 = s+"";
             }
         });
+//        coveredAreaTv.addTextChangedListener(new SimpleTextWatcher() {
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                coveredArea = s+"";
+//            }
+//        });
     }
 
     //电价
@@ -138,7 +143,10 @@ public class SimulationIncomeActivity extends BaseActivity {
                 popupWindow(3, price3Et, electricityTypeBean.getType3());
                 break;
             case R.id.time_tv://
-                popupWindow(4, timeTv, timeList);
+                if (electricityTypeBean == null) {
+                    return;
+                }
+                popupWindow(4, timeTv, electricityTypeBean.getType4());
                 break;
             case R.id.submit_bt://
                 submit();
@@ -178,48 +186,47 @@ public class SimulationIncomeActivity extends BaseActivity {
 
         //国家补贴电费价格
         if (StringUtils.isEmpty(electricity2)) {
-            UIHelper.ToastMessage(this, "请选择或输入国家补贴电费价格");
-            return;
+//            UIHelper.ToastMessage(this, "请选择或输入国家补贴电费价格");
+//            return;
+            electricity2 = CommonUtils.isZero;
         }
 
         //省市级补贴电费价格
         if (StringUtils.isEmpty(electricity3)) {
-            UIHelper.ToastMessage(this, "请选择或输入省市级补贴电费价格");
-            return;
+//            UIHelper.ToastMessage(this, "请选择或输入省市级补贴电费价格");
+//            return;
+            electricity3 = CommonUtils.isZero;
         }
         //发电时间
-        if (StringUtils.isEmpty(typeBean)) {
+        if (StringUtils.isEmpty(electricity4)) {
             UIHelper.ToastMessage(this, "请选择发电时间");
             return;
         }
+
+        calculate(coveredArea);
+    }
+
+    private void calculate(String coveredArea){
+        double v1 = Double.valueOf(electricity1);
+        double v2 = Double.valueOf(electricity2);
+        double v3 = Double.valueOf(electricity3);
+        double v4 = Double.valueOf(electricity4);
+
         double rong = DoubleUtil.divide(Double.valueOf(coveredArea), 7.0, 2);//容量
-        double n = DoubleUtil.round(rong * 365 * Double.valueOf(typeBean.getSetval()),2);//年发电量
+        double n = DoubleUtil.round(rong * v4,2);//年发电量
         double cheng = DoubleUtil.round(DoubleUtil.mul(rong, 5.5),2);//投资成本
         String other = CommonUtils.getStringByEditText(otherPriceEt);
         if (StringUtils.isEmpty(other)) {
             other = CommonUtils.isZero;
         }
-        double shou = ((Double.valueOf(electricity1) + Double.valueOf(electricity2) + Double.valueOf(electricity3) + Double.valueOf(other)) * (rong *960* Double.valueOf(typeBean.getSetval()))) * 20;//20年收益
+        L.d(L.TAG,"v1 = "+v1+",v2 = "+v2+",v3 = "+v3+",other = "+other+",n = "+n+",v4 = "+v4);
+        double shou = DoubleUtil.round(((v1 + v2 + v3 + Double.valueOf(other)) * n) * 20,2);//20年收益
 
-        double shouS = DoubleUtil.formatDoubleNumber(shou);
+        double li = shou - (cheng*10000);
 
-        double li = shouS - cheng;
-
-        String result = "容量：" + rong + "kwh\n年发电量：" + n + "kwh\n投资成本：" + cheng + "万元\n20年收益：" + shouS + "万元\n利润：" + DoubleUtil.mulToString(li, 1.0) + "万元";
-
+        String result = "容量：" + DoubleUtil.formatDoubleNumber(rong) + "kw\n年发电量：" + DoubleUtil.formatDoubleNumber(n) + "kwh\n投资成本：" + DoubleUtil.formatDoubleNumber(cheng) + "万元\n20年收益：" + DoubleUtil.formatDoubleNumber(shou) + "元\n利润：" + DoubleUtil.formatDoubleNumber(li) + "元";
 
         resultTv.setText(result);
-    }
-
-    private List<ElectricityTypeBean.TypeBean> getTimeList() {
-        List<ElectricityTypeBean.TypeBean> list = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            ElectricityTypeBean.TypeBean bean = new ElectricityTypeBean.TypeBean();
-            bean.setProblemname((i + 1) + "小时");
-            bean.setSetval(String.valueOf((i + 1)));
-            list.add(bean);
-        }
-        return list;
     }
 
     private void popupWindow(final int type, final View v, List<ElectricityTypeBean.TypeBean> list) {
@@ -257,19 +264,19 @@ public class SimulationIncomeActivity extends BaseActivity {
                         name = CommonUtils.isZero;
                     }
                     if (type == 1) {
-                        electricity1 = bean.getSetval();
                         price1Et.setText(name);
+                        electricity1 = bean.getSetval();
                         focusable(price1Et, false);
                     } else if (type == 2) {
-                        electricity2 = bean.getSetval();
                         price2Et.setText(name);
+                        electricity2 = bean.getSetval();
                         focusable(price2Et, false);
                     } else if (type == 3) {
-                        electricity3 = bean.getSetval();
                         price3Et.setText(name);
+                        electricity3 = bean.getSetval();
                         focusable(price3Et, false);
                     } else {
-                        typeBean = bean;
+                        electricity4 = bean.getSetval();
                         timeTv.setText(bean.getProblemname());
                     }
                 }

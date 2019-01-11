@@ -77,7 +77,6 @@
                 style="@style/text14color666"
                 android:layout_width="match_parent"
                 android:background="@drawable/border_bottom_divider"
-                android:drawableRight="@mipmap/icon_coordinate"
                 android:hint="@string/input_installation_address"
                 android:padding="@dimen/d_10dp" />
 

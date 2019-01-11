@@ -50,15 +50,15 @@
                     <TextView style="@style/line_H10dp_on" />
 
 
-                    <TextView
-                        style="@style/match_parent"
-                        android:drawableRight="@mipmap/in_right"
-                        android:gravity="center_vertical"
-                        android:padding="@dimen/d_10dp"
-                        android:text="选择" />
+                    <!--<TextView-->
+                        <!--style="@style/match_parent"-->
+                        <!--android:drawableRight="@mipmap/in_right"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:padding="@dimen/d_10dp"-->
+                        <!--android:text="选择" />-->
 
 
-                    <TextView style="@style/line_H10dp_on" />
+                    <!--<TextView style="@style/line_H10dp_on" />-->
 
                     <LinearLayout
                         style="@style/ll_bottom_h"
@@ -73,19 +73,21 @@
                             app:formatText="@string/comments" />
 
                         <TextView
+                            android:id="@+id/all_comment_tv"
                             style="@style/text14color999"
                             android:drawableRight="@mipmap/in_right"
                             android:gravity="center_vertical"
+                            android:visibility="gone"
                             android:text="查看全部" />
 
                     </LinearLayout>
 
 
-                    <include layout="@layout/item_comment_goods" />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                    <TextView style="@style/line_H1dp_divider" />
-
-                    <include layout="@layout/item_comment_goods" />
 
                     <!-- 上拉查看图文详情 -->
                     <TextView

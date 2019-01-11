@@ -6,6 +6,7 @@ import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.MineOrderListAdapter;
 import com.lanmei.peiyu.bean.MineOrderListBean;
 import com.lanmei.peiyu.event.OrderOperationEvent;
+import com.lanmei.peiyu.event.PaySucceedEvent;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
 import com.xson.common.bean.BaseBean;
@@ -108,6 +109,11 @@ public class MineOrderListFragment extends BaseFragment {
     //订单操作后调用
     @Subscribe
     public void orderOperationEvent(OrderOperationEvent event) {
+        controller.loadFirstPage();
+    }
+    //订单详情支付完成时调用
+    @Subscribe
+    public void paySucceedEvent(PaySucceedEvent event) {
         controller.loadFirstPage();
     }
 

@@ -10,33 +10,40 @@ import java.util.List;
 
 public class MineOrderListBean implements Serializable{
 
+
     /**
-     * id : 819
-     * addtime : 1544515685
-     * uptime : 1544515685
-     * pay_no : 20181211B0100T9075
-     * state : 3
-     * order_no : 20181211B0100T6728
+     * id : 977
+     * addtime : 1547024506
+     * uptime : 1547024506
+     * pay_no : 20190109B0100T2974
+     * state : 0
+     * order_no : 20190109B0100T6104
      * gname : 
-     * num : 10
-     * total_price : 10000.00
+     * num : 1
+     * total_price : 98.00
      * addressid : 0
-     * address : 
+     * address : 广东省云浮市云城区美图秀哈哈
      * uid : 202
-     * phone : 
-     * username : 
-     * pay_type : 0
+     * phone : 15914369252
+     * username : 大熊
+     * pay_type : 1
      * is_del : 0
-     * endtime : 1544515685
+     * endtime : 1547024506
      * pay_status : 0
      * courier : 
-     * dis_type : null
-     * sellerid : 214
+     * dis_type : 2
+     * sellerid : 0
      * attribute : null
      * pay_time : null
-     * yj_status : 1
+     * yj_status : 0
      * c_type : 0
-     * goods : [{"goodsid":"46","price":"1000","goodsname":"天美纪雪肌赋活水","num":"10","danwei":"个","cover":"http://qkmimages.img-cn-shenzhen.aliyuncs.com/Uploads/imgs/20181116/1542348908176.jpg","gid":"0","specifications":"","specificationsname":""}]
+     * station_num : 0
+     * total_station_num : 0
+     * dis_name : 顺丰快递
+     * dis_price : 10.00
+     * money : null
+     * lname : null
+     * goods : [{"goodsid":"47","price":98,"goodsname":"天美纪寡肽修护面膜","num":"1","danwei":"","cover":"http://qkmimages.img-cn-shenzhen.aliyuncs.com/Uploads/imgs/20181116/15423527616887.jpg","gid":"0","status":null,"specifications":"","specificationsname":""}]
      */
 
     private String id;
@@ -62,28 +69,15 @@ public class MineOrderListBean implements Serializable{
     private String sellerid;
     private String attribute;
     private String pay_time;
-    private String lname;
-    private String lid;//0为没有使用优惠券
-
-    public void setLid(String lid) {
-        this.lid = lid;
-    }
-
-    public String getLid() {
-        return lid;
-    }
-
     private String yj_status;
     private String c_type;
+    private String station_num;
+    private String total_station_num;
+    private String dis_name;
+    private String dis_price;
+    private String money;
+    private String lname;
     private List<GoodsBean> goods;
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
 
     public String getId() {
         return id;
@@ -285,6 +279,54 @@ public class MineOrderListBean implements Serializable{
         this.c_type = c_type;
     }
 
+    public String getStation_num() {
+        return station_num;
+    }
+
+    public void setStation_num(String station_num) {
+        this.station_num = station_num;
+    }
+
+    public String getTotal_station_num() {
+        return total_station_num;
+    }
+
+    public void setTotal_station_num(String total_station_num) {
+        this.total_station_num = total_station_num;
+    }
+
+    public String getDis_name() {
+        return dis_name;
+    }
+
+    public void setDis_name(String dis_name) {
+        this.dis_name = dis_name;
+    }
+
+    public String getDis_price() {
+        return dis_price;
+    }
+
+    public void setDis_price(String dis_price) {
+        this.dis_price = dis_price;
+    }
+
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
     public List<GoodsBean> getGoods() {
         return goods;
     }
@@ -294,38 +336,29 @@ public class MineOrderListBean implements Serializable{
     }
 
     public static class GoodsBean implements Serializable{
-
         /**
-         * goodsid : 46
-         * price : 1000
-         * goodsname : 天美纪雪肌赋活水
-         * num : 10
-         * danwei : 个
-         * cover : http://qkmimages.img-cn-shenzhen.aliyuncs.com/Uploads/imgs/20181116/1542348908176.jpg
+         * goodsid : 47
+         * price : 98
+         * goodsname : 天美纪寡肽修护面膜
+         * num : 1
+         * danwei : 
+         * cover : http://qkmimages.img-cn-shenzhen.aliyuncs.com/Uploads/imgs/20181116/15423527616887.jpg
          * gid : 0
+         * status : null
          * specifications : 
          * specificationsname : 
          */
 
         private String goodsid;
-        private String price;
+        private double price;
         private String goodsname;
         private String num;
         private String danwei;
         private String cover;
         private String gid;
+        private String status;
         private String specifications;
         private String specificationsname;
-        private String status;//0未评价1已评价
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
         private String order_no;
 
         public void setOrder_no(String order_no) {
@@ -344,11 +377,11 @@ public class MineOrderListBean implements Serializable{
             this.goodsid = goodsid;
         }
 
-        public String getPrice() {
+        public double getPrice() {
             return price;
         }
 
-        public void setPrice(String price) {
+        public void setPrice(double price) {
             this.price = price;
         }
 
@@ -390,6 +423,14 @@ public class MineOrderListBean implements Serializable{
 
         public void setGid(String gid) {
             this.gid = gid;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
 
         public String getSpecifications() {

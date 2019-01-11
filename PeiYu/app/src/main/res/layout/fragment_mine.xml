@@ -126,7 +126,7 @@
                             android:id="@+id/m1_num_tv"
                             style="@style/text10colorWhite"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/d_20dp"
+                            android:layout_marginRight="@dimen/d_10dp"
                             android:background="@drawable/order_num"
                             android:gravity="center"
                             android:visibility="gone" />
@@ -151,7 +151,7 @@
                             android:id="@+id/m2_num_tv"
                             style="@style/text10colorWhite"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/d_20dp"
+                            android:layout_marginRight="@dimen/d_10dp"
                             android:background="@drawable/order_num"
                             android:gravity="center"
                             android:visibility="gone" />
@@ -199,7 +199,7 @@
                             android:id="@+id/m4_num_tv"
                             style="@style/text10colorWhite"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/d_20dp"
+                            android:layout_marginRight="@dimen/d_10dp"
                             android:background="@drawable/order_num"
                             android:gravity="center"
                             android:visibility="gone" />
@@ -223,7 +223,7 @@
                             android:id="@+id/m5_num_tv"
                             style="@style/text10colorWhite"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/d_20dp"
+                            android:layout_marginRight="@dimen/d_10dp"
                             android:background="@drawable/order_num"
                             android:gravity="center"
                             android:visibility="gone" />
@@ -273,7 +273,7 @@
                         android:id="@+id/m9_tv"
                         style="@style/mine_text_style"
                         android:drawableTop="@mipmap/mine9"
-                        android:text="成为经销商" />
+                        android:text="@string/become_distributor" />
 
                 </LinearLayout>
 
@@ -308,7 +308,7 @@
                         android:id="@+id/m11_tv"
                         style="@style/mine_text_style"
                         android:drawableTop="@mipmap/mine11"
-                        android:text="我的地址" />
+                        android:text="@string/my_address" />
 
                     <TextView
                         android:id="@+id/m12_tv"

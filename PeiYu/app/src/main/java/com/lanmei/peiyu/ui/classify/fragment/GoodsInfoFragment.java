@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
@@ -12,7 +14,10 @@ import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.lanmei.peiyu.R;
+import com.lanmei.peiyu.adapter.GoodsCommentAdapter;
+import com.lanmei.peiyu.bean.GoodsCommentBean;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
+import com.lanmei.peiyu.event.OnlyCommentEvent;
 import com.lanmei.peiyu.ui.classify.activity.GoodsDetailsActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.lanmei.peiyu.view.SlideDetailsLayout;
@@ -33,7 +38,7 @@ import butterknife.OnClick;
 /**
  * 商品
  */
-public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayout.OnSlideDetailsListener{
+public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayout.OnSlideDetailsListener {
 
 
     @InjectView(R.id.banner)
@@ -58,8 +63,12 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
     TextView nameTv;
     @InjectView(R.id.price_tv)
     TextView priceTv;
+    @InjectView(R.id.all_comment_tv)
+    TextView allCommentTv;
     @InjectView(R.id.comment_num_tv)
     FormatTextView commentNumTv;
+    @InjectView(R.id.recyclerView)
+    RecyclerView recyclerView;//评论
 
     private GoodsConfigFragment goodsConfigFragment;
     private GoodsInfoWebFragment goodsInfoWebFragment;
@@ -103,12 +112,13 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         setParameter();
         initView();
         initTabView();
-        CommonUtils.setBanner(banner,bean.getImgs(),true);//商品轮播图
+        CommonUtils.setBanner(banner, bean.getImgs(), true);//商品轮播图
     }
 
     private void setParameter() {
         nameTv.setText(bean.getGoodsname());
         priceTv.setText(String.format(context.getString(R.string.price), bean.getSale_price()));
+        commentNumTv.setTextValue(bean.getComments());
     }
 
     private void initTabView() {
@@ -134,7 +144,6 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         //默认显示商品详情tab
         getChildFragmentManager().beginTransaction().replace(R.id.frameLayout_content, currFragment).commitAllowingStateLoss();
     }
-
 
 
     private void scrollCursor() {
@@ -165,7 +174,7 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         ButterKnife.reset(this);
     }
 
-    @OnClick({R.id.goods_detail, R.id.goods_config,R.id.after_sale,R.id.fab_up,R.id.pull_up_view})
+    @OnClick({R.id.goods_detail, R.id.goods_config, R.id.after_sale, R.id.fab_up, R.id.pull_up_view, R.id.all_comment_tv})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.goods_detail: //商品详情tab
@@ -193,17 +202,22 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
             case R.id.pull_up_view://上拉查看图文详情
                 slideDetailsLayout.smoothOpen(true);
                 break;
+            case R.id.all_comment_tv://查看所有评论
+                activity.toCommentPager();
+                break;
         }
     }
 
-    //只设置显示一个评论item
+    //只设置显示num个评论item
     @Subscribe(sticky = true)
-    public void showOnlyComment(Object event) {
-//        GoodsCommentAdapter adapter = new GoodsCommentAdapter(context);
-//        adapter.setOnlyItem(true);
-//        adapter.setData(event.getList());
-//        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//        recyclerView.setAdapter(adapter);
+    public void showOnlyComment(OnlyCommentEvent event) {//allCommentTv
+        List<GoodsCommentBean> list = event.getList();
+        allCommentTv.setVisibility(StringUtils.isEmpty(list)?View.GONE:View.VISIBLE);
+        GoodsCommentAdapter adapter = new GoodsCommentAdapter(context);
+        adapter.setOnlyItem(true, 2);
+        adapter.setData(event.getList());
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

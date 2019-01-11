@@ -2,15 +2,91 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/v_all_match_parent_no"
+    style="@style/v_all_match_parent"
     tools:context="com.lanmei.peiyu.ui.home.activity.MapActivity">
 
     <include layout="@layout/include_centertitletoolbar"/>
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:layout_margin="@dimen/d_10dp"
+        android:orientation="horizontal">
+
+        <AutoCompleteTextView
+            android:id="@+id/searchkey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:padding="@dimen/d_5dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/d_10dp"
+            android:paddingTop="@dimen/d_5dp"
+            android:paddingBottom="@dimen/d_5dp"
+            android:paddingLeft="@dimen/d_10dp"
+            android:src="@mipmap/icon_search" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lng_tv"
+        android:paddingLeft="@dimen/d_10dp"
+        android:paddingBottom="@dimen/d_5dp"
+        style="@style/text12color666" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/mapview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/img_location_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d_12dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/icon_location_select" />
+
+        <ImageView
+            android:id="@+id/img_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/d_10dp"
+            android:src="@mipmap/location" />
+
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 </LinearLayout>

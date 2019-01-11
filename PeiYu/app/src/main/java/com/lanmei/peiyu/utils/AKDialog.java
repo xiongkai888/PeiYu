@@ -69,6 +69,7 @@ public class AKDialog {
         if (!TextUtils.isEmpty(msg)) {
             builder.setMessage(msg);
         }
+        builder.setCancelable(false);
         builder.setPositiveButton("确定", okListener);
         return builder;
     }
@@ -76,8 +77,7 @@ public class AKDialog {
     /**
      * 确认对话框
      */
-    public static AlertDialog.Builder getConfirmDialog(Context context, String msg,
-                                                       DialogInterface.OnClickListener okListener) {
+    public static AlertDialog.Builder getConfirmDialog(Context context, String msg, DialogInterface.OnClickListener okListener) {
         return getConfirmDialog(context, null, msg, okListener, null);
     }
 

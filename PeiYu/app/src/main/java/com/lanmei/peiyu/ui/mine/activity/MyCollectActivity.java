@@ -53,9 +53,7 @@ public class MyCollectActivity extends BaseActivity {
         actionbar.setTitle("资讯收藏");
         actionbar.setHomeAsUpIndicator(R.mipmap.back);
 
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
+        EventBus.getDefault().register(this);
 
 //        mViewPager.setAdapter(new MyCollectAdapter(getSupportFragmentManager()));
 //        mViewPager.setOffscreenPageLimit(2);

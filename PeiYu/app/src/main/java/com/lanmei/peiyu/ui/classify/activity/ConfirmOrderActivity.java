@@ -41,6 +41,7 @@ import com.xson.common.widget.FormatTextView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,18 +71,18 @@ public class ConfirmOrderActivity extends BaseActivity {
 //    @InjectView(R.id.ll_coupon)
 //    LinearLayout llCoupon;//是否隐藏优惠券
     @InjectView(R.id.goods_price_tv)
-    TextView goodsPriceTv;//总的商品价格（扣除优惠券前）
+    TextView goodsPriceTv;//总的商品价格（扣除运费前）
     @InjectView(R.id.price_tv)
-    FormatTextView priceTv;//总的商品价格（扣除优惠券后）
+    FormatTextView priceTv;//总的商品价格（扣除运费后）
     @InjectView(R.id.recyclerViewShop)
     RecyclerView recyclerViewShop;//商品列表
     private List<ShopCarBean> list;//提交的商品列表
     private List<DistributionBean> distributionBeanList;//配送列表
+    private DistributionBean distributionBean;//选择的配送方式
     private OptionPicker picker;//
     private AddressListBean addressBean;//地址信息
     private List<AddressListBean> addressListBeans;
     private int type = -10;
-    private String distributionID;//配送id
     private int goodsNum;
     private double price;//
 
@@ -122,7 +123,7 @@ public class ConfirmOrderActivity extends BaseActivity {
 
         price = getPrice();
 
-        String s = String.format("%.1f", price);
+        String s = String.format("%.2f", price);
 
         priceTv.setTextValue(s);
         goodsPriceTv.setText(String.format(getString(R.string.price), s));
@@ -156,8 +157,10 @@ public class ConfirmOrderActivity extends BaseActivity {
         picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
             @Override
             public void onOptionPicked(int index, String item) {
-                distributionID = distributionBeanList.get(index).getId();
-                distributionTv.setText(item);
+                distributionBean = distributionBeanList.get(index);
+                distributionTv.setText(item+"\u3000"+String.format(getString(R.string.price),distributionBean.getFree()));
+
+                priceTv.setTextValue(String.format("%.2f", (price +Double.valueOf(distributionBean.getFree()))));
             }
         });
     }
@@ -220,7 +223,10 @@ public class ConfirmOrderActivity extends BaseActivity {
         }
         switch (view.getId()) {
             case R.id.ll_address:
-                IntentUtil.startActivity(this, AddressListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("list",(Serializable) addressListBeans);
+                bundle.putString("title","选择收货地址");
+                IntentUtil.startActivity(this, AddressListActivity.class,bundle);
                 break;
             case R.id.submit_order_tv://提交订单
                 submitOrder();
@@ -240,7 +246,7 @@ public class ConfirmOrderActivity extends BaseActivity {
             UIHelper.ToastMessage(this, R.string.choose_address);
             return;
         }
-        if (StringUtils.isEmpty(distributionID)) {
+        if (StringUtils.isEmpty(distributionBean)) {
             UIHelper.ToastMessage(this, "请选择配送方式");
             return;
         }
@@ -264,7 +270,8 @@ public class ConfirmOrderActivity extends BaseActivity {
         api.addParams("pay_type", type).addParams("uid", api.getUserId(this)).addParams("goodsid", goodsidBuilder.toString())
                 .addParams("goodsname", goodsnameBuilder.toString()).addParams("num", numBuilder.toString()).addParams("username", addressBean.getAccept_name())
                 .addParams("phone", addressBean.getMobile()).addParams("address", addressBean.getAddress())
-                .addParams("dis_type", distributionID).addParams("gid", gidBuilder.toString());
+                .addParams("dis_type", distributionBean.getId()).addParams("dis_name",distributionBean.getClassname()).addParams("dis_price",distributionBean.getFree())
+                .addParams("gid", gidBuilder.toString());
         HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<DataBean<Integer>>() {
             @Override
             public void onResponse(DataBean<Integer> response) {
@@ -344,7 +351,7 @@ public class ConfirmOrderActivity extends BaseActivity {
                 addressListBeans = response.data;
                 if (!StringUtils.isEmpty(addressListBeans)) {
                     for (AddressListBean bean : addressListBeans) {
-                        if (!StringUtils.isEmpty(bean) && StringUtils.isSame(CommonUtils.isOne, bean.getDefaultX())) {
+                        if (!StringUtils.isEmpty(bean) && StringUtils.isSame(CommonUtils.isOne, bean.getDefaultX())) {//获取默认地址
                             chooseAddress(bean);
                             return;
                         }
@@ -362,7 +369,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         addressTv.setText(bean.getAddress());
     }
 
-    //支付宝微信支付成功调用
+    //点击选择地址的时候调用
     @Subscribe
     public void chooseAddressEvent(ChooseAddressEvent event) {
         chooseAddress(event.getBean());

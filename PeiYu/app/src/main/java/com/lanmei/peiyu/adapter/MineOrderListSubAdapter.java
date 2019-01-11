@@ -54,7 +54,7 @@ public class MineOrderListSubAdapter extends SwipeRefreshAdapter<MineOrderListBe
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtil.startActivity(context, OrderDetailsActivity.class);
+                IntentUtil.startActivity(context, OrderDetailsActivity.class,orderListBean.getId());
             }
         });
     }
@@ -70,8 +70,8 @@ public class MineOrderListSubAdapter extends SwipeRefreshAdapter<MineOrderListBe
         TextView specificationsNameTv;
         @InjectView(R.id.price_num_tv)
         TextView priceNumTv;
-        @InjectView(R.id.comment_tv)//晒单评价按钮
-                TextView commentTv;
+        @InjectView(R.id.comment_tv)
+        TextView commentTv;//晒单评价按钮
 
         ViewHolder(View view) {
             super(view);
@@ -82,7 +82,7 @@ public class MineOrderListSubAdapter extends SwipeRefreshAdapter<MineOrderListBe
             bean.setOrder_no(orderListBean.getOrder_no());
             ImageHelper.load(context, bean.getCover(), itemsIconIv, null, true, R.mipmap.default_pic, R.mipmap.default_pic);
             titleTv.setText(bean.getGoodsname());
-            priceNumTv.setText(String.format(context.getString(R.string.goods_price_and_num), bean.getPrice(), bean.getNum()));
+            priceNumTv.setText(String.format(context.getString(R.string.goods_price_and_num), bean.getPrice()+"", bean.getNum()));
             specificationsNameTv.setText(com.xson.common.utils.StringUtils.isEmpty(bean.getSpecifications()) ? "" : bean.getSpecifications());
             if (StringUtils.isSame(CommonUtils.isZero, bean.getStatus())) {//去评价(0未评价1已评价)
                 commentTv.setVisibility(View.VISIBLE);
@@ -90,8 +90,8 @@ public class MineOrderListSubAdapter extends SwipeRefreshAdapter<MineOrderListBe
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("bean",bean);
-                        IntentUtil.startActivity(context, OrderCommentActivity.class,bundle);
+                        bundle.putSerializable("bean", bean);
+                        IntentUtil.startActivity(context, OrderCommentActivity.class, bundle);
                     }
                 });
             } else {

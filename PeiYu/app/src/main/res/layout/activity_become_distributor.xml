@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent"
+    tools:context=".ui.mine.activity.BecomeDistributorActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/v_all_match_parent">
+
+            <TextView
+                android:id="@+id/content_tv"
+                style="@style/text14color666"
+                android:lineSpacingExtra="@dimen/d_3dp"
+                android:padding="@dimen/d_10dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

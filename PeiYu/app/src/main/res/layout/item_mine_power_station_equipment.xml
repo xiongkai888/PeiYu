@@ -4,13 +4,14 @@
     android:padding="@dimen/d_10dp">
 
   <TextView
-      android:text="安装信息"
+      android:id="@+id/name_tv"
       android:layout_marginLeft="@dimen/d_8dp"
      style="@style/text_weight"/>
 
   <TextView
-      android:text="功率1000kw"
+      android:id="@+id/setval_tv"
       android:gravity="center_vertical"
+      android:layout_marginLeft="@dimen/d_5dp"
       android:drawableRight="@mipmap/in_right"
      style="@style/text12color666"/>
 

@@ -47,7 +47,7 @@ public class MineOrderListAdapter extends SwipeRefreshAdapter<MineOrderListBean>
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtil.startActivity(context, OrderDetailsActivity.class);
+                IntentUtil.startActivity(context, OrderDetailsActivity.class,bean.getId());
             }
         });
     }

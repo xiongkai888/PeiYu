@@ -43,15 +43,15 @@ public class HomeFragment extends BaseFragment {
         smartSwipeRefreshLayout.setAdapter(adapter);
         SwipeRefreshController<NoPageListBean<NewsListBean>> controller = new SwipeRefreshController<NoPageListBean<NewsListBean>>(context, smartSwipeRefreshLayout, api, adapter) {
             @Override
-            public boolean onSuccessResponse(NoPageListBean<NewsListBean> response) {
-                return super.onSuccessResponse(response);
+            public void onRefreshResponse(NoPageListBean<NewsListBean> response) {
+                super.onRefreshResponse(response);
+                loadAd(1);//轮播图
+                loadAd(2);//推荐图
+                loadClassList();   //首页分类(模拟收益、资料录入等)
             }
         };
         controller.loadFirstPage();
         adapter.notifyDataSetChanged();
-        loadAd(1);
-        loadAd(2);
-        loadClassList();   //首页分类(模拟收益、资料录入等)
         loadRecommendGoods();  //推荐商品
     }
 

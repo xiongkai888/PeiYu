@@ -1,9 +1,9 @@
 package com.lanmei.peiyu.webviewpage;
 
 import android.content.Context;
+import android.content.Intent;
 
-import com.lanmei.peiyu.utils.CommonUtils;
-
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -21,9 +21,10 @@ public class MJavascriptInterface {
 
     @android.webkit.JavascriptInterface
     public void openImage(String img) {
-        CommonUtils.showPhotoBrowserActivity(context,imageUrls,img);
-//        for (int i = 0; i < imageUrls.length; i++) {
-//            Log.e("imageSrcList"+i,"图片地址："+imageUrls[i].toString()+",img = "+img);
-//        }
+        Intent intent = new Intent();
+        intent.putExtra("imageUrls", (Serializable) imageUrls);
+        intent.putExtra("curImageUrl", img);
+        intent.setClass(context, PhotoBrowserActivity.class);
+        context.startActivity(intent);
     }
 }

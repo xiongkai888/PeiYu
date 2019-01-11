@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        style="@style/text"
+        android:layout_marginBottom="@dimen/d_20dp"
+        android:src="@mipmap/icon_shopping_null_sub" />
+
+    <TextView
+        style="@style/text"
+        android:gravity="center_horizontal"
+        android:text="购物车中没有商品"
+        android:textColor="@color/color999"
+        android:layout_marginBottom="@dimen/d_80dp"
+        android:textSize="@dimen/txt_18sp" />
+
+</LinearLayout>

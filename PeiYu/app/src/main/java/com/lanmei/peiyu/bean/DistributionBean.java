@@ -16,6 +16,13 @@ public class DistributionBean {
     private String id;
     private String classname;
     private String setval;
+    /**
+     * free_shipping : 500.00
+     * free : 15.00
+     */
+
+    private String free_shipping;
+    private String free;
 
     public String getId() {
         return id;
@@ -39,5 +46,21 @@ public class DistributionBean {
 
     public void setSetval(String setval) {
         this.setval = setval;
+    }
+
+    public String getFree_shipping() {
+        return free_shipping;
+    }
+
+    public void setFree_shipping(String free_shipping) {
+        this.free_shipping = free_shipping;
+    }
+
+    public String getFree() {
+        return free;
+    }
+
+    public void setFree(String free) {
+        this.free = free;
     }
 }
