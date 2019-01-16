@@ -29,7 +29,7 @@
                 android:drawableRight="@mipmap/in_right"
                 android:gravity="center_vertical"
                 android:padding="@dimen/d_10dp"
-                android:text="帮助信息"
+                android:text="@string/help_info"
                 android:textColor="@color/color333" />
 
             <TextView
@@ -39,7 +39,7 @@
                 android:drawableRight="@mipmap/in_right"
                 android:gravity="center_vertical"
                 android:padding="@dimen/d_10dp"
-                android:text="关于我们"
+                android:text="@string/about_us"
                 android:textColor="@color/color333" />
 
 

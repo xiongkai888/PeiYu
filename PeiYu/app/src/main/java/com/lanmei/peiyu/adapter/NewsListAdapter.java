@@ -47,7 +47,9 @@ public class NewsListAdapter extends SwipeRefreshAdapter<NewsListBean> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtil.startActivity(context, NewsDetailsActivity.class, bean.getId());
+                if (CommonUtils.isLogin(context)){
+                    IntentUtil.startActivity(context, NewsDetailsActivity.class,bean.getId());
+                }
             }
         });
     }

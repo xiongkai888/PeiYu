@@ -9,6 +9,7 @@
 
 
     <TextView
+        android:id="@+id/classify_tv"
         style="@style/text"
         android:drawableRight="@mipmap/icon_classify"
         android:paddingLeft="@dimen/d_5dp"
@@ -24,14 +25,15 @@
         android:drawableLeft="@mipmap/icon_search"
         android:drawablePadding="@dimen/d_3dp"
         android:hint="@string/input_keyword"
+        android:layout_marginRight="@dimen/d_10dp"
         android:padding="@dimen/d_5dp"
         android:textSize="@dimen/txt_12sp" />
 
 
     <TextView
+        android:id="@+id/menu_tv"
         style="@style/text"
         android:drawableRight="@mipmap/icon_message"
-        android:paddingLeft="@dimen/d_10dp"
         android:paddingRight="@dimen/d_5dp" />
 
 </LinearLayout>

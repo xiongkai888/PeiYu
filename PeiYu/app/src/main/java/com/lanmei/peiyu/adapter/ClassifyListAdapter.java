@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.ClassifyTabBean;
 import com.lanmei.peiyu.ui.classify.activity.ClassifyGoodsListActivity;
+import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.adapter.SwipeRefreshAdapter;
-import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.widget.CircleImageView;
 
@@ -63,7 +63,7 @@ public class ClassifyListAdapter extends SwipeRefreshAdapter<ClassifyTabBean.Chi
 
         public void setParameter(final ClassifyTabBean.ChildBean bean) {
             nameTv.setText(bean.getName());
-            ImageHelper.load(context, bean.getPic(), picIv, null, true, R.mipmap.default_pic, R.mipmap.default_pic);
+            CommonUtils.loadImage(context,picIv,bean.getPic());
         }
     }
 

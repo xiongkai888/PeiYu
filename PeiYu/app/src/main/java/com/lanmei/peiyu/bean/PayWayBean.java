@@ -25,6 +25,15 @@ public class PayWayBean {
 
     private String id;
     private String c_name;
+    private String pic;
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    public String getPic() {
+        return pic;
+    }
 
     public String getId() {
         return id;

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.PayWayBean;
+import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.adapter.SwipeRefreshAdapter;
 import com.xson.common.utils.StringUtils;
 
@@ -49,6 +50,8 @@ public class PayWayAdapter extends SwipeRefreshAdapter<PayWayBean> {
         TextView nameTv;
         @InjectView(R.id.pay_iv)
         ImageView payIv;
+        @InjectView(R.id.pic_iv)
+        ImageView picIv;
 
         ViewHolder(View view) {
             super(view);
@@ -56,14 +59,17 @@ public class PayWayAdapter extends SwipeRefreshAdapter<PayWayBean> {
         }
 
         public void setParameter(final PayWayBean bean, int position) {
-            nameTv.setText(bean.getC_name());
+            String balance = "";//余额
+            if (StringUtils.isSame("6",bean.getId())){
+                balance = " (￥"+CommonUtils.getMoney(context)+")";
+            }
+            nameTv.setText(bean.getC_name()+balance);
+            CommonUtils.loadImage(context,picIv,bean.getPic());
             if (bean.isChoose()) {
                 payIv.setBackground(context.getResources().getDrawable(R.mipmap.choose_on));
+                index = position;
             } else {
                 payIv.setBackground(context.getResources().getDrawable(R.mipmap.choose_off));
-            }
-            if (bean.isChoose()){
-                index = position;
             }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

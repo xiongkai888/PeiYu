@@ -98,6 +98,23 @@
                 android:paddingBottom="@dimen/d_12dp"
                 android:paddingTop="@dimen/d_12dp"
                 android:paddingLeft="@dimen/d_10dp"
+                android:text="货运方式" />
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewTransport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+            <TextView style="@style/line_H10dp_on" />
+
+            <TextView
+                style="@style/match_parent"
+                android:paddingBottom="@dimen/d_12dp"
+                android:paddingTop="@dimen/d_12dp"
+                android:paddingLeft="@dimen/d_10dp"
                 android:text="结算详情" />
 
             <TextView style="@style/line_H1dp_divider" />
@@ -132,6 +149,28 @@
                     style="@style/text14color999"
                     android:layout_marginLeft="@dimen/d_5dp"
                     android:layout_weight="1"
+                    android:text="运费" />
+
+                <TextView
+                    android:id="@+id/transport_price_tv"
+                    style="@style/text12colorRed"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:text="￥0" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/line_H1dp_divider"
+                android:layout_marginLeft="@dimen/d_15dp" />
+
+            <LinearLayout
+                style="@style/h_match_parent_no"
+                android:padding="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text14color999"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:layout_weight="1"
                     android:text="商品金额" />
 
                 <TextView
@@ -139,29 +178,6 @@
                     style="@style/text14colorRed"
                     android:layout_marginLeft="@dimen/d_5dp"
                     android:text="￥0" />
-
-            </LinearLayout>
-
-            <TextView style="@style/line_H10dp_on" />
-
-            <LinearLayout
-                android:id="@+id/ll_distribution"
-                style="@style/ll_bottom_h">
-
-                <TextView
-                    style="@style/text_weight"
-                    android:paddingBottom="@dimen/d_12dp"
-                    android:paddingTop="@dimen/d_12dp"
-                    android:layout_marginLeft="@dimen/d_10dp"
-                    android:text="配送方式" />
-
-                <TextView
-                    android:id="@+id/distribution_tv"
-                    style="@style/text"
-                    android:layout_marginRight="@dimen/d_12dp"
-                    android:drawableRight="@mipmap/in_right"
-                    android:gravity="center_vertical|right"
-                    android:hint="请选择配送方式" />
 
             </LinearLayout>
 

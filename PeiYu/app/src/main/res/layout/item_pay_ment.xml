@@ -5,9 +5,15 @@
     android:padding="@dimen/d_10dp">
 
 
+    <ImageView
+        android:id="@+id/pic_iv"
+        android:layout_width="@dimen/d_40dp"
+        android:layout_height="@dimen/d_40dp" />
+
     <TextView
         android:id="@+id/name_tv"
         style="@style/text_weight"
+        android:layout_marginLeft="@dimen/d_5dp"
         android:text="@string/app_name" />
 
 

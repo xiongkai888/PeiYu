@@ -134,7 +134,7 @@ public class AddShopCarDialogFragment extends DialogFragment {
                 priceTvTv.setText(String.format(getString(R.string.price), business_price));
 
                 numTv.setText(String.format(getString(R.string.inventory), bean.getInventory()));
-                detailsBean.setPrice(business_price);//规格不变同价格不同
+                detailsBean.setBusiness_price(business_price);//规格不变同价格不同
                 detailsBean.setSpecifications(bean.getSpecifications());
                 detailsBean.setGid(bean.getId());
             }
@@ -215,7 +215,7 @@ public class AddShopCarDialogFragment extends DialogFragment {
         bean.setGoodsCount(orderNum);
         bean.setGoodsImg(detailsBean.getCover());
         bean.setSpecifications(detailsBean.getSpecifications());
-        bean.setSell_price(Double.parseDouble(detailsBean.getPrice()));
+        bean.setSell_price(Double.parseDouble(detailsBean.getBusiness_price()));
         list.add(bean);
 
         Bundle bundle = new Bundle();

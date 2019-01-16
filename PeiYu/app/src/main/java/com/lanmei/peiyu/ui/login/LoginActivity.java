@@ -1,5 +1,6 @@
 package com.lanmei.peiyu.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.text.InputType;
@@ -14,6 +15,9 @@ import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.event.RegisterEvent;
 import com.lanmei.peiyu.event.SetUserInfoEvent;
 import com.lanmei.peiyu.utils.CommonUtils;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseActivity;
 import com.xson.common.bean.DataBean;
@@ -23,12 +27,15 @@ import com.xson.common.helper.HttpClient;
 import com.xson.common.helper.SharedAccount;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
+import com.xson.common.utils.UIHelper;
 import com.xson.common.utils.UserHelper;
 import com.xson.common.widget.CenterTitleToolbar;
 import com.xson.common.widget.DrawClickableEditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.Map;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -46,6 +53,7 @@ public class LoginActivity extends BaseActivity {
     DrawClickableEditText pwdEt;
     @InjectView(R.id.showPwd_iv)
     ImageView showPwdIv;
+    private UMShareAPI mShareAPI;//友盟第三方登录api
 
     @Override
     public int getContentViewId() {
@@ -64,6 +72,81 @@ public class LoginActivity extends BaseActivity {
         String mobile = SharedAccount.getInstance(this).getPhone();
         phoneEt.setText(mobile);
         EventBus.getDefault().register(this);
+        mShareAPI = UMShareAPI.get(this);
+    }
+
+    private void getUserInfo(SHARE_MEDIA platform) {
+
+        mShareAPI.getPlatformInfo(this, platform, new UMAuthListener() {
+
+            @Override
+            public void onStart(SHARE_MEDIA share_media) {
+//                L.d("impower", "onStart");
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA arg0, int arg1, Throwable arg2) {
+            }
+
+            @Override
+            public void onComplete(SHARE_MEDIA arg0, int arg1, Map<String, String> data) {
+                // 拿到具体数据
+                otherTypeLogin("1", data.get("openid"), data.get("name"),
+                        data.get("iconurl"));
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA arg0, int arg1) {
+
+            }
+        });
+    }
+
+    //第三方登录授权监听
+    private UMAuthListener umAuthListener = new UMAuthListener() {
+
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+            getUserInfo(platform);
+//            UIHelper.ToastMessage(getContext(), getString(R.string.impower_succeed));
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+            UIHelper.ToastMessage(getContext(), getString(R.string.impower_failed));
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            UIHelper.ToastMessage(getContext(), getString(R.string.impower_cancel));
+        }
+    };
+
+
+    protected void otherTypeLogin(String loginType, String openid, String userName, final String userImgUrl) {
+        PeiYuApi api = new PeiYuApi("public/login");
+        api.addParams("open_type",loginType);
+        api.addParams("open_id",openid);
+        api.addParams("nickname",userName);
+        api.addParams("pic",userImgUrl);
+        HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<DataBean<UserBean>>() {
+            @Override
+            public void onResponse(DataBean<UserBean> response) {
+                if (isFinishing()){
+                    return;
+                }
+                UserBean bean = response.data;
+                UserHelper.getInstance(getContext()).saveBean(bean);
+                MainActivity.showHome(getContext());
+                EventBus.getDefault().post(new SetUserInfoEvent(bean));
+                finish();
+            }
+        });
     }
 
     @Override
@@ -83,7 +166,7 @@ public class LoginActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick({R.id.showPwd_iv, R.id.forgotPwd_tv, R.id.login_bt})
+    @OnClick({R.id.showPwd_iv, R.id.forgotPwd_tv, R.id.login_bt,R.id.weixin_iv})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.showPwd_iv://显示密码
@@ -95,10 +178,17 @@ public class LoginActivity extends BaseActivity {
             case R.id.login_bt://登录
                 login();
                 break;
+            case R.id.weixin_iv://维信诺登录
+                doOauthVerify(SHARE_MEDIA.WEIXIN, CommonUtils.isOne);
+                break;
         }
     }
 
-    String phone;
+
+    private void doOauthVerify(SHARE_MEDIA platform, String loginType) {
+        mShareAPI.deleteOauth(this, platform, umAuthListener);
+    }
+    private String phone;
 
     private void login() {
         phone = CommonUtils.getStringByEditText(phoneEt);
@@ -157,6 +247,14 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mShareAPI.get(this).release();
         EventBus.getDefault().unregister(this);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mShareAPI.get(this).onActivityResult(requestCode, resultCode, data);//完成回调
+    }
+
 }

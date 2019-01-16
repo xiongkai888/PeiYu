@@ -4,22 +4,26 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.ClassifyListAdapter;
 import com.lanmei.peiyu.adapter.ClassifyTabAdapter;
 import com.lanmei.peiyu.bean.ClassifyTabBean;
+import com.lanmei.peiyu.ui.classify.activity.SearchGoodsActivity;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
 import com.xson.common.bean.NoPageListBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.widget.SmartSwipeRefreshLayout;
 
 import java.util.List;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Created by xkai on 2018/7/13.
@@ -80,6 +84,19 @@ public class ClassifyFragment extends BaseFragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @OnClick({R.id.classify_tv, R.id.search_tv, R.id.menu_tv})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.classify_tv:
+                break;
+            case R.id.search_tv://搜索资讯
+                IntentUtil.startActivity(context, SearchGoodsActivity.class);
+                break;
+            case R.id.menu_tv:
+                break;
+        }
     }
 
 }

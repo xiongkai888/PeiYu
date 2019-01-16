@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
 import com.lanmei.peiyu.bean.GoodsSpecificationsBean;
@@ -19,6 +18,7 @@ import com.lanmei.peiyu.ui.shopping.shop.ShopCarBean;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.adapter.SwipeRefreshAdapter;
 import com.xson.common.api.PeiYuApi;
+import com.xson.common.app.BaseActivity;
 import com.xson.common.bean.NoPageListBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
@@ -99,7 +99,7 @@ public class HomeRecommendAdapter extends SwipeRefreshAdapter<GoodsDetailsBean> 
         HttpClient.newInstance(context).loadingRequest(api, new BeanRequest.SuccessListener<NoPageListBean<GoodsSpecificationsBean>>() {
             @Override
             public void onResponse(NoPageListBean<GoodsSpecificationsBean> response) {
-                if (((MainActivity) context).isFinishing()) {
+                if (((BaseActivity) context).isFinishing()) {
                     return;
                 }
                 List<GoodsSpecificationsBean> list = response.data;

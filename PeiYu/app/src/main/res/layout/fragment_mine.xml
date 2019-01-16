@@ -267,7 +267,7 @@
                         android:id="@+id/m8_tv"
                         style="@style/mine_text_style"
                         android:drawableTop="@mipmap/mine8"
-                        android:text="在线客服" />
+                        android:text="@string/online_service" />
 
                     <TextView
                         android:id="@+id/m9_tv"

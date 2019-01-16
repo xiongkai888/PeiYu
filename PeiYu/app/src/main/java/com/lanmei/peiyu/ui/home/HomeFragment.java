@@ -1,6 +1,7 @@
 package com.lanmei.peiyu.ui.home;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.HomeAdapter;
@@ -8,16 +9,22 @@ import com.lanmei.peiyu.bean.AdBean;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
 import com.lanmei.peiyu.bean.HomeClassifyBean;
 import com.lanmei.peiyu.bean.NewsListBean;
+import com.lanmei.peiyu.ui.classify.activity.SearchGoodsActivity;
+import com.lanmei.peiyu.ui.home.activity.ClassifyActivity;
+import com.lanmei.peiyu.ui.home.activity.MessageCenterActivity;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
 import com.xson.common.bean.NoPageListBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.helper.SwipeRefreshController;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.widget.SmartSwipeRefreshLayout;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Created by xkai on 2018/7/13.
@@ -38,7 +45,7 @@ public class HomeFragment extends BaseFragment {
     protected void initAllMembersView(Bundle savedInstanceState) {
         smartSwipeRefreshLayout.initWithLinearLayout();
         PeiYuApi api = new PeiYuApi("post/index");
-        api.addParams("cid",5);
+        api.addParams("cid", 5);
         adapter = new HomeAdapter(context);
         smartSwipeRefreshLayout.setAdapter(adapter);
         SwipeRefreshController<NoPageListBean<NewsListBean>> controller = new SwipeRefreshController<NoPageListBean<NewsListBean>>(context, smartSwipeRefreshLayout, api, adapter) {
@@ -57,12 +64,11 @@ public class HomeFragment extends BaseFragment {
 
 
     /**
-     *
      * @param type type  图片类型 （1是头部轮播，2是推荐图）
      */
     private void loadAd(final int type) {
         PeiYuApi api = new PeiYuApi("app/index_img");
-        api.addParams("type",type);//1是头部轮播，2是推荐图(即热门活动)
+        api.addParams("type", type);//1是头部轮播，2是推荐图(即热门活动)
         HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<NoPageListBean<AdBean>>() {
             @Override
             public void onResponse(NoPageListBean<AdBean> response) {
@@ -72,14 +78,15 @@ public class HomeFragment extends BaseFragment {
                 if (StringUtils.isEmpty(response.data)) {
                     return;
                 }
-                if (type == 1){
+                if (type == 1) {
                     adapter.setBannerParameter(response.data);
-                }else {
+                } else {
                     adapter.setRecommendImge(response.data);
                 }
             }
         });
     }
+
     //首页分类(模拟收益、资料录入等)
     private void loadClassList() {
         PeiYuApi api = new PeiYuApi("station/class_list");
@@ -93,10 +100,11 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
+
     //推荐商品
     private void loadRecommendGoods() {
         PeiYuApi api = new PeiYuApi("app/good_list");//热销产品
-        api.addParams("hot",1);
+        api.addParams("hot", 1);
         HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<NoPageListBean<GoodsDetailsBean>>() {
             @Override
             public void onResponse(NoPageListBean<GoodsDetailsBean> response) {
@@ -106,6 +114,27 @@ public class HomeFragment extends BaseFragment {
                 adapter.setRecommendGoods(response.data);
             }
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
+    @OnClick({R.id.classify_tv, R.id.search_tv, R.id.menu_tv})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.classify_tv:
+                IntentUtil.startActivity(context, ClassifyActivity.class);
+                break;
+            case R.id.search_tv:
+                IntentUtil.startActivity(context, SearchGoodsActivity.class);
+                break;
+            case R.id.menu_tv:
+                IntentUtil.startActivity(context, MessageCenterActivity.class);
+                break;
+        }
     }
 
 }

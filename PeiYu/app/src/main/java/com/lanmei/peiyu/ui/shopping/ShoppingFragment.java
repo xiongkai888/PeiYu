@@ -13,14 +13,15 @@ import android.widget.LinearLayout;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.event.PaySucceedEvent;
 import com.lanmei.peiyu.event.RefreshShopCartEvent;
+import com.lanmei.peiyu.ui.classify.activity.ConfirmOrderActivity;
 import com.lanmei.peiyu.ui.shopping.core.IPresenter;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCarAdapter;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCarBean;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCarPresenter;
 import com.lanmei.peiyu.ui.shopping.shop.ShopCartContract;
 import com.lanmei.peiyu.utils.AKDialog;
-import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.app.BaseFragment;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.L;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
@@ -31,6 +32,7 @@ import com.xson.common.widget.SmartSwipeRefreshLayout;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.InjectView;
@@ -170,10 +172,9 @@ public class ShoppingFragment extends BaseFragment implements ShopCartContract.V
     public void onClick() {
         delecteList = mPresenter.getSeletctedCarList();
         if (style == 1) {//1去付款，2删除
-            CommonUtils.developing(context);
-//            Bundle bundle = new Bundle();
-//            bundle.putSerializable("list", (Serializable)delecteList);
-//            IntentUtil.startActivity(getContext(), ConfirmOrderActivity.class, bundle);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("list", (Serializable)delecteList);
+            IntentUtil.startActivity(getContext(), ConfirmOrderActivity.class, bundle);
         } else {
             if (StringUtils.isEmpty(delecteList)) {
                 UIHelper.ToastMessage(context, "请选择要删除的商品");

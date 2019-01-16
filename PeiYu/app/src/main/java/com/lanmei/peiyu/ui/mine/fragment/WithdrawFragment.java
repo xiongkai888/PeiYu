@@ -8,7 +8,11 @@ import android.widget.TextView;
 import com.lanmei.peiyu.PeiYuApp;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.WithdrawCardListBean;
+import com.lanmei.peiyu.event.CardEvent;
 import com.lanmei.peiyu.event.SetUserInfoEvent;
+import com.lanmei.peiyu.ui.mine.activity.BoundKaActivity;
+import com.lanmei.peiyu.ui.mine.activity.ChooseKaActivity;
+import com.lanmei.peiyu.utils.AKDialog;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseFragment;
@@ -17,10 +21,13 @@ import com.xson.common.bean.NoPageListBean;
 import com.xson.common.bean.UserBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
+import com.xson.common.utils.IntentUtil;
+import com.xson.common.utils.L;
 import com.xson.common.utils.SimpleTextWatcher;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
@@ -58,9 +65,9 @@ public class WithdrawFragment extends BaseFragment {
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-//        if (!EventBus.getDefault().isRegistered(this)) {
-//            EventBus.getDefault().register(this);
-//        }
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         CommonUtils.loadUserInfo(PeiYuApp.getInstance(), null);
         ajaxWithdraw();
         moneyEt.addTextChangedListener(new SimpleTextWatcher() {
@@ -69,12 +76,13 @@ public class WithdrawFragment extends BaseFragment {
                 if (StringUtils.isEmpty("" + s)) {
                     withdrawMoney = 0;
                 } else {
-                    withdrawMoney = Double.valueOf(s + "");
+                    withdrawMoney = StringToDouble(s);
                 }
             }
         });
     }
 
+    //获取个人资料时候调用
     @Subscribe
     public void onEventMainThread(SetUserInfoEvent event) {
         UserBean bean = event.getBean();
@@ -105,35 +113,35 @@ public class WithdrawFragment extends BaseFragment {
             }
         });
     }
-//
-//    @Subscribe
-//    public void cardEvent(CardEvent event) {
-//        switch (event.getType()) {
-//            case 1:
-//                bean = event.getBean();
-//                mCardNameTv.setText(bean.getBanks_name());
-//                L.d(L.TAG,"name:"+bean.getBanks_name());
-//                break;
-//            case 2:
-//                ajaxWithdraw();
-//                break;
-//        }
-//    }
+
+    @Subscribe
+    public void cardEvent(CardEvent event) {
+        switch (event.getType()) {
+            case 1:
+                bean = event.getBean();
+                mCardNameTv.setText(bean.getBanks_name());
+                L.d(L.TAG,"name:"+bean.getBanks_name());
+                break;
+            case 2:
+                ajaxWithdraw();
+                break;
+        }
+    }
 
     private void alertDialog() {
-//        AKDialog.getAlertDialog(context, getString(R.string.no_bound_card), new AKDialog.AlertDialogListener() {
-//            @Override
-//            public void yes() {
-//                IntentUtil.startActivity(context, BoundKaActivity.class);
-//            }
-//        });
+        AKDialog.getAlertDialog(context, getString(R.string.no_bound_card), new AKDialog.AlertDialogListener() {
+            @Override
+            public void yes() {
+                IntentUtil.startActivity(context, BoundKaActivity.class);
+            }
+        });
     }
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 
 
@@ -141,31 +149,31 @@ public class WithdrawFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_choose_ka:
-                CommonUtils.developing(context);
-//                IntentUtil.startActivity(context, ChooseKaActivity.class);
+//                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, ChooseKaActivity.class);
                 break;
             case R.id.save_bt:
-                CommonUtils.developing(context);
-//                if (StringUtils.isEmpty(bean)) {
-//                    UIHelper.ToastMessage(context, getString(R.string.choose_bank_card));
-//                    break;
-//                }
-//                String money = CommonUtils.getStringByEditText(moneyEt);
-//                if (StringUtils.isEmpty(money)) {
-//                    UIHelper.ToastMessage(context, "请输入提现金额");
-//                    break;
-//                }
-//                if (withdrawMoney < 100) {
-//                    UIHelper.ToastMessage(context, "提现金额需100元及以上");
-//                    break;
-//                }
-//
-//                AKDialog.getAlertDialog(context, "确定申请提现？", new AKDialog.AlertDialogListener() {
-//                    @Override
-//                    public void yes() {
-//                        withdraw();
-//                    }
-//                });
+//                CommonUtils.developing(context);
+                if (StringUtils.isEmpty(bean)) {
+                    UIHelper.ToastMessage(context, getString(R.string.choose_bank_card));
+                    break;
+                }
+                String money = CommonUtils.getStringByEditText(moneyEt);
+                if (StringUtils.isEmpty(money)) {
+                    UIHelper.ToastMessage(context, "请输入提现金额");
+                    break;
+                }
+                if (withdrawMoney < 100) {
+                    UIHelper.ToastMessage(context, "提现金额需100元及以上");
+                    break;
+                }
+
+                AKDialog.getAlertDialog(context, "确定申请提现？", new AKDialog.AlertDialogListener() {
+                    @Override
+                    public void yes() {
+                        withdraw();
+                    }
+                });
                 break;
             case R.id.add_tv://加钱
                 moneyEt.setText((withdrawMoney + 100) + "");

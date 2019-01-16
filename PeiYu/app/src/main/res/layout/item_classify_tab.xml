@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="@dimen/d_50dp"
     android:id="@+id/voter_rl"
-    style="@style/match_parent">
+    style="@style/match_parent"
+    android:layout_height="@dimen/d_50dp">
 
     <TextView
         android:id="@+id/indicator_tv"
-        android:background="@color/colorPrimaryDark"
         android:layout_width="@dimen/d_3dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_height="match_parent" />
+        android:background="@color/colorPrimaryDark" />
 
     <TextView
         android:id="@+id/name_tv"
-        android:text="A"
+        style="@style/text"
         android:layout_centerInParent="true"
-        style="@style/text" />
+        android:layout_marginLeft="@dimen/d_5dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="A" />
 
 </RelativeLayout>

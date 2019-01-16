@@ -24,6 +24,18 @@ public class DistributionBean {
     private String free_shipping;
     private String free;
 
+
+    private boolean isChoose;
+
+
+    public void setChoose(boolean choose) {
+        isChoose = choose;
+    }
+
+    public boolean isChoose() {
+        return isChoose;
+    }
+
     public String getId() {
         return id;
     }

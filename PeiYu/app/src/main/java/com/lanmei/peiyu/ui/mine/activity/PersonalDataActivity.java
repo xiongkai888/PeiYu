@@ -96,7 +96,7 @@ public class PersonalDataActivity extends BaseActivity {
                     if (isFinishing()) {
                         return;
                     }
-                    loadUpDate(url);
+                    loadUpData(url);
                 }
             });
 
@@ -156,7 +156,7 @@ public class PersonalDataActivity extends BaseActivity {
     }
 
 
-    private void loadUpDate(final String headUrl) {
+    private void loadUpData(final String headUrl) {
         final String name = CommonUtils.getStringByTextView(mNickTv);
         final String qq = CommonUtils.getStringByTextView(mQqTv);//
         final String email =  CommonUtils.getStringByTextView(mMailTv);
@@ -184,20 +184,10 @@ public class PersonalDataActivity extends BaseActivity {
                     return;
                 }
                 UIHelper.ToastMessage(getContext(), response.getInfo());
-                if (!StringUtils.isEmpty(bean)){
-                    bean.setNickname(name);
-                    bean.setQq(qq);
-                    bean.setEmail(email);
-                    bean.setPhone(phone);
-                    bean.setAddress(address);
-                    bean.setSignature(signature);
-                    if (!StringUtils.isEmpty(headUrl)){
-                        bean.setPic(headUrl);
-                        CommonUtils.deleteOssObject(pic);//更新头像后删除从oss删除旧的头像
-                    }
-                    UserHelper.getInstance(PersonalDataActivity.this).saveBean(bean);
-                    CommonUtils.loadUserInfo(PeiYuApp.getInstance(),null);
+                if (!StringUtils.isEmpty(headUrl)){
+                    CommonUtils.deleteOssObject(pic);//更新头像后删除从oss删除旧的头像
                 }
+                CommonUtils.loadUserInfo(PeiYuApp.getInstance(),null);
                 finish();
             }
         });
@@ -237,7 +227,7 @@ public class PersonalDataActivity extends BaseActivity {
 
     private void ajaxSaveDate() {
         if (StringUtils.isSame(cameraHelper.getHeadPathStr(), pic)) {
-            loadUpDate("");
+            loadUpData("");
         } else {
             cameraHelper.execute();
         }

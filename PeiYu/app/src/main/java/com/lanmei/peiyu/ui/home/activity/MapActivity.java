@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
+import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -93,6 +94,7 @@ public class MapActivity extends BaseActivity implements OnGetPoiSearchResultLis
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
+        SDKInitializer.initialize(this);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayShowTitleEnabled(true);
@@ -465,17 +467,17 @@ public class MapActivity extends BaseActivity implements OnGetPoiSearchResultLis
             suggestResult = null;
             return;
         }
-        suggest = new ArrayList<String>();
+        suggest = new ArrayList<>();
         suggestResult = suggestionResult.getAllSuggestions();
         for (SuggestionResult.SuggestionInfo info : suggestionResult.getAllSuggestions()) {
             if (info.key != null) {
                 suggest.add(info.key);
             }
         }
-        sugAdapter = new ArrayAdapter<String>(this, R.layout.item_text, suggest);
+        sugAdapter = new ArrayAdapter<>(this, R.layout.item_text, suggest);
         keyWorldsView.setAdapter(sugAdapter);
         sugAdapter.notifyDataSetChanged();
-        UIHelper.ToastMessage(this, "onGetSuggestionResult");
+//        UIHelper.ToastMessage(this, "onGetSuggestionResult");
     }
 
     @Override

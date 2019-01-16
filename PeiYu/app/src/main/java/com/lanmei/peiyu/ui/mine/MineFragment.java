@@ -8,6 +8,7 @@ import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.bean.NumBean;
 import com.lanmei.peiyu.event.SetUserInfoEvent;
 import com.lanmei.peiyu.ui.classify.activity.AddressListActivity;
+import com.lanmei.peiyu.ui.home.activity.MessageCenterActivity;
 import com.lanmei.peiyu.ui.login.RegisterActivity;
 import com.lanmei.peiyu.ui.mine.activity.AfterSaleOrderActivity;
 import com.lanmei.peiyu.ui.mine.activity.BecomeDistributorActivity;
@@ -26,7 +27,6 @@ import com.xson.common.bean.DataBean;
 import com.xson.common.bean.UserBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
-import com.xson.common.helper.ImageHelper;
 import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UserHelper;
@@ -81,25 +81,22 @@ public class MineFragment extends BaseFragment {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        setNum(m3NumTv,6);
         setUserBean(CommonUtils.getUserBean(context));
     }
 
     private void setUserBean(UserBean userBean) {
         if (userBean == null) {
             nameTv.setText("游客");
-            m01Tv.setText(String.format(context.getString(R.string.my_balance),CommonUtils.isZero));
-            m02Tv.setText(String.format(context.getString(R.string.my_team_sub),CommonUtils.isZero));
-            m03Tv.setText(String.format(context.getString(R.string.my_performance),CommonUtils.isZero));
-            m04Tv.setText(String.format(context.getString(R.string.team_performance),CommonUtils.isZero));
-            m05Tv.setText(String.format(context.getString(R.string.my_power_station),CommonUtils.isZero));
+            String o = CommonUtils.isZero;
+            setString(o,o,o,o,o);
             picIv.setImageResource(R.mipmap.default_pic);
             return;
         }
-        nameTv.setText(userBean.getNickname()+ (StringUtils.isEmpty(userBean.getRidname())?"":(" ("+userBean.getRidname()+")")));
-        ImageHelper.load(context, userBean.getPic(), picIv, null, true, R.mipmap.default_pic, R.mipmap.default_pic);
+        nameTv.setText(userBean.getNickname() + (StringUtils.isEmpty(userBean.getRidname()) ? "" : (" (" + userBean.getRidname() + ")")));
+        CommonUtils.loadImage(context,picIv,userBean.getPic());
     }
 
+    //获取用户信息后调用
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(SetUserInfoEvent event) {
         setUserBean(event.getBean());
@@ -107,27 +104,28 @@ public class MineFragment extends BaseFragment {
 
     /**
      * 设置订单个数
+     *
      * @param textView
      * @param num
      */
-    private void setNum(TextView textView,int num){
-        if (num == 0){
+    private void setNum(TextView textView, int num) {
+        if (num == 0) {
             textView.setVisibility(View.GONE);
-        }else {
+        } else {
             textView.setVisibility(View.VISIBLE);
             textView.setText(String.valueOf(num));
         }
     }
 
 
-    @OnClick({R.id.name_tv,R.id.m_message_iv, R.id.pic_iv, R.id.m01_tv, R.id.m02_tv, R.id.m03_tv, R.id.m04_tv, R.id.m05_tv, R.id.m1_rl, R.id.m2_rl, R.id.m3_rl, R.id.m4_rl, R.id.m5_rl, R.id.m6_tv, R.id.m7_tv, R.id.m8_tv, R.id.m9_tv, R.id.m10_tv, R.id.m11_tv, R.id.m12_tv, R.id.m13_tv})
+    @OnClick({R.id.name_tv, R.id.m_message_iv, R.id.pic_iv, R.id.m01_tv, R.id.m02_tv, R.id.m03_tv, R.id.m04_tv, R.id.m05_tv, R.id.m1_rl, R.id.m2_rl, R.id.m3_rl, R.id.m4_rl, R.id.m5_rl, R.id.m6_tv, R.id.m7_tv, R.id.m8_tv, R.id.m9_tv, R.id.m10_tv, R.id.m11_tv, R.id.m12_tv, R.id.m13_tv})
     public void onViewClicked(View view) {
-        if (!CommonUtils.isLogin(context)){
+        if (!CommonUtils.isLogin(context)) {
             return;
         }
         switch (view.getId()) {
             case R.id.m_message_iv://消息
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, MessageCenterActivity.class);
                 break;
             case R.id.name_tv://
             case R.id.pic_iv://头像
@@ -141,27 +139,36 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.m03_tv://我的业绩
 //                CommonUtils.developing(context);
+//                PeiYuApi api = new PeiYuApi("station/station_list");
+//                api.addParams("uid",api.getUserId(context));
+//                HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<BaseBean>() {
+//                    @Override
+//                    public void onResponse(BaseBean response) {
+//
+//                    }
+//                });
                 break;
             case R.id.m04_tv://团队业绩
 //                CommonUtils.developing(context);
+                CommonUtils.loadUserInfo(context,null);
                 break;
             case R.id.m05_tv://我的电站
                 IntentUtil.startActivity(context, MinePowerStationActivity.class);
                 break;
             case R.id.m1_rl://待付款
-                IntentUtil.startActivity(context,1, MineOrderActivity.class);
+                IntentUtil.startActivity(context, 1, MineOrderActivity.class);
                 break;
             case R.id.m2_rl://待发货
-                IntentUtil.startActivity(context,0, MineOrderActivity.class);
+                IntentUtil.startActivity(context, 0, MineOrderActivity.class);
                 break;
             case R.id.m3_rl://待收货
-                IntentUtil.startActivity(context, 2,MineOrderActivity.class);
+                IntentUtil.startActivity(context, 2, MineOrderActivity.class);
                 break;
             case R.id.m4_rl://待评价
-                IntentUtil.startActivity(context,0, MineOrderActivity.class);
+                IntentUtil.startActivity(context, 0, MineOrderActivity.class);
                 break;
             case R.id.m5_rl://退款/售后
-                IntentUtil.startActivity(context,3, MineOrderActivity.class);
+                IntentUtil.startActivity(context, 3, MineOrderActivity.class);
                 break;
             case R.id.m6_tv://安装信息
                 IntentUtil.startActivity(context, InstallApplyActivity.class);
@@ -170,29 +177,21 @@ public class MineFragment extends BaseFragment {
                 IntentUtil.startActivity(context, AfterSaleOrderActivity.class);
                 break;
             case R.id.m8_tv://在线客服
-                CommonUtils.developing(context);
+                IntentUtil.startActivity(context, BecomeDistributorActivity.class, context.getString(R.string.online_service));
                 break;
             case R.id.m9_tv://成为经销商
-                IntentUtil.startActivity(context, BecomeDistributorActivity.class);
+                IntentUtil.startActivity(context, BecomeDistributorActivity.class, context.getString(R.string.become_distributor));
                 break;
             case R.id.m10_tv://我的收藏
                 IntentUtil.startActivity(context, MyCollectActivity.class);
-//                PeiYuApi api = new PeiYuApi("station/news");
-////                api.addParams("uid",api.getUserId(context));
-//                HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<BaseBean>() {
-//                    @Override
-//                    public void onResponse(BaseBean response) {
-//
-//                    }
-//                });
                 break;
             case R.id.m11_tv://我的地址
                 Bundle bundle = new Bundle();
-                bundle.putString("title",context.getString(R.string.my_address));
-                IntentUtil.startActivity(context, AddressListActivity.class,bundle);
+                bundle.putString("title", context.getString(R.string.my_address));
+                IntentUtil.startActivity(context, AddressListActivity.class, bundle);
                 break;
             case R.id.m12_tv://修改密码
-                IntentUtil.startActivity(context,RegisterActivity.class,CommonUtils.isThree);
+                IntentUtil.startActivity(context, RegisterActivity.class, CommonUtils.isThree);
                 break;
             case R.id.m13_tv://设置
                 IntentUtil.startActivity(context, SettingActivity.class);
@@ -213,32 +212,34 @@ public class MineFragment extends BaseFragment {
             return;
         }
         PeiYuApi api = new PeiYuApi("app/allcount");
-        api.addParams("uid",api.getUserId(context));
+        api.addParams("uid", api.getUserId(context));
         HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<DataBean<NumBean>>() {
             @Override
             public void onResponse(DataBean<NumBean> response) {
-                if (nameTv == null){
+                if (nameTv == null) {
                     return;
                 }
                 NumBean bean = response.data;
-                if (bean == null){
+                if (bean == null) {
                     return;
                 }
-                setNum(m1NumTv,bean.getObligation());
-                setNum(m2NumTv,bean.getPayed());
-                setNum(m3NumTv,bean.getReceiver());
-                setNum(m4NumTv,bean.getAssess());
-                setNum(m5NumTv,bean.getDrawback());
-
-                m01Tv.setText(String.format(context.getString(R.string.my_balance),bean.getMoney()));
-                m02Tv.setText(String.format(context.getString(R.string.my_team_sub),bean.getMy_team()+""));
-                m03Tv.setText(String.format(context.getString(R.string.my_performance),bean.getMy_achievement()+""));
-                m04Tv.setText(String.format(context.getString(R.string.team_performance),bean.getTeam_achievement()+""));
-                m05Tv.setText(String.format(context.getString(R.string.my_power_station),bean.getMy_station()+""));
-
+                setNum(m1NumTv, bean.getObligation());
+                setNum(m2NumTv, bean.getPayed());
+                setNum(m3NumTv, bean.getReceiver());
+                setNum(m4NumTv, bean.getAssess());
+                setNum(m5NumTv, bean.getDrawback());
+                setString(bean.getMoney(),bean.getMy_team() + "",bean.getMy_achievement() + "",bean.getTeam_achievement() + "",bean.getMy_station() + "");
             }
         });
     }
 
+
+    private void setString(String s1,String s2,String s3,String s4,String s5){
+        m01Tv.setText(String.format(context.getString(R.string.my_balance), StringUtils.isEmpty(s1)?"0":s1));
+        m02Tv.setText(String.format(context.getString(R.string.my_team_sub), s2));
+        m03Tv.setText(String.format(context.getString(R.string.my_performance), s3));
+        m04Tv.setText(String.format(context.getString(R.string.team_performance), s4));
+        m05Tv.setText(String.format(context.getString(R.string.my_power_station), s5));
+    }
 
 }

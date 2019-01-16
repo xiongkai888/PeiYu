@@ -13,9 +13,10 @@
 
     <TextView
         android:id="@+id/name_tv"
-        style="@style/text"
+        style="@style/text12color666"
         android:layout_marginTop="@dimen/d_5dp"
         android:ellipsize="end"
+        android:gravity="center_horizontal"
         android:maxLines="2"
         android:text="@string/solar_energy" />
 

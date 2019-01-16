@@ -8,12 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lanmei.peiyu.R;
-import com.lanmei.peiyu.bean.AdBean;
 import com.lanmei.peiyu.bean.EquipmentBean;
+import com.lanmei.peiyu.bean.StationDetailsBean;
 import com.xson.common.adapter.SwipeRefreshAdapter;
 import com.xson.common.widget.FormatTextView;
-
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -93,15 +91,15 @@ public class MinePowerStationEquipmentAdapter extends SwipeRefreshAdapter<Equipm
 
 
         @InjectView(R.id.today_generating_capacity_tv)
-        TextView todayGeneratingCapacityTv;
+        TextView todayGeneratingCapacityTv;//今日发电量
         @InjectView(R.id.power_tv)
-        FormatTextView powerTv;
+        FormatTextView powerTv;//电站功率
         @InjectView(R.id.total_generate_electricity)
-        FormatTextView totalGenerateElectricity;
+        FormatTextView totalGenerateElectricity;//累计发电
         @InjectView(R.id.today_earnings_tv)
-        FormatTextView todayEarningsTv;
+        FormatTextView todayEarningsTv;//今日收益
         @InjectView(R.id.accumulated_earnings_tv)
-        FormatTextView accumulatedEarningsTv;
+        FormatTextView accumulatedEarningsTv;//累计收益
 
         public BannerViewHolder(View view) {
             super(view);
@@ -109,16 +107,20 @@ public class MinePowerStationEquipmentAdapter extends SwipeRefreshAdapter<Equipm
         }
 
 
-        public void setPowerInformation(List<AdBean> list) {
-
+        public void setPowerInformation(StationDetailsBean bean) {
+            todayGeneratingCapacityTv.setText(bean.getCapacity());
+            powerTv.setTextValue(bean.getPower());
+            totalGenerateElectricity.setTextValue(bean.getPower_total());
+            todayEarningsTv.setTextValue(bean.getLucre());
+            accumulatedEarningsTv.setTextValue(bean.getLucre_total());
         }
 
     }
 
     //设置 今日发电量 电站功率、累计发电、今日收益、累计收益 等信息
-    public void setPowerInformation(List<AdBean> list) {
+    public void setPowerInformation(StationDetailsBean bean) {
         if (bannerViewHolder != null)
-            bannerViewHolder.setPowerInformation(list);
+            bannerViewHolder.setPowerInformation(bean);
     }
 
 }

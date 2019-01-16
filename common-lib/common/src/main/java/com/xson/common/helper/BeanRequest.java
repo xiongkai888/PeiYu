@@ -97,9 +97,7 @@ public class BeanRequest<T extends BaseBean> extends MultiPartRequest<T> {
                     File file = (File) value;
                     addFile(entry.getKey(), file.getAbsolutePath());
                 } else {
-//                    addMultipartParam(entry.getKey(), "text/plain", String.valueOf(value));
-//                    L.d("AyncListObjects", "212121212");
-                    mPostParamMap.put(entry.getKey(), String.valueOf(value));
+                    mPostParamMap.put(entry.getKey(), value);
                 }
             }
         }

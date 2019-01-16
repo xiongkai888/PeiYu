@@ -26,7 +26,6 @@ import com.data.volley.error.VolleyError;
 import com.lanmei.peiyu.PeiYuApp;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.BannerHolderView;
-import com.lanmei.peiyu.bean.UserInfoBean;
 import com.lanmei.peiyu.event.SetUserInfoEvent;
 import com.lanmei.peiyu.ui.login.LoginActivity;
 import com.lanmei.peiyu.webviewpage.PhotoBrowserActivity;
@@ -157,22 +156,15 @@ public class CommonUtils {
         return bean.getId();
     }
 
-    //获取 用户类型
-    public static String getUserType(Context context) {
-        UserBean bean = getUserBean(context);
-        if (StringUtils.isEmpty(bean)) {
-            return "";
-        }
-        return bean.getUser_type();
-    }
+
 
     public static UserBean getUserBean(Context context) {
         return UserHelper.getInstance(context).getUserBean();
     }
 
-    public static String getRealName(Context context) {
+    public static String getMoney(Context context) {
         UserBean bean = getUserBean(context);
-        return StringUtils.isEmpty(bean) ? "" : bean.getRealname();
+        return StringUtils.isEmpty(bean) ? "0" : bean.getMoney();
     }
 
 
@@ -402,29 +394,14 @@ public class CommonUtils {
         PeiYuApi api = new PeiYuApi("member/member");
         api.addParams("uid", api.getUserId(context));
         api.setMethod(AbstractApi.Method.GET);
-        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<DataBean<UserInfoBean>>() {
+        HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<DataBean<UserBean>>() {
             @Override
-            public void onResponse(DataBean<UserInfoBean> response) {
+            public void onResponse(DataBean<UserBean> response) {
                 if (context == null) {
                     return;
                 }
-                UserInfoBean userInfoBean = response.data;
-                if (userInfoBean != null) {
-                    UserBean bean = CommonUtils.getUserBean(context);
-                    if (bean == null){
-                        return;
-                    }
-                    bean.setNickname(userInfoBean.getNickname());
-                    bean.setPic(userInfoBean.getPic());
-                    bean.setRealname(userInfoBean.getRealname());
-                    bean.setEmail(userInfoBean.getEmail());
-                    bean.setPhone(userInfoBean.getPhone());
-                    bean.setCustom(userInfoBean.getCustom());
-                    bean.setSignature(userInfoBean.getSignature());
-                    bean.setMoney(userInfoBean.getMoney());
-                    bean.setFiles_img(userInfoBean.getFiles_img());
-                    bean.setRidname(userInfoBean.getRidname());
-                    bean.setRatio(userInfoBean.getRatio());
+                UserBean bean = response.data;
+                if (bean != null) {
                     if (l != null) {
                         l.userInfo(bean);
                     }

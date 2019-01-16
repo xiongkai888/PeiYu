@@ -1,4 +1,4 @@
-package com.lanmei.peiyu.event;
+package com.lanmei.peiyu.update;
 
 /**
  * Created by xkai on 2018/5/31.

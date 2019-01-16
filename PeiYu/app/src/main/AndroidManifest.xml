@@ -2,26 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lanmei.peiyu">
 
-
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 用于读取手机当前的状态 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 访问网络，网络定位需要上网 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".PeiYuApp"
@@ -50,15 +47,36 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
-
         <!-- 百度地图所需的service -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="Ax5AyKSGGORbQQ09ng4UTurBW7KFlkQW" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5c3e9023f1f5562f8f00099b" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="hyphenate" />
+
+        <!-- 微信Pay -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+        <!-- 微信分享 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name=".MainActivity"
@@ -89,7 +107,13 @@
             android:name=".ui.mine.activity.BecomeDistributorActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.mine.activity.ChooseKaActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.mine.activity.ClubActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.BoundKaActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.activity.AfterSaleOrderActivity"
@@ -105,6 +129,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.activity.DataEntryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.ClassifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.AnnouncementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.activity.SimulationIncomeActivity"
@@ -128,6 +161,9 @@
             android:name=".ui.classify.activity.GoodsDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.classify.activity.SearchGoodsActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -138,6 +174,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.news.activity.NewsDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.news.activity.SearchNewsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".webviewpage.PhotoBrowserActivity"
@@ -155,8 +194,14 @@
             android:name=".certificate.CameraActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.home.activity.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.MessageCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:screenOrientation="portrait"
-            android:name=".ui.home.activity.MapActivity"/>
+            android:name=".ui.home.activity.UpgradeActivity"/>
     </application>
 
 </manifest>

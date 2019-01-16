@@ -13,6 +13,7 @@ import com.data.volley.error.VolleyError;
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.adapter.ConfirmOrderAdapter;
 import com.lanmei.peiyu.adapter.PayWayAdapter;
+import com.lanmei.peiyu.adapter.TransportAdapter;
 import com.lanmei.peiyu.alipay.AlipayHelper;
 import com.lanmei.peiyu.bean.AddressListBean;
 import com.lanmei.peiyu.bean.DistributionBean;
@@ -42,12 +43,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
-import cn.qqtheme.framework.picker.OptionPicker;
 
 /**
  * 确认订单
@@ -57,18 +56,16 @@ public class ConfirmOrderActivity extends BaseActivity {
     @InjectView(R.id.toolbar)
     CenterTitleToolbar mToolbar;
     @InjectView(R.id.recyclerView)
-    RecyclerView recyclerView;
+    RecyclerView recyclerView;//支付方式
     @InjectView(R.id.name_tv)
     TextView nameTv;
     @InjectView(R.id.address_tv)
     TextView addressTv;
-    @InjectView(R.id.distribution_tv)
-    TextView distributionTv;
     @InjectView(R.id.coupon_name_tv)
     TextView couponNameTv;//选择的优惠券
     @InjectView(R.id.goods_num_tv)
     TextView goodsNumTv;//商品个数
-//    @InjectView(R.id.ll_coupon)
+    //    @InjectView(R.id.ll_coupon)
 //    LinearLayout llCoupon;//是否隐藏优惠券
     @InjectView(R.id.goods_price_tv)
     TextView goodsPriceTv;//总的商品价格（扣除运费前）
@@ -76,10 +73,12 @@ public class ConfirmOrderActivity extends BaseActivity {
     FormatTextView priceTv;//总的商品价格（扣除运费后）
     @InjectView(R.id.recyclerViewShop)
     RecyclerView recyclerViewShop;//商品列表
+    @InjectView(R.id.recyclerViewTransport)
+    RecyclerView recyclerViewTransport;//货运方式
+    @InjectView(R.id.transport_price_tv)
+    TextView transportPriceTv;//货运费用
     private List<ShopCarBean> list;//提交的商品列表
-    private List<DistributionBean> distributionBeanList;//配送列表
     private DistributionBean distributionBean;//选择的配送方式
-    private OptionPicker picker;//
     private AddressListBean addressBean;//地址信息
     private List<AddressListBean> addressListBeans;
     private int type = -10;
@@ -149,30 +148,6 @@ public class ConfirmOrderActivity extends BaseActivity {
         return price;
     }
 
-    private void initPicker() {
-        picker = new OptionPicker(this, toStringList());
-        picker.setOffset(2);
-        picker.setSelectedIndex(1);
-        picker.setTextSize(16);
-        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
-            @Override
-            public void onOptionPicked(int index, String item) {
-                distributionBean = distributionBeanList.get(index);
-                distributionTv.setText(item+"\u3000"+String.format(getString(R.string.price),distributionBean.getFree()));
-
-                priceTv.setTextValue(String.format("%.2f", (price +Double.valueOf(distributionBean.getFree()))));
-            }
-        });
-    }
-
-
-    private List<String> toStringList() {
-        List<String> list = new ArrayList<>();
-        for (DistributionBean bean : distributionBeanList) {
-            list.add(bean.getClassname());
-        }
-        return list;
-    }
 
     //配送列表
     private void loadDistribution() {
@@ -184,11 +159,27 @@ public class ConfirmOrderActivity extends BaseActivity {
                 if (isFinishing()) {
                     return;
                 }
-                distributionBeanList = response.data;
+                List<DistributionBean> distributionBeanList = response.data;
                 if (StringUtils.isEmpty(distributionBeanList)) {
                     return;
                 }
-                initPicker();
+                TransportAdapter adapter = new TransportAdapter(getContext());
+                adapter.setData(distributionBeanList);
+                recyclerViewTransport.setNestedScrollingEnabled(false);
+                recyclerViewTransport.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerViewTransport.setAdapter(adapter);
+                adapter.setTransportListener(new TransportAdapter.TransportListener() {
+                    @Override
+                    public void transport(DistributionBean bean) {
+                        distributionBean = bean;
+                        transportPriceTv.setText(bean.getClassname() + ": 满" + distributionBean.getFree_shipping() + "免" + distributionBean.getFree() + "运费");
+                        if ((price - Double.valueOf(distributionBean.getFree_shipping())) < 0) {
+                            priceTv.setTextValue(String.format("%.2f", (price + Double.valueOf(distributionBean.getFree()))));
+                        } else {
+                            priceTv.setTextValue(String.format("%.2f", price));
+                        }
+                    }
+                });
             }
         });
     }
@@ -216,7 +207,7 @@ public class ConfirmOrderActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ll_address, R.id.submit_order_tv, R.id.ll_distribution, R.id.ll_coupon})
+    @OnClick({R.id.ll_address, R.id.submit_order_tv, R.id.ll_coupon})
     public void onViewClicked(View view) {
         if (StringUtils.isEmpty(list)) {
             return;
@@ -224,17 +215,12 @@ public class ConfirmOrderActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ll_address:
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("list",(Serializable) addressListBeans);
-                bundle.putString("title","选择收货地址");
-                IntentUtil.startActivity(this, AddressListActivity.class,bundle);
+                bundle.putSerializable("list", (Serializable) addressListBeans);
+                bundle.putString("title", "选择收货地址");
+                IntentUtil.startActivity(this, AddressListActivity.class, bundle);
                 break;
             case R.id.submit_order_tv://提交订单
                 submitOrder();
-                break;
-            case R.id.ll_distribution://配送方式
-                if (picker != null) {
-                    picker.show();
-                }
                 break;
             case R.id.ll_coupon://优惠券
                 break;
@@ -270,7 +256,7 @@ public class ConfirmOrderActivity extends BaseActivity {
         api.addParams("pay_type", type).addParams("uid", api.getUserId(this)).addParams("goodsid", goodsidBuilder.toString())
                 .addParams("goodsname", goodsnameBuilder.toString()).addParams("num", numBuilder.toString()).addParams("username", addressBean.getAccept_name())
                 .addParams("phone", addressBean.getMobile()).addParams("address", addressBean.getAddress())
-                .addParams("dis_type", distributionBean.getId()).addParams("dis_name",distributionBean.getClassname()).addParams("dis_price",distributionBean.getFree())
+                .addParams("dis_type", distributionBean.getId()).addParams("dis_name", distributionBean.getClassname()).addParams("dis_price", distributionBean.getFree())
                 .addParams("gid", gidBuilder.toString());
         HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<DataBean<Integer>>() {
             @Override

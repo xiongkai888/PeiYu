@@ -101,26 +101,6 @@ public class JsonUtil {
         return mJsonObj;
     }
 
-    /**
-     * 根据JSONArray String获取到List
-     * @param <T>
-     * @param <T>
-     * @param jArrayStr
-     * @return
-     */
-//    public static <T> List<T> getListByArray(Class<T> class1,String jArrayStr) {
-//        List<T> list = new ArrayList<>();
-//        JSONArray jsonArray = JSONArray.parseArray(jArrayStr);
-//        if (jsonArray==null || jsonArray.isEmpty()) {
-//            return list;//nerver return null
-//        }
-//        for (Object object : jsonArray) {
-//            JSONObject jsonObject = (JSONObject) object;
-//            T t = JSONObject.toJavaObject(jsonObject, class1);
-//            list.add(t);
-//        }
-//        return list;
-//    }
 
     /**
      * 根据List获取到对应的JSONArray

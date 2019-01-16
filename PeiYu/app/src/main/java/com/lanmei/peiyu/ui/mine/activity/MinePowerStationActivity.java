@@ -15,7 +15,9 @@ import com.lanmei.peiyu.adapter.MinePowerStationEquipmentAdapter;
 import com.lanmei.peiyu.adapter.SelectPlantAdapter;
 import com.lanmei.peiyu.bean.ApplyAfterSaleOrderBean;
 import com.lanmei.peiyu.bean.EquipmentBean;
+import com.lanmei.peiyu.bean.StationDetailsBean;
 import com.lanmei.peiyu.utils.AKDialog;
+import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseActivity;
 import com.xson.common.bean.NoPageListBean;
@@ -46,6 +48,7 @@ public class MinePowerStationActivity extends BaseActivity {
     private PeiYuApi api;
     private MinePowerStationEquipmentAdapter adapter;
     private List<ApplyAfterSaleOrderBean> orderBeanList;
+    private ApplyAfterSaleOrderBean bean;//选中的电站
 
     @Override
     public int getContentViewId() {
@@ -61,6 +64,11 @@ public class MinePowerStationActivity extends BaseActivity {
         adapter = new MinePowerStationEquipmentAdapter(this);
         smartSwipeRefreshLayout.setAdapter(adapter);
         controller = new SwipeRefreshController<NoPageListBean<EquipmentBean>>(this, smartSwipeRefreshLayout, api, adapter) {
+            @Override
+            public void onRefreshResponse(NoPageListBean<EquipmentBean> response) {
+                super.onRefreshResponse(response);
+                loadInfo(bean);//电站详情
+            }
         };
         loadPowerStationList();
     }
@@ -94,15 +102,32 @@ public class MinePowerStationActivity extends BaseActivity {
     }
 
     //请求我的电站列表、电站功率、累计发电等等
-    private void setPlantInfo(ApplyAfterSaleOrderBean bean){
-        loadInfo();
+    private void setPlantInfo(ApplyAfterSaleOrderBean bean) {
+        this.bean = bean;
+        loadInfo(bean);
+        CommonUtils.setCompoundDrawables(getContext(), titleTv, R.mipmap.common_filter_arrow_down, R.color.color666, 2);
         titleTv.setText(bean.getS_name());
-        api.addParams("sid", bean.getS_id());
+        api.addParams("sid", bean.getId());
         controller.loadFirstPage();
     }
-    //加载获取 今日发电量 电站功率、累计发电、今日收益、累计收益 等信息
-    private void loadInfo(){
 
+    //加载获取 今日发电量 电站功率、累计发电、今日收益、累计收益 等信息()
+    private void loadInfo(ApplyAfterSaleOrderBean bean) {
+        PeiYuApi api = new PeiYuApi("station/station_detail");
+        api.addParams("sid",bean.getId());
+        HttpClient.newInstance(this).request(api, new BeanRequest.SuccessListener<NoPageListBean<StationDetailsBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<StationDetailsBean> response) {
+                if (isFinishing()){
+                    return;
+                }
+                adapter.setPowerInformation(new StationDetailsBean());//先清零,防止有的电站没有数据还是保留之前电站的数据
+                List<StationDetailsBean> list = response.data;
+                if (!StringUtils.isEmpty(list)){
+                    adapter.setPowerInformation(list.get(0));
+                }
+            }
+        });
     }
 
     private PopupWindow window;
@@ -138,9 +163,9 @@ public class MinePowerStationActivity extends BaseActivity {
 //        L.d(L.TAG,"width:"+width+",paddingRight:"+paddingRight+",xoff:"+xoff);
     }
 
-    @OnClick({R.id.back_iv,R.id.title_tv})
+    @OnClick({R.id.back_iv, R.id.title_tv})
     public void onViewClicked(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.back_iv:
                 finish();
                 break;
