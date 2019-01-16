@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lanmei.peiyu.view.SwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/d_5dp"
+    android:paddingLeft="@dimen/d_10dp"
+    android:paddingRight="@dimen/d_10dp"
+    android:paddingTop="@dimen/d_5dp">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        style="@style/v_match_parent_no"
+        android:background="@drawable/shape_f_w"
+        android:padding="@dimen/d_10dp">
+
+        <TextView
+            android:id="@+id/title_et"
+            style="@style/text"
+            android:layout_marginBottom="@dimen/d_5dp"
+            android:drawableLeft="@mipmap/icon_message_center3"
+            android:drawablePadding="@dimen/d_5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/time_tv"
+            style="@style/text12color666"
+            android:layout_marginBottom="@dimen/d_5dp"
+            android:layout_marginLeft="@dimen/d_20dp"
+            android:text="@string/time" />
+
+        <TextView
+            android:id="@+id/content_tv"
+            style="@style/text14color666"
+            android:layout_marginLeft="@dimen/d_20dp"
+            android:text="" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/delete_tv"
+            android:layout_width="@dimen/d_100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@color/red"
+            android:gravity="center"
+            android:maxHeight="@dimen/d_100dp"
+            android:text="@string/delete"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_16sp" />
+
+    </LinearLayout>
+
+</com.lanmei.peiyu.view.SwipeItemLayout>

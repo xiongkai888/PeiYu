@@ -10,6 +10,7 @@ import com.lanmei.peiyu.event.LoginQuitEvent;
 import com.lanmei.peiyu.helper.TabHelper;
 import com.lanmei.peiyu.ui.shopping.shop.DBShopCartHelper;
 import com.lanmei.peiyu.ui.shopping.shop.ShowShopCountEvent;
+import com.lanmei.peiyu.update.UpdateAppConfig;
 import com.xson.common.app.BaseActivity;
 import com.xson.common.widget.NoScrollViewPager;
 
@@ -38,12 +39,8 @@ public class MainActivity extends BaseActivity {
         mViewPager.setNoScroll(true);
         mViewPager.setOffscreenPageLimit(4);
         mTabLayout.setupWithViewPager(mViewPager);
-
+        UpdateAppConfig.requestStoragePermission(this);//版本更新
         tabHelper = new TabHelper(this, mTabLayout);
-    }
-
-    public void setOrderNum(int num) {
-        tabHelper.setOrderNum(num);
     }
 
     //(加入购物车、删除购物车)显示购物车数量事件

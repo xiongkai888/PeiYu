@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent_no"
+    tools:context="com.lanmei.peiyu.ui.home.activity.UpgradeActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <WebView
+        android:id="@+id/webView"
+        style="@style/match_parent_all"
+        android:layout_weight="1" />
+
+    <TextView
+        style="@style/text"
+        android:drawableLeft="@mipmap/choose_on"
+        android:gravity="center_vertical"
+        android:padding="@dimen/d_10dp"
+        android:drawablePadding="@dimen/d_5dp"
+        android:text="同意协议" />
+
+
+    <LinearLayout
+        android:layout_height="@dimen/d_50dp"
+        style="@style/ll_h_border_bottom_and_top">
+
+        <TextView
+            android:id="@+id/refuse_tv"
+            style="@style/text_weight"
+            android:text="@string/refuse"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/agree_tv"
+            style="@style/text_weight"
+            android:text="@string/agree"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@color/red"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:paddingBottom="10dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:paddingTop="10dp">
+
+    <LinearLayout
+        android:id="@+id/ll_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorCC000A"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/bank_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/withdraw_zhongguo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/card_name_tv"
+                style="@style/text16colorWhite"
+                android:text="中国工商银行"/>
+
+            <TextView
+                style="@style/text12color666"
+                android:layout_marginTop="3dp"
+                android:text="储蓄卡"
+                android:textColor="@color/white"/>
+
+
+            <LinearLayout
+                style="@style/ll_bottom_h_no"
+                android:layout_marginTop="5dp"
+                android:background="#00000000">
+
+                <TextView
+                    style="@style/text16colorWhite"
+                    android:text="****    ****    ****    ****"/>
+
+                <TextView
+                    android:id="@+id/card_num_tv"
+                    style="@style/text16colorWhite"
+                    android:layout_marginLeft="10dp"
+                    android:text="2125"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.mine.activity.ChooseKaActivity">
+
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_add_ka"
+        style="@style/ll_bottom_h">
+
+        <TextView
+            style="@style/text16color4D4D"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            android:text="+"
+            android:textSize="20sp" />
+
+        <TextView
+            style="@style/text16color4D4D"
+            android:text="  添加银行卡" />
+
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

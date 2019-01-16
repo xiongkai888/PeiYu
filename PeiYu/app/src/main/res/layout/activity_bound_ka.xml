@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.mine.activity.BoundKaActivity">
+
+    <include layout="@layout/include_centertitletoolbar"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        style="@style/ll_bottom_h_no"
+        android:padding="10dp">
+
+
+        <TextView
+            style="@style/text16color666"
+            android:text="选择银行：" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:entries="@array/banks" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        style="@style/ll_bottom_h_no">
+
+
+        <TextView
+            android:text="开  户  名："
+            style="@style/text16color666" />
+
+        <EditText
+            android:id="@+id/name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="16dp"
+            android:hint="@string/input_kaihu"
+            android:background="@drawable/code_shape"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:padding="10dp"
+        style="@style/ll_bottom_h_no">
+
+
+        <TextView
+            android:text="银行卡号："
+            style="@style/text16color666" />
+
+        <EditText
+            android:id="@+id/ka_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:inputType="number"
+            android:textSize="16dp"
+            android:hint="@string/input_brank_num"
+            android:background="@drawable/code_shape"/>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/bt_binding"
+        style="@style/button_style"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:text="立即绑定" />
+
+</LinearLayout>
