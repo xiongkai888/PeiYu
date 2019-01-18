@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.login.BindingPhoneActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/d_50dp"
+        style="@style/h_match_parent_no"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            style="@style/text"
+            android:text="手机" />
+
+
+        <com.xson.common.widget.DrawClickableEditText
+            android:id="@+id/et_mobile"
+            style="@style/editText_bottom_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:hint="@string/input_phone_number"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingRight="15dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/h_match_parent_no"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            style="@style/text"
+            android:text="验证码" />
+
+
+        <LinearLayout
+            style="@style/ll_bottom_h"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp">
+
+
+            <com.xson.common.widget.DrawClickableEditText
+                android:id="@+id/et_code"
+                style="@style/editText_bottom_style"
+                android:layout_marginRight="@dimen/d_5dp"
+                android:layout_weight="1"
+                android:hint="@string/input_code"
+                android:inputType="number"
+                android:maxLength="6" />
+
+            <Button
+                android:id="@+id/obtainCode_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:minWidth="@dimen/d_90dp"
+                android:background="@drawable/code_shape"
+                android:text="@string/obtain_code"
+                android:textColor="@color/color999" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/h_match_parent_no"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            style="@style/text"
+            android:text="推荐人" />
+
+
+        <com.xson.common.widget.DrawClickableEditText
+            android:id="@+id/tgid_et"
+            style="@style/editText_bottom_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:hint="请输入推荐人ID/手机号 (选填)"
+            android:paddingRight="15dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sure_bt"
+        style="@style/button_style"
+        android:layout_marginTop="@dimen/d_60dp"
+        android:text="@string/sure" />
+
+
+</LinearLayout>

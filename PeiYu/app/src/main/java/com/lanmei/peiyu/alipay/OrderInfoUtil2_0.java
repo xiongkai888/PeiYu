@@ -2,7 +2,7 @@ package com.lanmei.peiyu.alipay;
 
 import android.util.Log;
 
-import com.lanmei.peiyu.utils.CommonUtils;
+import com.lanmei.peiyu.utils.Constant;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -82,7 +82,7 @@ public class OrderInfoUtil2_0 {
 		keyValues.put("timestamp", /*"2016-07-29 16:55:53"*/ getTimestamp());
 
 		keyValues.put("version", "1.0");
-		keyValues.put("notify_url", CommonUtils.ALIPAY_NOTIFY_URL);
+		keyValues.put("notify_url", Constant.ALIPAY_NOTIFY_URL);
 
 		
 		return keyValues;

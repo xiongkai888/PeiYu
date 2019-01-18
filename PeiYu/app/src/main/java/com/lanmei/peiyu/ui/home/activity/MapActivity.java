@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
-import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -94,7 +93,6 @@ public class MapActivity extends BaseActivity implements OnGetPoiSearchResultLis
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-        SDKInitializer.initialize(this);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayShowTitleEnabled(true);
@@ -295,11 +293,6 @@ public class MapActivity extends BaseActivity implements OnGetPoiSearchResultLis
         new BaiduLocation(this, new BaiduLocation.WHbdLocationListener() {
             @Override
             public void bdLocationListener(LocationClient mLocationClient, BDLocation location) {
-//                if (locationCount>5){
-//                    mLocationClient.stop();
-//                    UIHelper.ToastMessage(getContext(),"定位失败");
-//                }
-
                 if (location != null) {
 
                     keyCity = location.getCity();

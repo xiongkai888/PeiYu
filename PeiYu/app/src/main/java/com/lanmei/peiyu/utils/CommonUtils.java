@@ -3,13 +3,8 @@ package com.lanmei.peiyu.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
@@ -45,8 +40,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -60,10 +53,6 @@ public class CommonUtils {
     public final static String isTwo = "2";
     public final static String isThree = "3";
     public final static String uid = "uid";
-    //支付宝回调
-    public static final String ALIPAY_NOTIFY_URL = AbstractApi.API_URL + "payment/callback/_id/1";
-
-    public static int quantity = 3;
 
 
     /**
@@ -116,13 +105,6 @@ public class CommonUtils {
         return editText.getText().toString().trim();
     }
 
-//    public static boolean isLogin(Context context) {
-//        if (!UserHelper.getInstance(context).hasLogin()) {
-//            IntentUtil.startActivity(context, LoginActivity.class);
-//            return false;
-//        }
-//        return true;
-//    }
 
     public static void developing(Context context) {
         UIHelper.ToastMessage(context, R.string.developing);
@@ -292,30 +274,6 @@ public class CommonUtils {
         }
     }
 
-    // a integer to xx:xx:xx
-    public static String secToTime(int time) {
-        String timeStr = null;
-        int hour = 0;
-        int minute = 0;
-        int second = 0;
-        if (time <= 0)
-            return "00:00";
-        else {
-            minute = time / 60;
-            if (minute < 60) {
-                second = time % 60;
-                timeStr = unitFormat(minute) + ":" + unitFormat(second);
-            } else {
-                hour = minute / 60;
-                if (hour > 99)
-                    return "99:59:59";
-                minute = minute % 60;
-                second = time - hour * 3600 - minute * 60;
-                timeStr = unitFormat(hour) + ":" + unitFormat(minute) + ":" + unitFormat(second);
-            }
-        }
-        return timeStr;
-    }
 
     public static String unitFormat(int i) {
         String retStr = null;
@@ -341,34 +299,6 @@ public class CommonUtils {
             return;
         }
         banner.startTurning(3000);
-    }
-
-    public static List<String> getList() {
-        List<String> list = new ArrayList<>();
-        Collections.addAll(list, "http://upload-images.jianshu.io/upload_images/3054428-0a653cc081a2a76e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/678/h/260"
-                , "http://upload-images.jianshu.io/upload_images/5862228-94c2cc04e8e0272f.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/678/h/260"
-                , "http://p3.so.qhmsg.com/bdr/200_200_/t01c9b562b657abcb68.jpg");
-        return list;
-    }
-
-    /**
-     * @param s1       要改变颜色的文字
-     * @param s2       要改变颜色的文字为空时的默认文字
-     * @param s3       全部文字
-     * @param textView
-     * @param color     要改变颜色ID
-     */
-    public static void setSpannableString(String s1, String s2, String s3, TextView textView, String color) {
-        if (StringUtils.isEmpty(s1)) {
-            s1 = s2;
-        }
-        SpannableString spannableString = new SpannableString(s3);
-        RelativeSizeSpan sizeSpan = new RelativeSizeSpan(1.2f);
-        spannableString.setSpan(sizeSpan, 0, s1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);//字体大小
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor(color));
-//        L.d(L.TAG,"color:"+colorSpan.getForegroundColor());
-        spannableString.setSpan(colorSpan, 0, s1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);//字体颜色
-        textView.setText(spannableString);
     }
 
     /**

@@ -13,6 +13,8 @@ import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.api.AbstractApi;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.bean.BaseBean;
+import com.xson.common.bean.NoPageListBean;
+import com.xson.common.bean.UserBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.CodeCountDownTimer;
@@ -35,6 +37,7 @@ public class ChangePhoneView extends LinearLayout{
     private String mPhone;
     private CodeCountDownTimer mCountDownTimer;//获取验证码倒计时
     private boolean isChangePhone;
+    public static String changePhone = "changePhone";
 
     public ChangePhoneView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -72,7 +75,7 @@ public class ChangePhoneView extends LinearLayout{
                     UIHelper.ToastMessage(context, context.getString(R.string.code_error));
                     return;
                 }
-                if ("changePhone".equals(type)){//更换手机
+                if (StringUtils.isSame(changePhone, type)){//更换手机
                     mNextStepBt.setText("确认并更换");
                     mPhoneEt.setText("");
                     mCodeEt.setText("");
@@ -93,11 +96,34 @@ public class ChangePhoneView extends LinearLayout{
         mObtainCodeTv.setOnClickListener(new OnClickListener() {//获取验证码
             @Override
             public void onClick(View v) {
-                ajaxObtainCode();
+                if (isChangePhone && StringUtils.isSame(changePhone, type)) {//更换手机(确认并更换)
+                    loadCheckPhone();//先检查手机号是否被占用
+                } else {//解除绑定银行卡
+                    ajaxObtainCode();
+                }
             }
         });
         //初始化倒计时
         initCountDownTimer();
+    }
+
+
+    private void loadCheckPhone() {
+        PeiYuApi api = new PeiYuApi("Public/user_search");
+        api.addParams("phone", mPhone);
+        HttpClient.newInstance(getContext()).loadingRequest(api, new BeanRequest.SuccessListener<NoPageListBean<UserBean>>() {
+            @Override
+            public void onResponse(NoPageListBean<UserBean> response) {
+                if (mNextStepBt == null) {
+                    return;
+                }
+                if (!StringUtils.isEmpty(response.data)) {
+                    UIHelper.ToastMessage(getContext(), "该手机号已经被其他用户绑定");
+                    return;
+                }
+                ajaxObtainCode();
+            }
+        });
     }
 
     private void loadUnBoundCar() {
@@ -170,8 +196,8 @@ public class ChangePhoneView extends LinearLayout{
 
     public void setType(String type) {
         this.type = type;
-        if (!"changePhone".equals(type)){
-            mNextStepBt.setText("确定");
+        if (!StringUtils.isSame(changePhone, type)) {
+            mNextStepBt.setText(context.getString(R.string.sure));
         }
     }
 

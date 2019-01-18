@@ -47,9 +47,9 @@ import butterknife.OnClick;
 public class MineFragment extends BaseFragment {
 
     @InjectView(R.id.pic_iv)
-    CircleImageView picIv;
+    CircleImageView picIv;//头像
     @InjectView(R.id.name_tv)
-    TextView nameTv;
+    TextView nameTv;//用户名
     @InjectView(R.id.m01_tv)
     TextView m01Tv;//我的余额
     @InjectView(R.id.m02_tv)
@@ -138,7 +138,6 @@ public class MineFragment extends BaseFragment {
                 IntentUtil.startActivity(context, MyTeamActivity.class);
                 break;
             case R.id.m03_tv://我的业绩
-//                CommonUtils.developing(context);
 //                PeiYuApi api = new PeiYuApi("station/station_list");
 //                api.addParams("uid",api.getUserId(context));
 //                HttpClient.newInstance(context).request(api, new BeanRequest.SuccessListener<BaseBean>() {
@@ -149,8 +148,6 @@ public class MineFragment extends BaseFragment {
 //                });
                 break;
             case R.id.m04_tv://团队业绩
-//                CommonUtils.developing(context);
-                CommonUtils.loadUserInfo(context,null);
                 break;
             case R.id.m05_tv://我的电站
                 IntentUtil.startActivity(context, MinePowerStationActivity.class);
@@ -168,7 +165,7 @@ public class MineFragment extends BaseFragment {
                 IntentUtil.startActivity(context, 0, MineOrderActivity.class);
                 break;
             case R.id.m5_rl://退款/售后
-                IntentUtil.startActivity(context, 3, MineOrderActivity.class);
+                IntentUtil.startActivity(context, 0, MineOrderActivity.class);
                 break;
             case R.id.m6_tv://安装信息
                 IntentUtil.startActivity(context, InstallApplyActivity.class);
@@ -235,7 +232,7 @@ public class MineFragment extends BaseFragment {
 
 
     private void setString(String s1,String s2,String s3,String s4,String s5){
-        m01Tv.setText(String.format(context.getString(R.string.my_balance), StringUtils.isEmpty(s1)?"0":s1));
+        m01Tv.setText(String.format(context.getString(R.string.my_balance), StringUtils.isEmpty(s1)?CommonUtils.isZero:s1));
         m02Tv.setText(String.format(context.getString(R.string.my_team_sub), s2));
         m03Tv.setText(String.format(context.getString(R.string.my_performance), s3));
         m04Tv.setText(String.format(context.getString(R.string.team_performance), s4));

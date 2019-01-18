@@ -80,7 +80,7 @@ public class HomeRecommendAdapter extends SwipeRefreshAdapter<GoodsDetailsBean> 
         }
 
         public void setParameter(final GoodsDetailsBean bean) {
-//            nameTv.setText(bean.getGoodsname());
+            nameTv.setText(bean.getGoodsname());
             priceTv.setText(String.format(context.getString(R.string.price), bean.getBusiness_price()));
             CommonUtils.loadImage(context, image, bean.getCover());
             addGoodsIv.setOnClickListener(new View.OnClickListener() {
@@ -105,13 +105,13 @@ public class HomeRecommendAdapter extends SwipeRefreshAdapter<GoodsDetailsBean> 
                 List<GoodsSpecificationsBean> list = response.data;
                 if (!StringUtils.isEmpty(list)) {
                     GoodsSpecificationsBean specificationsBean = list.get(0);
-                    bean.setPrice(specificationsBean.getBusiness_price());//规格不变同价格不同
+                    bean.setBusiness_price(specificationsBean.getBusiness_price());//规格不变同价格不同
                     bean.setSpecifications(specificationsBean.getSpecifications());
                     bean.setGid(specificationsBean.getId());
                 }
                 ShopCarBean shopCarBean = new ShopCarBean();
                 shopCarBean.setGoodsName(bean.getGoodsname());
-                shopCarBean.setSell_price(Double.valueOf(bean.getPrice()));
+                shopCarBean.setSell_price(Double.valueOf(bean.getBusiness_price()));
                 shopCarBean.setGoods_id(bean.getId());
                 shopCarBean.setGoodsImg(bean.getCover());
                 shopCarBean.setGoodsCount(1);

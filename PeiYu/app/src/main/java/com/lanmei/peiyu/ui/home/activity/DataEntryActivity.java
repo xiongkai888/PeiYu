@@ -43,6 +43,7 @@ import com.xson.common.widget.CenterTitleToolbar;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -258,15 +259,15 @@ public class DataEntryActivity extends BaseActivity implements BGASortableNinePh
             return;
         }
         final String card = CommonUtils.getStringByEditText(cardEt);//身份证
-//        try {
-//            String marked = StringUtils.IDCardValidate(card);//input_installation_address
-//            if (!StringUtils.isEmpty(marked)) {
-//                UIHelper.ToastMessage(this, marked);
-//                return;
-//            }
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            String marked = StringUtils.IDCardValidate(card);//input_installation_address
+            if (!StringUtils.isEmpty(marked)) {
+                UIHelper.ToastMessage(this, marked);
+                return;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         if (StringUtils.isEmpty(helper.getCardPic1()) || StringUtils.isEmpty(helper.getCardPic2())) {
             UIHelper.ToastMessage(this, "请选择身份证正反面");

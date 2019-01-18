@@ -44,11 +44,7 @@ public class FormatTime {
      */
     public FormatTime(Context context, String s) {
         this(context);
-        if (StringUtils.isEmpty(s)) {
-            s = CommonUtils.isZero;
-        }
-        this.time = Long.parseLong(s) * 1000;
-        calendar.setTimeInMillis(this.time);
+        setTime(s);
     }
 
     /**
@@ -79,7 +75,12 @@ public class FormatTime {
         if (StringUtils.isEmpty(s)) {
             s = CommonUtils.isZero;
         }
-        this.time = Long.parseLong(s) * 1000;
+        try {
+            this.time = Long.parseLong(s) * 1000;
+        } catch (NumberFormatException e) {
+            this.time = 0;
+            e.printStackTrace();
+        }
         calendar.setTimeInMillis(this.time);
 
     }
@@ -95,12 +96,7 @@ public class FormatTime {
      * 默认时间格式：时间戳格式为“yyyy-MM-dd HH:mm”
      */
     public String formatterTime(String s) {
-        if (StringUtils.isEmpty(s)) {
-            s = CommonUtils.isZero;
-        }
-        this.time = Long.parseLong(s) * 1000;
-        calendar.setTimeInMillis(this.time);
-
+        setTime(s);
         date.setTime(time);
         return format.format(date);
     }

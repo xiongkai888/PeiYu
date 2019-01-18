@@ -6,6 +6,7 @@
     android:paddingTop="@dimen/d_10dp">
 
     <TextView
+        android:text="@string/help_info"
         android:id="@+id/name_tv"
         style="@style/text12color999"
         android:layout_gravity="center_horizontal"

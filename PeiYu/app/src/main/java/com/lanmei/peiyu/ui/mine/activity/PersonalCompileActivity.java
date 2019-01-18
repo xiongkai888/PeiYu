@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.lanmei.peiyu.R;
 import com.lanmei.peiyu.utils.AKDialog;
+import com.lanmei.peiyu.view.ChangePhoneView;
 import com.xson.common.app.BaseActivity;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
@@ -109,7 +110,7 @@ public class PersonalCompileActivity extends BaseActivity {
                 UIHelper.ToastMessage(this, "您还没有绑定手机号，请先绑定");
                 return;
             }
-            alertDialog = AKDialog.getChangePhoneDialog(this, "验证码将以短息方式发送至您的手机，点击获取验证码按钮后请在60s内输入验证码！", value, "changePhone", new AKDialog.ChangePhoneListener() {
+            alertDialog = AKDialog.getChangePhoneDialog(this, "验证码将以短息方式发送至您的手机，点击获取验证码按钮后请在60s内输入验证码！", value, ChangePhoneView.changePhone, new AKDialog.ChangePhoneListener() {
                 @Override
                 public void succeed(String newPhone) {
                     alertDialog.cancel();

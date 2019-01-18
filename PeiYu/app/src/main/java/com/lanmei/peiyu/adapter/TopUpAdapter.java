@@ -44,9 +44,7 @@ public class TopUpAdapter extends SwipeRefreshAdapter<RechargeResultBean> {
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.rechargeTypeTv.setText(bean.getRecode_info());
         viewHolder.rechargePriceTv.setText(String.format(context.getString(R.string.yuan), bean.getMoney()));
-//        time.setTime(bean.getAddtime());
-//        viewHolder.rechargeTimeTv.setText(time.formatterTime());
-        viewHolder.rechargeTimeTv.setText(bean.getAddtime());
+        viewHolder.rechargeTimeTv.setText(time.formatterTime(bean.getAddtime()));
         viewHolder.balanceTv.setText(String.format(context.getString(R.string.balance), bean.getBalance()));
     }
 

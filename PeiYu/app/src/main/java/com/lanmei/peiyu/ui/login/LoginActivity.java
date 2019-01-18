@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.lanmei.peiyu.MainActivity;
 import com.lanmei.peiyu.R;
+import com.lanmei.peiyu.event.LoginQuitEvent;
 import com.lanmei.peiyu.event.RegisterEvent;
 import com.lanmei.peiyu.event.SetUserInfoEvent;
 import com.lanmei.peiyu.utils.CommonUtils;
@@ -63,7 +64,6 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setTitle(R.string.login);
@@ -140,11 +140,7 @@ public class LoginActivity extends BaseActivity {
                 if (isFinishing()){
                     return;
                 }
-                UserBean bean = response.data;
-                UserHelper.getInstance(getContext()).saveBean(bean);
-                MainActivity.showHome(getContext());
-                EventBus.getDefault().post(new SetUserInfoEvent(bean));
-                finish();
+                goTo(response.data);
             }
         });
     }
@@ -214,16 +210,27 @@ public class LoginActivity extends BaseActivity {
                 if (isFinishing()) {
                     return;
                 }
-                UserBean bean = response.data;
-                SharedAccount.getInstance(getContext()).savePhone(phone);
-                UserHelper.getInstance(getContext()).saveBean(bean);
-                MainActivity.showHome(getContext());
-                EventBus.getDefault().post(new SetUserInfoEvent(bean));
-                finish();
+                goTo(response.data);
             }
         });
     }
 
+    private void goTo(UserBean bean){
+        if (StringUtils.isEmpty(bean)){
+            return;
+        }
+        if (StringUtils.isEmpty(bean.getPhone())){//要是手机号为空就绑定手机
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("bean",bean);
+            IntentUtil.startActivity(getContext(),BindingPhoneActivity.class,bundle);
+        }else {
+            SharedAccount.getInstance(getContext()).savePhone(phone);
+            UserHelper.getInstance(getContext()).saveBean(bean);
+            MainActivity.showHome(getContext());
+            EventBus.getDefault().post(new SetUserInfoEvent(bean));
+            finish();
+        }
+    }
 
     private boolean isShowPwd = false;//是否显示密码
 
@@ -255,6 +262,13 @@ public class LoginActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mShareAPI.get(this).onActivityResult(requestCode, resultCode, data);//完成回调
+    }
+
+
+    //绑定手机后调用
+    @Subscribe
+    public void loginQuitEvent(LoginQuitEvent event) {
+        finish();
     }
 
 }

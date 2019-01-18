@@ -36,11 +36,6 @@ public class ClubActivity extends BaseActivity {
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        ClubActivity.no_bound_card = true;
-//    }
 
     @OnClick(R.id.back_iv)
     public void onViewClicked() {

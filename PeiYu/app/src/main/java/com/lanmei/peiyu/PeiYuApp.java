@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.sdk.android.oss.common.OSSLog;
+import com.baidu.mapapi.SDKInitializer;
 import com.lanmei.peiyu.update.UpdateAppConfig;
 import com.lanmei.peiyu.utils.Constant;
 import com.umeng.commonsdk.UMConfigure;
@@ -21,8 +22,9 @@ public class PeiYuApp extends BaseApp {
 
     @Override
     protected void installMonitor() {
+        SDKInitializer.initialize(this);
         instance = this;
-        L.debug = OSSLog.enableLog = true;//true,false
+        L.debug = OSSLog.enableLog = true;//false,false
         UpdateAppConfig.initUpdateApp(this);//app版本更新
         //友盟初始化设置
         initUM();

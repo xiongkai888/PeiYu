@@ -167,6 +167,9 @@
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.login.BindingPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.login.ProtocolActivity"
             android:screenOrientation="portrait" />
         <activity

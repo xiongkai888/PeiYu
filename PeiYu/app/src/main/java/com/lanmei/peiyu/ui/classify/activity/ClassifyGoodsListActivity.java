@@ -16,11 +16,13 @@ import com.lanmei.peiyu.adapter.ClassifyGoodsListAdapter;
 import com.lanmei.peiyu.adapter.SynthesizeFiltrateAdapter;
 import com.lanmei.peiyu.bean.GoodsDetailsBean;
 import com.lanmei.peiyu.bean.SynthesizeFiltrateBean;
+import com.lanmei.peiyu.ui.home.activity.ClassifyActivity;
 import com.lanmei.peiyu.utils.CommonUtils;
 import com.xson.common.api.PeiYuApi;
 import com.xson.common.app.BaseActivity;
 import com.xson.common.bean.NoPageListBean;
 import com.xson.common.helper.SwipeRefreshController;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.SysUtils;
 import com.xson.common.widget.SmartSwipeRefreshLayout;
 
@@ -75,7 +77,7 @@ public class ClassifyGoodsListActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.keywordEditText:
-                CommonUtils.developing(this);
+                IntentUtil.startActivity(this, SearchGoodsActivity.class);
                 break;
             case R.id.synthesize_tv://综合
                 popupWindow();
